@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.member.MemberDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.member.MemberDto"></resultMap>
+	<sql id="commonSelectMember">
+		From member a
+		WHERE 1=1
+		<if test="voDelNy != null and !voDelNy.equals('')">AND a.memberDelNy = #{voDelNy}</if>
+
+		<choose>
+			<when test="voOptionDate == 1">AND a.memberRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.memberModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.memberSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.memberGenderCd = #{voValue}</when>
+			<when test="voOption == 3">AND a.memberBirthday LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 4">AND a.memberName LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 5">AND a.memberID LIKE CONCAT('%',#{voValue},'%')</when>
+			<when test="voOption == 6">AND a.memberTierCd LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</sql>
+
+	<select id="selectListWithPaging" resultMap="resultMapObj">
+		<include refid="base.selectHeader" />
+		SELECT
+			a.memberSeq
+			,a.memberID
+			,a.memberPwd
+			,a.memberName
+			,a.memberBirthday
+			,a.memberEmail
+			,a.memberDept
+			,a.memberDelNy
+			,a.memberGenderCd
+			,a.memberTierCd
+			,a.memberVictoryRate
+			,a.memberRegDate
+			,a.memberModDate
+				<include refid="commonSelectMember" />
+			ORDER BY a.memberSeq desc , a.memberName, a.memberID 
+			<include refid="base.selectFooterMysql" />
+	</select>
+
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectMember" />
+	</select>
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			memberSeq
+			,memberID
+			,memberPwd
+			,memberName
+			,memberBirthday
+			,memberEmail
+			,memberDept
+			,memberDelNy
+			,memberGenderCd
+			,memberTierCd
+			,memberVictoryRate
+			,memberRegDate
+			,memberModDate
+			From member
+		where 1=1
+				and memberSeq=#{memberSeq}
+	</select>
+
+	<insert id="insert">
+		insert into member(
+				memberName,
+				memberID,
+				memberPwd,
+				memberBirthday,
+				memberEmail,
+				memberDelNy,
+				memberAdminNy,
+				memberTierCd,
+				memberVictoryRate,
+				memberKDA,
+				memberGenderCd,
+				memberRegDate,
+				memberModDate)
+				VALUES
+				(
+				#{memberName},
+				#{memberID},
+				#{memberPwd},
+				#{memberBirthday},
+				#{memberEmail},
+				0,
+				#{memberAdminNy},
+				#{memberTierCd},
+				#{memberVictoryRate},
+				#{memberKDA},
+				#{memberGenderCd},
+				now(),
+				now()
+		    )
+
+		<selectKey resultType="String" keyProperty="memberSeq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
+		UPDATE member
+		<set>
+            <if test="memberEmail != null or memberEmail != ''">memberEmail = #{memberEmail},</if>
+            <if test="memberTierCd != null or memberTierCd != ''">memberTierCd = #{memberTierCd},</if>
+            <if test="memberKDA != null or memberKDA != ''">memberKDA = #{memberKDA},</if>
+            <if test="memberVictoryRate != null or memberVictoryRate != ''">memberVictoryRate = #{memberVictoryRate},</if>
+            <if test="memberDept != null or memberDept != ''">memberDept = #{memberDept},</if>
+        </set>
+		where 1=1
+			and memberSeq=#{memberSeq}
+	</update>
+	
+	<update id="updateProfile">
+		UPDATE member
+		<set>
+            <if test="memberEmail != null or memberEmail != ''">memberEmail = #{memberEmail},</if>
+            <if test="memberDept != null or memberDept != ''">memberDept = #{memberDept}</if>
+        </set>
+		where 1=1
+			and memberSeq=#{memberSeq}
+	</update>
+
+	<update id="uelete">
+		update member
+		set 
+		memberDelNy=1
+		where 1=1
+		 and memberSeq = #{memberSeq}
+	</update>
+
+	<delete id="delete">
+		delete From member
+			where 1=1
+		and memberSeq=#{memberSeq}
+	</delete>
+	
+	<select id="selectLogin" resultMap="resultMapObj"> 
+		select 
+			memberID
+			,memberPwd
+			,memberEmail
+			,memberName
+			,memberSeq
+			,memberAdminNy
+		FROM member 
+		WHERE 1=1
+		 AND memberID = #{memberID}
+	</select>
+	
+	<insert id="memberReg">
+		insert into member(
+				memberID,
+				memberPwd,
+				memberName,
+				memberGenderCd,
+				memberBirthday,
+				memberEmail,
+				memberDelNy,
+				memberAdminNy,
+				memberRegDate,
+				memberModDate)
+				VALUES
+				(
+				#{memberID},
+				#{memberPwd},
+				#{memberName},
+				#{memberGenderCd},
+				#{memberBirthday},
+				#{memberEmail},
+				0,
+				#{memberAdminNy},
+				now(),
+				now()
+		    )
+	</insert>
+
+
+</mapper>

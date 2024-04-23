@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.code.CodeDao">
+
+	<resultMap id="resultMapObj"
+		type="com.ERR.infra.code.CodeDto"></resultMap>
+		
+	<sql id="commonSelectCode">
+		FROM code a
+		LEFT JOIN codeGroup b on b.codeGroupSeq = a.codeGroupSeqF
+		WHERE 1=1
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeDelNy = #{voDelNy}</if>
+			
+		<choose>
+			<when test="voOptionDate == 1">AND a.codeRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.codeModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.codeSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.codeName LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</sql>
+
+	<select id="selectListWithPaging" resultMap="resultMapObj">
+	<include refid="base.selectHeader" />
+			select
+		a.codeGroupSeqF
+		,b.codeGroupName as xcodeGroupName
+		,a.codeDelNy
+		,a.codeSeq
+		,a.codeName
+		,a.codeRegDate
+		,a.codeModDate
+		<include refid="commonSelectCode" />
+		ORDER BY a.codeSeq asc, a.codeName, a.codeSeq
+		<include refid="base.selectFooterMysql" />
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectCode" />
+	</select>
+	
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+			select
+		codeSeq
+		,codeName
+		,codeGroupSeqF
+		,codeGroupName as xcodeGroupName
+		where 1=1
+		AND codeDelNy=0
+	</select>
+	
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			codeSeq
+			,codeName
+			,codeDelNy
+			,codeModDate
+			,codeRegDate
+			From code
+		where 1=1
+				and codeSeq=#{codeSeq}
+	</select>
+
+	<insert id="insert">
+		insert into code(
+			codeName
+		    ,codeDelNy
+		    ,codeGroupSeqF
+		   )values(
+			    #{codeName}
+			    ,0
+			    ,#{codeGroupSeqF}
+		    )
+
+		<selectKey resultType="String" keyProperty="codeSeq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
+		UPDATE code
+		SET
+		codeName=#{codeName}
+		,codeGroupSeqF=#{codeGroupSeqF}
+		where 1=1
+			and codeSeq=#{codeSeq}
+	</update>
+
+	<update id="uelete">
+		update code
+		set 
+		codeDelNy=1
+		where 1=1
+		 and codeSeq = #{codeSeq}
+	</update>
+
+	<delete id="delete">
+		delete From code
+			where 1=1
+		and codeSeq=#{codeSeq}
+	</delete>
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+			SELECT 
+				codeSeq
+				, codeName
+				, codeGroupSeqF
+			FROM
+				code
+			WHERE 1=1
+				AND codeDelNy = 0
+	   </select>
+	
+
+</mapper>

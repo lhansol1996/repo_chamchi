@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+		<!-- Titlebar
+================================================== -->
+		<div id="titlebar">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+						<h2>파티 만들기</h2>
+
+						<!-- Breadcrumbs -->
+						<nav id="breadcrumbs">
+							<ul>
+								<li><a href="#">Home</a></li>
+								<li>파티 만들기</li>
+							</ul>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+		<div class="container">
+			<div class="row">
+
+
+				<!-- Widget -->
+				
+				<!--프로파일 aside-->
+				<div th:replace="~{include/myProfileAside :: myProfileAside}"></div>
+				<!--프로파일 aside 끝-->
+
+				<div class="col-md-8">
+					<form name="formPartyMake" id="formPartyMake">
+						<div class="row">
+
+
+							<div class="col-md-8 my-profile">
+								<h4 class="margin-top-0 margin-bottom-30">My Party</h4>
+
+								<label>파티 이름</label>
+								<input placeholder="파티이름을 입력해주세요" id="partyName" name="partyName" type="text">
+								<div class="invalid-feedback" id="partyNameFeedback"></div>
+
+								
+								<label for="partyMatchTypeCd" class="form-label">파티타입 지정</span></label>
+								<select class="form-select" name="partyMatchTypeCd" id="partyMatchTypeCd">
+									<option value="" selected>파티 타입을 선택하세요</option>
+									<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
+										th:value="${codeList.codeSeq}"
+										th:text="${codeList.codeName}" >
+									</option>
+								</select>
+								<div class="invalid-feedback" id="partyMatchTypeCdFeedback"></div>
+
+								<h4 class="margin-top-50 margin-bottom-25">About Party</h4>
+								<textarea name="partyDept" id="partyDept" cols="30"
+									rows="10" placeholder="파티 상세설명"></textarea>
+
+								<!-- 저장 버튼 -->
+							<button type="button" class="button margin-top-20 margin-bottom-20" id="btnInsert">생성</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- Footer
+================================================== -->
+	<div class="margin-top-55"></div>
+
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+
+
+	</div>
+	<!-- Wrapper / End -->
+
+	<script>
+	let form = document.querySelector("form[name=formPartyMake]");
+	let goUrlXdmInstForm = "/partyUsrInsert";
+
+	// 등록버튼
+	document.getElementById("btnInsert").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlXdmInstForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!checkNull('partyName', 2,'값넣어야함')) return false;
+
+		}
+
+	</script>
+	<!-- Scripts================================================== -->
+		<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+</body>
+
+</html>

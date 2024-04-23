@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+
+	<style>
+		.usersection-css {
+			border: 5px solid rgb(230, 230, 230);
+			background: rgb(255, 255, 255);
+		}
+
+		.usertierimage-css {
+			display: flex;
+			-webkit-box-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			align-items: center;
+			column-gap: 20px;
+			padding: 16px 19px 20px;
+			flex-direction: row;
+		}
+
+		.css-uxuu7z {
+			padding: 15px 19px;
+			border-top: 1px solid rgb(230, 230, 230);
+			border-bottom: 1px solid rgb(230, 230, 230);
+			display: grid;
+			gap: 12px;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		.css-1se3mx8 {
+			display: flex;
+			flex-direction: column;
+			row-gap: 6px;
+			font-size: 12px;
+			line-height: 12px;
+			flex-wrap: nowrap;
+			align-content: center;
+			text-align: center;
+		}
+
+		.css-12xo38q>.content {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1 0%;
+			border-width: 1px 1px 1px 0px;
+			border-top-style: solid;
+			border-right-style: solid;
+			border-bottom-style: solid;
+			border-top-color: rgb(230, 230, 230);
+			border-right-color: rgb(230, 230, 230);
+			border-bottom-color: rgb(230, 230, 230);
+			border-image: initial;
+			border-left-style: initial;
+			border-left-color: initial;
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+		menu,
+		ol,
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+	</style>
+
+
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+
+		<!-- Titlebar
+================================================== -->
+		<div id="titlebar">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+						<h2>[[${userNameItem}]]의 전적</h2>
+
+						<!-- Breadcrumbs -->
+						<nav id="breadcrumbs">
+							<ul>
+								<li><a href="#">Home</a></li>
+								<li>전적검색</li>
+							</ul>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+		<div class="container">
+			<div class="row">
+
+
+				<!-- 유저 간략 정보 사이드바 -->
+				<div class="col-md-4">
+					<div class="sidebar left">
+						<section class="usersection-css" th:if="${!#lists.isEmpty(getUserStatItem)}" th:each="getUserStatItem:${getUserStatItem}">
+							<header>
+								<h2 class="p-5 mt-3 text-center">랭크</h2>
+							</header>
+							<div class="usertierimage-css"><img src="//cdn.dak.gg/assets/er/images/rank/round/6.png"
+									alt="다이아몬드">
+								<div>
+									<b class="rp" th:text="${getUserStatItem.mmr} + 'RP'">5337</b>
+									<div class="rank" th:text="${getUserStatItem.rank} + '위'"></div>
+								</div>
+							</div>
+							<div class="css-uxuu7z">
+								<div class="css-1se3mx8">
+									<h4>상위 %</h4>
+									<div class="value" th:text="${getUserStatItem.rankPercent} + '%'">7.24</div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>승률</h4>
+									<div class="value"  th:text="${getUserStatItem.top1 * 100} + '%'"></div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>게임 수</h4>
+									<div class="value" th:text="${getUserStatItem.totalGames}"></div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>평균 킬</h4>
+									<div class="value" th:text="${getUserStatItem.averageKills}"></div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>TOP 2</h4>
+									<div class="value" th:text="${getUserStatItem.top2 * 100} + '%'"></div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>평균 사냥</h4>
+									<div class="value" th:text="${getUserStatItem.averageHunts} + '마리'"></div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>평균 어시</h4>
+									<div class="value" th:text="${getUserStatItem.averageAssistants}">3.9</div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>TOP 3</h4>
+									<div class="value" th:text="${getUserStatItem.top3 * 100} + '%'"></div>
+								</div>
+								<div class="css-1se3mx8">
+									<h4>평균 순위</h4>
+									<div class="value" th:text="${getUserStatItem.averageRank}">3.9</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+
+
+				<!-- 전적 테이블 -->
+				<div class="col-md-8 flex">
+					<table class="manage-table responsive-table">
+
+						<tr>
+							<th>캐릭터 정보</th>
+							<th>RP,MMR 변동</th>
+							<th>게임 내 정보</th>
+							<th>KDA 정보</th>
+						</tr>
+
+
+
+						<!-- Item #2 -->
+						<tr th:if="${!#lists.isEmpty(userGamesList)}" th:each="userGamesList:${userGamesList}">
+							<td class="title-container">
+								<img src="xdm/assets/images/listing-01.jpg" alt="">
+								<div class="title">
+									<span>캐릭터<span class="table-property-price" th:text="${@codeService.selectOneCachedCode(userGamesList.characterNum)}"></span></span>
+									<span>게임ID<span class="table-property-price" th:text="${userGamesList.gameId}">게임 id</span></span>
+
+								</div>
+							</td>
+							<td class="expire-date" style="text-align: center;">
+								<ul>
+									<li>
+										<span>획득 전: </span><span th:text="${userGamesList.mmrBefore}"></span>
+									</li>
+									<li>
+										<span>획득 후: </span><span th:text="${userGamesList.mmrAfter}"></span>
+									</li>
+									<li>
+										<span>획득 RP: </span><span th:text="${userGamesList.mmrGain}"></span>
+									</li>
+								</ul>
+							</td>
+
+							<td class="flex-wrap">
+								<ul>
+									<li>
+										<span>평균 MMR: </span><span th:text="${userGamesList.mmrAvg}"></span>
+									</li>
+									<li>
+										<span>매치 사이즈: </span><span th:text="${userGamesList.matchSize}"></span>
+									</li>
+									<li>
+										<span>팀 번호: </span><span th:text="${userGamesList.teamNumber}"></span>
+									</li>
+									<li>
+										<span>팀 등수: </span><span th:text="${userGamesList.gameRank}"></span>
+									</li>
+								</ul>
+							</td>
+							<td class="action">
+								<ul>
+									<li>
+									<i class="im im-icon-Gun"></i>&nbsp;&nbsp;킬 수 :<span th:text="${userGamesList.playerKill}"></span>
+									</li>
+									<li>
+										<i class="im im-icon-Skull"></i>&nbsp;&nbsp;데스 수 :<span th:text="${userGamesList.playerDeaths}"></span>
+									</li>
+									<li>
+										<i class="im im-icon-Aerobics-3"></i>&nbsp;&nbsp;어시스트 수 :<span th:text="${userGamesList.playerAssistant}"></span>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- Footer
+================================================== -->
+		<div class="margin-top-55"></div>
+
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+		
+		<!-- Scripts
+================================================== -->
+<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+</body>
+
+</html>

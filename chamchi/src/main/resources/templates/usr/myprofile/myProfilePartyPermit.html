@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+<div th:replace="~{include/usrHead :: usrHead}"></div>
+
+</head>
+<style>
+	#partyList{
+		float:right;
+	}
+#profileRow {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display:block;
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-.5* var(--bs-gutter-x));
+}
+
+
+</style>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+	<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>신청한 파티 목록</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li>신청한 파티</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row" id="profileRow">
+
+
+		<!-- Widget -->
+
+		<!--프로파일 aside-->
+        <div th:replace="~{include/myProfileAside :: myProfileAside}"></div>
+        <!--프로파일 aside 끝-->
+		<form name="formList" id="formList" method="get" autocomplete="off">
+			<!-- 페이징 처리 필요한 검색값 -->
+			<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+			<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
+
+			<div class="col-md-8" id="partyList">
+				<table class="manage-table bookmarks-table responsive-table">
+
+					<tr>
+						<th><i class="fa fa-group"></i> 참가 신청한 멤버</th>
+						<th></th>
+						<th></th>
+					</tr>
+
+					<!-- Item #1 -->
+					<tr th:if="${!#lists.isEmpty(list) && list.xMasterSeqF == session.sessMemberSeq}" th:each="list:${list}">
+						<td class="title-container">
+							<img src="xdm/assets/images/listing-01.jpg" alt="">
+							
+						</td>
+						<td>
+							<div class="title-container">
+								<h4>파티이름 : <a href="#" th:text="${list.partyName}"></a></h4>
+								<span>멤버 이름 : <span th:text="${list.xMemberName}"></span></span>
+								<span>멤버 티어 :
+									<span class="table-property-price" th:if="${list.xMemberTierCd != null}" th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}"></span></span>
+									<span class="table-property-price" th:unless="${list.xMemberTierCd != null}" >티어등록을 하지않음</span></span>
+								</div>	
+						</td>
+						<td class="action">
+							<a th:href="@{/updatePermit (partySeqF=${list.partySeq}, memberSeqF=${list.xMemberSeqF})}" href="#" class="delete"><i class="im im-icon-Add"></i> 가입 허가</a>
+						</td>
+					</tr>
+
+					<!-- <tr th:unless="${!#lists.isEmpty(list) && list.xMasterNy == '0'}" th:each="list:${list}"> -->
+
+
+
+
+					</tr>
+
+
+					
+
+				</table>
+					<!--페이지네이션-->
+					<div th:replace="~{include/pagination :: pagination}"></div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- Footer
+================================================== -->
+<div class="margin-top-55"></div>
+
+<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+
+
+<!-- Wrapper / End -->
+
+
+<!-- Scripts
+================================================== -->
+<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+<script>
+    let goUrlProfilePartyRequestList = "/myProfilePartyRequest";
+	let form = document.querySelector("form[name=formList]");
+	goList = function (thisPage) {
+		document.querySelector("input[name=thisPage]").value = thisPage;
+		form.action = goUrlProfilePartyRequestList;
+		form.submit();
+		}
+</script>
+
+</body>
+</html>

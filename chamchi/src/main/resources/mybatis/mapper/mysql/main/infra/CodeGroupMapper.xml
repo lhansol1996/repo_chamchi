@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.codegroup.CodeGroupDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
+	
+	<sql id="commonSelectCdg">
+		FROM codeGroup a
+		WHERE 1=1
+			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeGroupDelNy = #{voDelNy}</if>
+			
+		<choose>
+			<when test="voOptionDate == 1">AND a.codeGroupRegDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+			<when test="voOptionDate == 2">AND a.codeGroupModDate BETWEEN #{voDateStart} AND #{voDateEnd}</when>
+		</choose>
+
+		<choose>
+			<when test="voOption == 1">AND a.codeGroupSeq = #{voValue}</when>
+			<when test="voOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{voValue},'%')</when>
+		</choose>
+	</sql>
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+		codeGroupSeq
+		,codeGroupName
+		,codeGroupRegDate
+		,codeGroupModDate
+		,codeGroupDelNy
+		from
+		codeGroup
+		where 1=1
+		and codeGroupSeq = #{codeGroupSeq}
+	</select>
+
+	<insert id="insert">
+		insert into codeGroup(
+		codeGroupName
+		,codeGroupDelNy
+		)values(
+		#{codeGroupName}
+		,0
+		);
+
+<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="codeGroupSeq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	<update id="update">
+		UPDATE codeGroup
+		SET
+		codeGroupName = #{codeGroupName}
+		,codeGroupModDate = now()
+		where
+		1=1
+		and codeGroupSeq = #{codeGroupSeq}
+	</update>
+
+	<update id="uelete">
+		UPDATE codeGroup
+		SET
+		codeGroupDelNy=1
+		where 1=1
+		and codeGroupSeq=#{codeGroupSeq}
+	</update>
+
+	<delete id="delete">
+		Delete from codeGroup
+		where 1=1
+		and codeGroupSeq = #{codeGroupSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		select 
+		codeGroupSeq,
+		codeGroupName
+		from codeGroup
+		where 1=1
+			AND codeGroupDelNy=0
+	</select>
+	
+	<select id="selectListWithPaging"  resultMap="resultMapObj">
+			<include refid="base.selectHeader" />
+			SELECT
+				  a.codeGroupSeq
+			    , a.codeGroupName
+				, a.codeGroupDelNy
+				, a.codeGroupRegDate
+				, a.codeGroupModDate
+			<include refid="commonSelectCdg" />
+			
+			ORDER BY a.codeGroupSeq asc, a.codeGroupName, a.codeGroupSeq
+			<include refid="base.selectFooterMysql" />
+	
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="commonSelectCdg" />
+	</select>
+
+
+</mapper>

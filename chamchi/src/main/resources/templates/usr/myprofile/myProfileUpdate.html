@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+
+		<!-- Titlebar
+================================================== -->
+		<div id="titlebar">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+						<h2>My Profile</h2>
+
+						<!-- Breadcrumbs -->
+						<nav id="breadcrumbs">
+							<ul>
+								<li><a href="#">Home</a></li>
+								<li>My Profile</li>
+							</ul>
+						</nav>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+		<div class="container">
+			<div class="row">
+
+
+				<!-- Widget -->
+				
+				<!--프로파일 aside-->
+				<div th:replace="~{include/myProfileAside :: myProfileAside}"></div>
+				<!--프로파일 aside 끝-->
+
+				<div class="col-md-8">
+						<form name="formUpdt" id="formUpdt">
+							<div class="row">
+
+
+								<div class="col-md-8 my-profile">
+									<h4 class="margin-top-0 margin-bottom-30">My Account</h4>
+
+									<label>Your ID</label>
+									<input name="memberID" id="memberID" th:value="${session.sessMemberId}" type="text" disabled />
+
+									<label>Your InGameNickName</label>
+									<div class="main-search-box">
+
+										<!-- Main Search Input -->
+										<div class="main-search-input larger-input">
+											<input type="text" class="ico-01" id="autocomplete-input" placeholder="닉네임 검색"
+												value="" />
+											<button class="button">Search</button>
+										</div>
+									</div>
+
+									<label>Your Most 3 Character</label>
+									<div class="style-2">
+
+										<!-- Toggle 1 -->
+										<div class="toggle-wrap">
+											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
+														class="sl sl-icon-plus"></i></a></span>
+											<ul class="toggle-container" style="list-style: none;">
+												<li>평균 딜량 : </li>
+												<li>승률 : </li>
+												<li>An item : </li>
+											</ul>
+										</div>
+
+										<!-- Toggle 2 -->
+										<div class="toggle-wrap">
+											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
+														class="sl sl-icon-plus"></i></a></span>
+											<ul class="toggle-container" style="list-style: none;">
+												<li>평균 딜량 : </li>
+												<li>승률 : </li>
+												<li>An item : </li>
+											</ul>
+										</div>
+
+										<!-- Toggle 3 -->
+										<div class="toggle-wrap">
+											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
+														class="sl sl-icon-plus"></i></a></span>
+											<ul class="toggle-container" style="list-style: none;">
+												<li>평균 딜량 : </li>
+												<li>승률 : </li>
+												<li>An item : </li>
+											</ul>
+										</div>
+
+									</div>
+
+									<label>티어</label>
+									<span th:if="${item.memberTierCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}"></span>
+									<span unless:if="${item.memberGenderCd != null}" >티어 등록을안하셨습니다.</span>
+								
+									<label>Your Email</label>
+									<input type="text" id="memberEmail" name="memberEmail" th:value="${item.memberEmail}" />
+									<div class="invalid-feedback" id="memberEmailFeedback"></div>
+									
+
+									<label>성별</label>
+									<span th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
+								
+
+
+									<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
+									<textarea name="memberDept" id="memberDept" cols="30" rows="10" th:text="${item.memberDept}"></textarea>
+									<div class="invalid-feedback" id="memberDeptFeedback"></div>
+
+									<input type="hidden" name="memberSeq" id="memberSeq" th:value="${item.memberSeq}" />
+									<!-- 저장 버튼 -->
+									<button class="button margin-top-20 margin-bottom-20" type="button" id="btnUpdate">
+										변경
+									</button>
+								</div>
+
+								<div class="col-md-4">
+									<!-- Avatar -->
+									<div class="edit-profile-photo">
+										<img src="xdm/assets/images/user1.png" alt="">
+										<div class="change-photo-btn">
+											<div class="photoUpload">
+												<span><i class="fa fa-upload"></i> Upload Photo</span>
+												<input type="file" class="upload" />
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- Footer
+================================================== -->
+		<div class="margin-top-55"></div>
+
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+	<!-- Wrapper / End -->
+	
+	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+	<script>
+
+		let form = document.querySelector("form[name=formUpdt]");
+		let goUrlUpdtForm = "/profileUpdt";
+
+		// 등록버튼
+		document.getElementById("btnUpdate").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlUpdtForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!checkOnlyKoreanEnglishNumber('memberDept',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
+		}
+
+		
+
+	</script>
+
+</body>
+
+</html>

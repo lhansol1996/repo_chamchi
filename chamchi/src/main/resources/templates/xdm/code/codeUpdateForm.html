@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="~{include/xdmHead :: xdmHead}"></div>
+	</head>
+
+	<body>
+
+		<!-- Page wrapper start -->
+		<div class="page-wrapper">
+
+			<!-- Main container start -->
+			<div class="main-container">
+
+				<div th:replace="~{include/xdmAside :: xdmAside}"></div>
+
+				<div th:replace="~{include/xdmHeader :: xdmHeader}"></div>
+
+					<!-- App hero header starts -->
+					<div class="app-hero-header d-flex align-items-start">
+
+						<!-- Breadcrumb start -->
+						<ol class="breadcrumb d-none d-lg-flex align-items-center">
+							<li class="breadcrumb-item">
+								<i class="bi bi-house"></i>
+								<a href="index.html">Home</a>
+							</li>
+							<li class="breadcrumb-item">tables</li>
+							<li class="breadcrumb-item" aria-current="page">
+								수정222
+							</li>
+						</ol>
+						<!-- Breadcrumb end -->
+
+						
+
+					</div>
+					<!-- App Hero header ends -->
+
+					<!-- App body starts -->
+					<div class="app-body">
+
+						<!-- Row start -->
+						<div class="row">
+							<div class="col-xxl-12">
+								<div class="card mb-4">
+									<div class="card-body">
+										<form name="formUpdate" id="formUpdate" 
+										class="row g-3 needs-validation"
+											action="/codeUpdt" method="post">
+											
+											<!-- 수정 폼 -->
+											<div class="col-md-3">
+												<label for="codeName" class="form-label">변경하려는 아이템 Seq:<span th:text="${item.codeSeq}"></span></label>
+												<input type="text" class="form-control" name="codeName" id="codeName" th:value="${item.codeName}" />
+												<input type="hidden" name="codeSeq" th:value="${item.codeSeq}" id="codeSeq">
+												<div class="invalid-feedback" id="codeNameFeedback"></div>
+											</div>
+
+											<div class="col-md-3">
+												<label for="codeGroupSeqF" class="form-label">코드그룹 지정</span></label>
+												<select class="form-select" name="codeGroupSeqF" id="codeGroupSeqF">
+													<option value="" selected>코드 그룹을 선택하세요</option>
+													<option th:each="codeGroupList : ${@codeGroupService.selectListWithoutPaging()}" 
+													th:value="${codeGroupList.codeGroupSeq}" th:text="${codeGroupList.codeGroupName}"></option>
+												</select>
+												<div class="invalid-feedback" id="codeGroupSeqFFeedback"></div>
+											</div>
+											
+											<div class="d-flex justify-content-between col-12">
+												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
+													뒤로가기
+												</a>
+
+												<button class="btn btn-primary" id="btnUpdate">
+													수정
+												</button>
+											</div>
+										</form>
+										
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Row end -->
+
+						
+
+					</div>
+					<!-- App body ends -->
+
+					<!-- App footer start -->
+					<div class="app-footer">
+						<span>© Bootstrap Gallery 2023</span>
+					</div>
+					<!-- App footer end -->
+
+				</div>
+				<!-- App container ends -->
+
+			</div>
+			<!-- Main container end -->
+
+		</div>
+		<!-- Page wrapper end -->
+
+		<div th:replace="~{include/commonjs :: commocommonXdmJsnjs}"></div>
+		
+		<script>
+
+		let form = document.querySelector("form[name=formUpdate]");
+		let seq = document.querySelector("input[name=seq]");
+		let goUrlXdmList = "/codeXdmList";
+		let goUrlXdmInstForm = "/codeInsert";
+		let goUrlXdmUpdtForm = "/codeUpdt";
+		let goUrlXdmView = "/codeXdmView";
+
+		// 등록버튼
+		document.getElementById("btnUpdate").onclick = function () {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				form.action = goUrlXdmUpdtForm
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+			if (!checkOnlyKoreanEnglish('codeName',2,0,'한글과 영어만 가능합니다.')) return false;
+		}
+
+		nullToEmpty = function (value) {
+			if (value == null || value == 'null' || value.length == 0) {
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+	</script>
+		
+	</body>
+
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+		<!-- Banner
+================================================== -->
+		<div class="parallax" data-background="images/home-parallax.jpg" data-color="#36383e" data-color-opacity="0.45"
+			data-img-width="2500" data-img-height="1600">
+			<div class="parallax-content">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+
+							<!-- Main Search Container -->
+							<div class="main-search-container">
+								<h2>ERR 전적 검색</h2>
+								<h5>본 시ㅗㅓㅎ.ㅏ호/.ㅏㅓㅗ. 어디 서비스의 api 를 갖고와서 무슨 시스템인지 서술</h5>
+								<!-- Main Search -->
+								<form id="mainSearch" name="mainSearch" method="get" autocomplete="off"
+									class="main-search-form">
+									<!-- Type -->
+									<div class="search-type">
+										<label class="active"><input class="first-tab" name="tab" checked="checked"
+												type="radio">정규 시즌</label>
+										<div class="search-type-arrow"></div>
+									</div>
+
+
+									<!-- Box -->
+									<div class="main-search-box">
+
+										<!-- Main Search Input -->
+										<div class="main-search-input larger-input">
+											<input type="text" class="ico-01" id="nickName" name="nickName"
+												placeholder="닉네임 검색" value="" onkeypress="enterkeyMain(event)" />
+											<button type="button" class="button" id="searchMainBtn">Search</button>
+										</div>
+									</div>
+									<!-- Box / End -->
+								</form>
+								<!-- Main Search -->
+
+							</div>
+							<!-- Main Search Container / End -->
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12">
+					<a th:href="@{/userPartySearchList}" href="#">
+						<h3 class="headline margin-bottom-25 margin-top-65">파티목록 보러가기</h3>
+					</a>
+					<h5>파티 최신목록 5개</h5>
+				</div>
+
+				<!-- Carousel -->
+				<div class="col-md-12">
+					<div class="carousel">
+
+						<div class="carousel-item" th:if="${!#lists.isEmpty(partyRecentList)}"
+							th:each="partyRecentList:${partyRecentList}">
+							<div class="listing-item">
+
+								<a th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}" href="#"
+									class="listing-img-container">
+
+									<img src="xdm/assets/images/listing-01.jpg" alt="">
+
+								</a>
+
+								<div class="listing-content">
+
+									<div class="listing-title">
+										<h4>
+											<a href="single-property-page-1.html"
+												th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}">[[${partyRecentList.partyName}]]</a>
+										</h4>
+										<i class="fa fa-caret-right"></i><span
+											th:if="${partyRecentList.xMemberTierCd != null}">파티장 티어 :
+											[[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</span></a>
+									</div>
+
+									<ul class="listing-features">
+										<li>파티장 승률 :<span
+												th:if="${partyRecentList.xMemberVictoryRate != null}">[[${partyRecentList.xMemberVictoryRate}]]
+												%</span>
+											<span th:unless="${partyRecentList.xMemberVictoryRate != null}">등록안함</span>
+										</li>
+										<li>파티장 KDA :<span
+												th:if="${partyRecentList.xMemberKDA != null}">[[${partyRecentList.xMemberKDA}]]</span>
+										</li>
+										<li>파티 타입
+											:<span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span>
+										</li>
+									</ul>
+
+									<div class="listing-footer">
+										<a href="#"><i class="fa fa-user"></i> : [[${partyRecentList.xMemberName}]]</a>
+										<span><i class="fa fa-calendar-o"></i> :
+											[[${#dates.format(partyRecentList.partyRegDate, 'yy.MM.dd')}]]</span>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- Carousel / End -->
+
+			</div>
+		</div>
+
+
+
+		<!-- Fullwidth Section -->
+		<section class="fullwidth margin-top-105" data-background-color="#f7f7f7">
+			<form name="goRecordForm" id="goRecordForm" method="get">
+				<input type="hidden" name="nickName" id="nickNameTr" />
+			</form>
+			<!-- Box Headline -->
+			<h3 class="headline-box">실시간 in 10</h3>
+
+			<!-- Content -->
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md">
+						<table class="basic-table">
+
+							<tr>
+								<th>RANkING</th>
+								<th>닉네임</th>
+								<th>MMR</th>
+								<th>유저Num</th>
+							</tr>
+							<tr th:each="topRanks : ${topRanks}" onclick="goRecord(this)">
+								<td th:text="${topRanks.rank}">Description</td>
+								<td th:text="${topRanks.nickname}">Description</td>
+								<td th:text="${topRanks.mmr}">Description</td>
+								<td th:text="${topRanks.userNum}">Item</td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+		</section>
+		<!-- Fullwidth Section / End -->
+
+
+
+
+		<!-- Flip banner -->
+		<a href="listings-half-map-grid-standard.html" class="flip-banner parallax"
+			data-background="images/flip-banner-bg.jpg" data-color="#274abb" data-color-opacity="0.9"
+			data-img-width="2500" data-img-height="1600">
+			<div class="flip-banner-content">
+				<h2 class="flip-visible">전적검색은</h2>
+				<h2 class="flip-hidden">
+					ERR <i class="sl sl-icon-arrow-right"></i>
+				</h2>
+			</div>
+		</a>
+		<!-- Flip banner / End -->
+
+
+
+
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+
+
+		<!-- Scripts
+================================================== -->
+
+
+
+	</div>
+	<!-- Wrapper / End -->
+
+	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+	<script>
+		let formMain = document.querySelector("form[name=mainSearch]");
+		let formRecord = document.querySelector("form[name=goRecordForm]");
+		let goUrlRecord = "/record";
+		let searchMainInput = document.getElementById("nickName").value;
+
+		document.getElementById("searchMainBtn").onclick = function () {
+			alert("버튼클릭됨");
+			goFormMain(searchMainInput);
+		}
+
+		goFormMain = function () {
+			alert("goFormMain 시작");
+			formMain.action = goUrlRecord;
+			formMain.submit();
+		}
+
+		function enterkeyMain(event) {
+			if (event.key === 'Enter') {
+				alert("엔터키 메인시작")
+				goFormMain(searchMainInput);
+			}
+		}
+
+		function goRecord(row) {
+			alert('gorecord 시작')
+			let nickName = row.cells[1].innerText; // 두 번째 셀의 텍스트(닉네임)를 가져옴
+			alert(nickName)
+			document.getElementById("nickNameTr").value = nickName;
+			formRecord.action = goUrlRecord;
+			formRecord.submit();
+		}
+
+
+	</script>
+
+</body>
+
+</html>

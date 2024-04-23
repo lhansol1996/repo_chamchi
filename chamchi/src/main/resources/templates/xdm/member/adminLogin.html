@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="~{include/xdmHead :: xdmHead}"></div>
+</head>
+
+<body class="bg-white">
+	<!-- Container start -->
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-4 col-lg-5 col-sm-6 col-12">
+
+				<form name="adminLogin" id="adminLogin" method="post" class="my-5">
+					<div class="border border-light rounded-2 p-4 mt-5">
+						<div class="login-form">
+							<a href="index.html" class="mb-4 d-flex">
+								<img src="/xdm/assets/images/logoERR-dark.svg" class="img-fluid login-logo"
+									alt="Venus Admin" />
+							</a>
+							<h4 class="fw-semibold mb-4">Login</h4>
+							<div class="mb-3">
+								<label class="form-label">ID</label>
+								<input type="text" class="form-control" name="memberID" id="memberID"/>
+								<div class="invalid-feedback" id="memberIDFeedback"></div>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">Password</label>
+								<div class="input-group">
+									<input type="password" class="form-control" name="memberPwd" id="memberPwd"/>
+									<a href="#" class="input-group-text">
+										<i class="bi bi-eye"></i>
+									</a>
+									<div class="invalid-feedback" id="memberPwdFeedback"></div>
+								</div>
+							</div>
+
+							<div class="d-grid py-3 mt-2">
+								<button type="button" class="btn btn-lg btn-primary"
+									style="background-color: rgb(14, 77, 160)" id="btnLogin">
+									Login
+								</button>
+							</div>
+							
+							<div class="text-center pt-4">
+								<span>회원이 아니십니까?</span>
+								<a href="signup.html" th:href="@{/memberInsertForm}"
+									class="text-blue text-decoration-underline ms-2">
+									생성</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Container end -->
+
+
+	<script>
+		// 로그인버튼
+		document.getElementById("btnLogin").onclick = function () {
+			if (validationLogin() == false) return false;
+
+
+			alert('111-------------------');
+			$.ajax({
+				async: true
+				, cache: false
+				, type: "post"
+				/* ,dataType:"json" */
+				, url: "/adminMemberLogin"
+				/* ,data : $("#formLogin").serialize() */
+				, data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
+				, success: function (response) {
+					alert(response.rt);
+					if (response.rt == "success") {
+						alert('로그인 성공');
+						location.href = "/codeGroupXdmList";
+					} else {
+						alert(response.rt);
+						alert('로그인 안됨');
+						// document.getElementById("modalAlertTitle").innerText = "확 인";
+						// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+						// $("#modalAlert").modal("show");
+					}
+				}
+				, error: function (jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+
+
+		}
+		function validationLogin() {
+				alert('예외처리시작L')
+				if (!checkNull('memberID', 2, '아이디를 입력해주세요')) return false;
+				alert('예외처리1')
+				if (!checkNull('memberPwd', 2, '비밀번호를 입력해주세요')) return false;
+				alert('예외처리2')
+
+			}
+	</script>
+
+	<div th:replace="~{include/commonjs :: commonXdmJs}">
+
+</body>
+
+</html>

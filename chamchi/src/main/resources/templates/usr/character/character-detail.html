@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+		<!-- Titlebar
+================================================== -->
+		<div id="titlebar" class="property-titlebar margin-bottom-0">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+						<a href="listings-list-with-sidebar.html" class="back-to-listings"></a>
+						<div class="property-title">
+							<h2 th:text="${item.characterName}">캐릭터 이름</h2>
+						</div>
+
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+
+		<!-- Slider -->
+		<div class="fullwidth-property-slider margin-bottom-50">
+			<a href="images/single-property-01.jpg" data-background-image="images/single-property-01.jpg"
+				class="item mfp-gallery"></a>
+			<a href="images/single-property-02.jpg" data-background-image="images/single-property-02.jpg"
+				class="item mfp-gallery"></a>
+			<a href="images/single-property-03.jpg" data-background-image="images/single-property-03.jpg"
+				class="item mfp-gallery"></a>
+			<a href="images/single-property-04.jpg" data-background-image="images/single-property-04.jpg"
+				class="item mfp-gallery"></a>
+			<a href="images/single-property-05.jpg" data-background-image="images/single-property-05.jpg"
+				class="item mfp-gallery"></a>
+			<a href="images/single-property-06.jpg" data-background-image="images/single-property-06.jpg"
+				class="item mfp-gallery"></a>
+		</div>
+
+
+		<div class="container">
+			<div class="row">
+
+				<!-- Property Description -->
+				<div class="col-lg-12 col-md-7">
+					<div class="property-description">
+
+						<!-- Main Features -->
+						<ul class="property-main-features">
+							<li>시작 hp <span th:text="${item.characterHp}">555 아이콘 찾아보고 갠찬은거있음 넣음</span></li>
+							<li>시작 mp <span th:text="${item.characterMp}">555</span></li>
+							<li>시작 공격력 <span th:text="${item.characterAtk}">55</span></li>
+							<li>시작 방어력 <span th:text="${item.characterDef}">55</span></li>
+						</ul>
+
+
+						<!-- Description -->
+						<h3 class="desc-headline">캐릭터 상세설명 (스토리일화)</h3>
+							<p th:text="${item.characterDept}"></p>
+
+
+						<!-- Video -->
+						<h3 class="desc-headline no-border">티저영상</h3>
+						<div class="responsive-iframe">
+							<iframe width="560" height="315"
+								src="https://www.youtube-nocookie.com/embed/UPBJKppEXoQ?rel=0&amp;showinfo=0"
+								th:src="${item.characterVideoPath}" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
+				<!-- Property Description / End -->
+
+
+				<!-- Sidebar -->
+
+			</div>
+			<!-- Sidebar / End -->
+		</div>
+	</div>
+
+
+	<!-- Footer
+================================================== -->
+	<div class="margin-top-55"></div>
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+
+
+	</div>
+	<!-- Wrapper / End -->
+
+	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+
+</body>
+
+</html>

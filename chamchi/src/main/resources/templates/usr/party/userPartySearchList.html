@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{include/usrHead :: usrHead}"></div>
+</head>
+
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<div th:replace="~{include/usrHeader :: usrHeader}"></div>
+
+
+
+		<!-- Search
+================================================== -->
+		<section class="search margin-bottom-50">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+						<!-- Title -->
+						<h3 class="search-title">Search</h3>
+
+						<!-- Form -->
+						<form name="formParty" id="formParty" method="get" autocomplete="off">
+							<div class="main-search-box no-shadow">
+								<!-- Row With Forms -->
+								<div class="row with-forms">
+									<!-- Status -->
+									<div class="col-md-3">
+										<select data-placeholder="티어" class="chosen-select-no-single"
+											id="voXMemberTierCd" name="voXMemberTierCd">
+											<option selected value="" >티어 선택</option>
+											<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
+												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
+											</option>
+										</select>
+									</div>
+									<!-- Property Type -->
+									<div class="col-md-3">
+										<select data-placeholder="랭크/일반" class="chosen-select-no-single"
+											id="voPartyMatchTypeCd" name="voPartyMatchTypeCd">
+											<option selected value="" >파티타입 선택</option>
+											<option th:each="codeList : ${@codeService.selectListCachedCode(2)}"
+												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
+											</option>
+										</select>
+									</div>
+									<!-- Main Search Input -->
+									<div class="col-md-6">
+										<div class="main-search-input">
+											<input type="text" placeholder="이름검색" name="voPartyName" id="voPartyName" />
+											<button class="button" type="button" id="searchPartyBtn">Search</button>
+										</div>
+									</div>
+
+								</div>
+								<!-- Row With Forms / End -->
+								<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1" />
+								<input type="hidden" id="rowNumToShowD" name="rowNumToShowD"
+									th:value="${vo.rowNumToShow}" />
+							</div>
+							<!-- Box / End -->
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+		<!-- Content
+================================================== -->
+		<div class="container">
+			<div class="row fullwidth-layout">
+
+				<div class="col-md-12">
+
+					<!-- Sorting / Layout Switcher -->
+					<div class="row margin-bottom-15">
+
+						<div class="col-md-6">
+							<!-- Sort by -->
+							<div class="sort-by">
+								<label>Sort by:</label>
+
+								<div class="sort-by-select">
+									<select data-placeholder="등록순" class="chosen-select-no-single">
+										<option>등록순</option>
+										<option>Price Low to High</option>
+										<option>Price High to Low</option>
+										<option>Newest Properties</option>
+										<option>Oldest Properties</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<!-- Layout Switcher -->
+							<div class="layout-switcher">
+								<a href="#" class="list"><i class="fa fa-th-list"></i></a>
+								<a href="#" class="grid"><i class="fa fa-th-large"></i></a>
+								<a href="#" class="grid-three"><i class="fa fa-th"></i></a>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Listings -->
+					<div class="listings-container list-layout">
+
+						<!-- Listing Item -->
+						<div class="listing-item" th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
+
+							<a href="single-property-page-1.html" class="listing-img-container">
+
+								<div class="listing-carousel">
+									<div><img src="usr/assets/images/listing-01.jpg" alt=""></div>
+									<div><img src="usr/assets/images/listing-01b.jpg" alt=""></div>
+									<div><img src="usr/assets/images/listing-01c.jpg" alt=""></div>
+								</div>
+							</a>
+
+							<div class="listing-content">
+
+								<div class="listing-title">
+									<h4 th:text="${list.partyName}">파티이름</h4>
+									<a th:href="@{/userPartyDetail (partySeq=${list.partySeq})}" href="#" class="details button border">파티바로가기(세부정보)</a>
+								</div>
+
+								<ul class="listing-details">
+									<li>티어 <span
+											th:if="${list.xMasterNy== '1'}" th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
+									</li>
+									<li>승률 <span th:if="${list.xMasterNy=='1'}" th:text="${list.xMemberVictoryRate}">ㅁㄴ%</span></li>
+									<li>평균 kda <span th:if="${list.xMasterNy=='1'}" th:text="${list.xMemberKDA}">2</span></li>
+								</ul>
+
+								<div class="listing-footer">
+									<a href="#"><i class="fa fa-user"><span
+												th:text="${list.xMemberName}"></span></i></a>
+									<span th:text="${#dates.format(list.partyRegDate, 'yyyy-MM-dd일 HH:mm:ss')}"></span>
+									<span><i class="fa fa-calendar-o"></i></span>
+								</div>
+
+							</div>
+
+						</div>
+						<!-- Listing Item / End -->
+
+
+
+
+
+
+					</div>
+					<!-- Listings Container / End -->
+
+					<div class="clearfix"></div>
+					<!-- Pagination -->
+					<div th:replace="~{include/pagination :: pagination}"></div>
+
+					<!-- Pagination / End -->
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="margin-top-55"></div>
+
+
+
+		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+
+
+	<script>
+		let formParty = document.querySelector("form[name=formParty]");
+		let goUrlXdmList = "/characterXdmList";
+		let goUrlUsrPartyList = "/userPartySearchList";
+
+		
+
+		document.getElementById("searchPartyBtn").onclick = function () {
+			alert("222");
+			formParty.action = goUrlUsrPartyList;
+			formParty.submit();
+		};
+
+		goList = function (thisPage) {
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			formParty.action = goUrlUsrPartyList;
+			formParty.submit();
+		}
+
+
+
+	</script>
+
+
+
+</body>
+
+</html>
