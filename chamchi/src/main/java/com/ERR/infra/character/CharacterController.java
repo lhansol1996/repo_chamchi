@@ -34,56 +34,56 @@ public class CharacterController extends BaseController {
 		return XdmCharacterCommonPath + "characterXdmList";
 	}
 
-	@RequestMapping(value = "/characterView")
-	public String characterView(CharacterDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/characterXdmView")
+	public String characterXdmView(CharacterDto dto, Model model) throws Exception {
 
 		model.addAttribute("item", characterService.selectOne(dto));
-		return XdmCharacterCommonPath + "characterView";
+		return XdmCharacterCommonPath + "characterXdmView";
 	}
 
-	@RequestMapping(value = "/characterUpdateForm")
-	public String characterUpdateForm(Model model, CharacterDto dto) throws Exception {
+	@RequestMapping(value = "/characterXdmUpdateForm")
+	public String characterXdmUpdateForm(Model model, CharacterDto dto) throws Exception {
 
 		model.addAttribute("item", characterService.selectOne(dto));
-		return XdmCharacterCommonPath + "characterUpdateForm";
+		return XdmCharacterCommonPath + "characterXdmUpdateForm";
 	}
 
-	@RequestMapping(value = "/characterInsertForm")
-	public String characterViewUpdate(Model model) throws Exception {
+	@RequestMapping(value = "/characterXdmInsertForm")
+	public String characterXdmInsertForm(Model model) throws Exception {
 
-		return XdmCharacterCommonPath + "characterInsertForm";
+		return XdmCharacterCommonPath + "characterXdmInsertForm";
 	}
 
-	@RequestMapping(value = "/characterInsert")
-	public String characterInsert(CharacterDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/characterXdmInsert")
+	public String characterXdmInsert(CharacterDto dto, Model model) throws Exception {
 
 		characterService.insert(dto);
 		return "redirect:/characterXdmList";
 	}
 
-	@RequestMapping(value = "/characterUpdt")
-	public String characterUpdt(CharacterDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/characterXdmUpdt")
+	public String characterXdmUpdt(CharacterDto dto, Model model) throws Exception {
 
 		characterService.update(dto);
 		return "redirect:/characterXdmList";
 	}
 
-	@RequestMapping(value = "/characterUelete")
-	public String characterUelete(CharacterDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/characterXdmUelete")
+	public String characterXdmUelete(CharacterDto dto, Model model) throws Exception {
 
 		characterService.uelete(dto);
 		return "redirect:/characterXdmList";
 	}
 
-	@RequestMapping(value = "/characterDelete")
-	public String characterDelete(CharacterDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/characterXdmDelete")
+	public String characterXdmDelete(CharacterDto dto, Model model) throws Exception {
 
 		characterService.delete(dto);
 		return "redirect:/characterXdmList";
 	}
 
-	@RequestMapping(value = "/characterDetail")
-	public String characterDetail(Model model, CharacterDto dto) throws Exception {
+	@RequestMapping(value = "/characterXdmDetail")
+	public String characterXdmDetail(Model model, CharacterDto dto) throws Exception {
 
 		CharacterDto character = characterService.selectOneByName(dto);
 

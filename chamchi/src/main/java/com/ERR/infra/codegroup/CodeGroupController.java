@@ -52,50 +52,50 @@ public class CodeGroupController extends BaseController{
 //		return "codeGroupView";
 //	}
 	
-	@RequestMapping(value="/codeGroupDView")
-	public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
+	@RequestMapping(value="/codeGroupXdmView")
+	public String codeGroupXdmView(CodeGroupDto dto, Model model) throws Exception{
 	
 		model.addAttribute("item",service.selectOne(dto));
 		
-		return  XdmCdgCommomPath + "codeGroupDView";
+		return  XdmCdgCommomPath + "codeGroupXdmView";
 	}
-	@RequestMapping(value = "/codeGroupUpdateForm")
-	public String codeGroupUpdateForm(Model model, CodeGroupDto dto) throws Exception {
+	@RequestMapping(value = "/codeGroupXdmUpdateForm")
+	public String codeGroupXdmUpdateForm(Model model, CodeGroupDto dto) throws Exception {
 		
 		model.addAttribute("item", service.selectOne(dto));
-		return  XdmCdgCommomPath + "codeGroupUpdateForm";
+		return  XdmCdgCommomPath + "codeGroupXdmUpdateForm";
 	}
 	
-	@RequestMapping(value = "/codeGroupInsertForm")
-	public String codeGroupViewUpdate(Model model) throws Exception {
-		return  XdmCdgCommomPath + "codeGroupInsertForm";
+	@RequestMapping(value = "/codeGroupXdmInsertForm")
+	public String codeGroupXdmInsertForm(Model model) throws Exception {
+		return  XdmCdgCommomPath + "codeGroupXdmInsertForm";
 	}
 
-	@RequestMapping(value="/codeGroupInsert")
-	public String codeGroupInsert(CodeGroupDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/codeGroupXdmInsert")
+	public String codeGroupXdmInsert(CodeGroupDto dto ,Model model) throws Exception{
 	//	System.out.println(dto.toString());
 
 		service.insert(dto);
 		return "redirect:/codeGroupXdmList";
 	}
 	
-	@RequestMapping(value="/codeGroupUpdt")
-	public String codeGroupUpdt(CodeGroupDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/codeGroupXdmUpdt")
+	public String codeGroupXdmUpdt(CodeGroupDto dto ,Model model) throws Exception{
 		
 		System.out.println(dto.toString()+"==========업데이트 전 ==========");
 		service.update(dto);
 		return "redirect:/codeGroupXdmList";
 	}
-	@RequestMapping(value="/codeGroupUelete")
-	public String codeGroupUelete(CodeGroupDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/codeGroupXdmUelete")
+	public String codeGroupXdmUelete(CodeGroupDto dto ,Model model) throws Exception{
 		
 		service.uelete(dto);
 		System.out.println(dto.toString()+"--------------삭제후-------------------------");
 		return "redirect:/codeGroupXdmList";
 	}
 	
-	@RequestMapping(value="/codeGroupDelete")
-	public String codeGroupDelete(CodeGroupDto dto ,Model model) throws Exception{
+	@RequestMapping(value="/codeGroupXdmDelete")
+	public String codeGroupXdmDelete(CodeGroupDto dto ,Model model) throws Exception{
 		
 		service.delete(dto);
 		return "redirect:/codeGroupXdmList";

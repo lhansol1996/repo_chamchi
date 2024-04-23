@@ -4,17 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
-import com.ERR.common.util.UtilDateTime;
 import com.ERR.common.util.UtilSetSearch;
 
 import jakarta.servlet.http.HttpSession;
@@ -80,7 +78,6 @@ public class MemberController extends BaseController {
 
 	@RequestMapping(value = "/memberInsert")
 	public String memberInsert(MemberDto dto, Model model) throws Exception {
-		// System.out.println(dto.toString());
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.insert(dto);
 		return "redirect:/memberXdmList";

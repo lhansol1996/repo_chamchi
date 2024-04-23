@@ -40,8 +40,8 @@
                     <!-- Logo -->
                     <div id="logo">
                         <a th:href="@{/userIndex}" href="#"><img src="xdm/assets/images/logoERR-dark.svg" alt=""></a>
+                        <span th:if="${session.sessMemberId != null}">반갑습니다!! : <span th:text="${session.sessMemberId}"></span>
                     </div>
-                    <span>반갑습니다!! : <span th:text="${session.sessMemberId}"></span>
 
 
 

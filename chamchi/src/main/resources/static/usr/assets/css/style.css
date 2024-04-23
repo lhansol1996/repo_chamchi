@@ -2170,6 +2170,12 @@ body .search-container button:before {
 	font-size: 36px;
 }
 
+.main-search-container h5{
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+}
+
 .main-search-form {
 	width: 660px;
 	display: block;

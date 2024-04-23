@@ -80,8 +80,6 @@
 				memberDelNy,
 				memberAdminNy,
 				memberTierCd,
-				memberVictoryRate,
-				memberKDA,
 				memberGenderCd,
 				memberRegDate,
 				memberModDate)
@@ -95,8 +93,6 @@
 				0,
 				#{memberAdminNy},
 				#{memberTierCd},
-				#{memberVictoryRate},
-				#{memberKDA},
 				#{memberGenderCd},
 				now(),
 				now()
