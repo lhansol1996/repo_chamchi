@@ -92,7 +92,7 @@
 
 										<div class="col-2">
 											<a class="btn btn-info btn-sm mb-1" href="#"
-												th:href="@{/characterUpdateForm(characterSeq=${item.characterSeq}, characterName=${item.characterName}, characterDept=${item.characterDept}
+												th:href="@{/characterXdmUpdateForm(characterSeq=${item.characterSeq}, characterName=${item.characterName}, characterDept=${item.characterDept}
 												, characterHp=${item.characterHp}, characterMp=${item.characterMp}, characterVideoPath=${item.characterVideoPath}, 
 												characterAtk=${item.characterAtk}, characterDef=${item.characterDef})}">
 												<i class="bi bi-pencil"></i>
@@ -116,7 +116,7 @@
 															<button type="button" class="btn-close"
 																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
-														<form action="/characterUelete" method="post">
+														<form action="/characterXdmUelete" method="post">
 															<div class="modal-body">
 																<input type="hidden" name="characterSeq" th:value="${item.characterSeq}">
 																<span>정말 삭제하시겠습니까 ?</span>
@@ -149,7 +149,7 @@
 															<button type="button" class="btn-close"
 																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
-														<form action="/characterDelete" method="post">
+														<form action="/characterXdmDelete" method="post">
 															<div class="modal-body">
 																<input type="hidden" name="characterSeq" th:value="${item.characterSeq}">
 																<span>정말 삭제하시겠습니까 ?</span>

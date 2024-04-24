@@ -50,53 +50,49 @@ public class CodeController extends BaseController {
 //		return "codeGroupView";
 //	}
 
-	@RequestMapping(value = "/codeView")
-	public String codeView(CodeDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/codeXdmView")
+	public String codeXdmView(CodeDto dto, Model model) throws Exception {
 
 		model.addAttribute("item", codeService.selectOne(dto));
 
-		return XdmCodeCommomPath + "codeView";
+		return XdmCodeCommomPath + "codeXdmView";
 	}
 
-	@RequestMapping(value = "/codeUpdateForm")
-	public String codeUpdateForm(Model model, CodeDto dto) throws Exception {
+	@RequestMapping(value = "/codeXdmUpdateForm")
+	public String codeXdmUpdateForm(Model model, CodeDto dto) throws Exception {
 
 		model.addAttribute("item", codeService.selectOne(dto));
-		return XdmCodeCommomPath + "codeUpdateForm";
+		return XdmCodeCommomPath + "codeXdmUpdateForm";
 	}
 
-	@RequestMapping(value = "/codeInsertForm")
-	public String codeInsertForm(Model model) throws Exception {
+	@RequestMapping(value = "/codeXdmInsertForm")
+	public String codeXdmInsertForm(Model model) throws Exception {
 		model.addAttribute("codeGroupList", codeGroupService.selectListWithoutPaging());
-		System.out.println(model + "==================================================");
-		return XdmCodeCommomPath + "codeInsertForm";
+		return XdmCodeCommomPath + "codeXdmInsertForm";
 	}
 
-	@RequestMapping(value = "/codeInsert")
-	public String codeInsert(CodeDto dto, Model model) throws Exception {
-		System.out.println("==================================================");
+	@RequestMapping(value = "/codeXdmInsert")
+	public String codeXdmInsert(CodeDto dto, Model model) throws Exception {
 		codeService.insert(dto);
 		return "redirect:/codeXdmList";
 	}
 
-	@RequestMapping(value = "/codeUpdt")
-	public String codeUpdt(CodeDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/codeXdmUpdt")
+	public String codeXdmUpdt(CodeDto dto, Model model) throws Exception {
 
-		System.out.println(dto.toString() + "==========업데이트 전 ==========");
 		codeService.update(dto);
 		return "redirect:/codeXdmList";
 	}
 
-	@RequestMapping(value = "/codeUelete")
-	public String codeUelete(CodeDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/codeXdmUelete")
+	public String codeXdmUelete(CodeDto dto, Model model) throws Exception {
 
 		codeService.uelete(dto);
-		System.out.println(dto.toString() + "--------------삭제후-------------------------");
 		return "redirect:/codeXdmList";
 	}
 
-	@RequestMapping(value = "/codeDelete")
-	public String codeDelete(CodeDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/codeXdmDelete")
+	public String codeXdmDelete(CodeDto dto, Model model) throws Exception {
 
 		codeService.delete(dto);
 		return "redirect:/codeXdmList";

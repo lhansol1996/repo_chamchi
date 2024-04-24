@@ -48,7 +48,7 @@
 									<div class="card-body">
 										<form name="formUpdate" id="formUpdate" 
 										class="row g-3"
-											action="/memberUpdt" method="post">
+											action="/memberXdmUpdt" method="post">
 											
 											<input type="hidden" name="memberSeq" th:value="${item.memberSeq}" id="memberSeq">
 											<!-- 수정 폼 -->
@@ -91,7 +91,7 @@
 												<div class="invalid-feedback" id="memberDeptFeedback"></div>
 											</div>
 											<div class="d-flex justify-content-between col-12">
-												<a href="#" th:href="@{/codeXdmList}" class="btn btn-primary" role="button">
+												<a href="#" th:href="@{/memberXdmList}" class="btn btn-primary" role="button">
 													뒤로가기
 												</a>
 												
@@ -135,8 +135,8 @@
 		let form = document.querySelector("form[name=formUpdate]");
 		let seq = document.querySelector("input[name=seq]");
 		let goUrlXdmList = "/memberXdmList";
-		let goUrlXdmInstForm = "/memberInsert";
-		let goUrlXdmUpdtForm = "/memberUpdt";
+		let goUrlXdmInstForm = "/memberXdmInsert";
+		let goUrlXdmUpdtForm = "/memberXdmUpdt";
 		let goUrlXdmView = "/memberXdmView";
 
 		// 등록버튼

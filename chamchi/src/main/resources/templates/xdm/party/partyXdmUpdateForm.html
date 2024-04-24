@@ -48,7 +48,7 @@
 									<div class="card-body">
 										<form name="formUpdate" id="formUpdate" 
 										class="row g-3 needs-validation"
-											action="/partyUpdt" method="post">
+											action="/partyXdmUpdt" method="post">
 											
 											<!-- 수정 폼 -->
 											<input type="hidden" name="partySeq" id="partySeq" th:value="${item.partySeq}" />
@@ -123,8 +123,8 @@
 		let form = document.querySelector("form[name=formUpdate]");
 		let seq = document.querySelector("input[name=seq]");
 		let goUrlXdmList = "/partyXdmList";
-		let goUrlXdmInstForm = "/partyInsert";
-		let goUrlXdmUpdtForm = "/partyUpdt";
+		let goUrlXdmInstForm = "/partyXdmInsert";
+		let goUrlXdmUpdtForm = "/partyXdmUpdt";
 		let goUrlXdmView = "/partyXdmView";
 
 		// 등록버튼

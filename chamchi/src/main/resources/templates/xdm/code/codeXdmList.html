@@ -149,7 +149,7 @@
 													<td scope="row"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></td>
 													<td class="col"><a href="#"
-															th:href="@{/codeView(codeSeq=${list.codeSeq},codeName=${list.codeName},codeDelNy=${list.codeDelNy})}"
+															th:href="@{/codeXdmView(codeSeq=${list.codeSeq},codeName=${list.codeName},codeDelNy=${list.codeDelNy})}"
 															th:text="${list.codeSeq}">#001</a></td>
 													<!-- <th>
 															<img class="rounded-circle img-3x me-2" src="/xdm/assets/images/user.png"
@@ -185,7 +185,7 @@
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/codeUelete" method="post">
+																	<form action="/codeXdmUelete" method="post">
 																		<div class="modal-body">
 																			<input type="hidden" name="codeSeq"
 																				th:value="${list.codeSeq}">
@@ -221,7 +221,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/codeInsertForm}" id="btnInsert">
+													th:href="@{/codeXdmInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -276,12 +276,8 @@ window.addEventListener('load', function () {
 
 		let form = document.querySelector("form[name=formList]");
 		let goUrlXdmList = "/codeXdmList";								
-		let goUrlXdmInstForm = "/codeInsertForm";							
+		let goUrlXdmInstForm = "/codeXdmInsertForm";							
 		let goUrlXdmView = "/codeXdmView";								
-/*
-		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
-		let goUrlXdmMultiDele = "/infra/codegroup/codeGroupXdmMultiDele";			
-		*/
 
 		let seq = document.querySelector("input[name=codeSeq]");									/* ### */
 

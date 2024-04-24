@@ -189,7 +189,7 @@
 								</div>
 							</td>
 							<td class="expire-date" style="text-align: center;">
-								<ul>
+								<ul th:if="${userGamesList.matchingMode==3}">
 									<li>
 										<span>획득 전: </span><span th:text="${userGamesList.mmrBefore}"></span>
 									</li>
@@ -200,10 +200,21 @@
 										<span>획득 RP: </span><span th:text="${userGamesList.mmrGain}"></span>
 									</li>
 								</ul>
+								<ul th:if="${userGamesList.matchingMode==2}">
+									<li>
+										<span>일반게임입니다.</span>
+									</li>
+								</ul>
+
+								<ul th:if="${userGamesList.matchingMode==1}">
+									<li>
+										<span>코발트는 취급X</span>
+									</li>
+								</ul>
 							</td>
 
-							<td class="flex-wrap">
-								<ul>
+							<td class="flex-wrap" >
+								<ul th:if="${userGamesList.matchingMode==3}">
 									<li>
 										<span>평균 MMR: </span><span th:text="${userGamesList.mmrAvg}"></span>
 									</li>
@@ -217,7 +228,26 @@
 										<span>팀 등수: </span><span th:text="${userGamesList.gameRank}"></span>
 									</li>
 								</ul>
+								<ul th:if="${userGamesList.matchingMode==2}">
+									<li>
+										<span>매치 사이즈: </span><span th:text="${userGamesList.matchSize}"></span>
+									</li>
+									<li>
+										<span>팀 번호: </span><span th:text="${userGamesList.teamNumber}"></span>
+									</li>
+									<li>
+										<span>팀 등수: </span><span th:text="${userGamesList.gameRank}"></span>
+									</li>
+								</ul>
+
+								<ul th:if="${userGamesList.matchingMode==1}">
+									<li>
+										<span>코발트는 취급X</span>
+									</li>
+								</ul>
 							</td>
+							
+
 							<td class="action">
 								<ul>
 									<li>

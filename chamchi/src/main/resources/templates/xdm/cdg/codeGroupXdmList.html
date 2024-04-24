@@ -186,7 +186,7 @@
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/codeGroupUelete" method="post">
+																	<form action="/codeGroupXdmUelete" method="post">
 																		<div class="modal-body">
 																			<input type="hidden" name="codeGroupSeq"
 																				th:value="${list.codeGroupSeq}">
@@ -276,12 +276,9 @@ window.addEventListener('load', function () {
 
 		let form = document.querySelector("form[name=formList]");
 		let goUrlXdmList = "/codeGroupXdmList";								
-		let goUrlXdmInstForm = "/codeGroupInsertForm";							
+		let goUrlXdmInstForm = "/codeGroupXdmInsertForm";							
 		let goUrlXdmView = "/codeGroupXdmView";								
-/*
-		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
-		let goUrlXdmMultiDele = "/infra/codegroup/codeGroupXdmMultiDele";			
-		*/
+
 
 		let seq = document.querySelector("input[name=seq]");									/* ### */
 

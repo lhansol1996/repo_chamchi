@@ -82,8 +82,8 @@ public class CharacterController extends BaseController {
 		return "redirect:/characterXdmList";
 	}
 
-	@RequestMapping(value = "/characterXdmDetail")
-	public String characterXdmDetail(Model model, CharacterDto dto) throws Exception {
+	@RequestMapping(value = "/characterDetail")
+	public String characterDetail(Model model, CharacterDto dto) throws Exception {
 
 		CharacterDto character = characterService.selectOneByName(dto);
 

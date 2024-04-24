@@ -154,7 +154,7 @@
 													<td scope="row"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></td>
 													<td class="col"><a href="#"
-															th:href="@{/characterView(characterSeq=${list.characterSeq},characterName=${list.characterName},characterDelNy=${list.characterDelNy},
+															th:href="@{/characterXdmView(characterSeq=${list.characterSeq},characterName=${list.characterName},characterDelNy=${list.characterDelNy},
 															characterDept=${list.characterDept} ,characterHp=${list.characterHp}, characterMp=${list.characterMp}, 
 															characterVideoPath=${list.characterVideoPath})}"
 															th:text="${list.characterSeq}">#001</a></td>
@@ -193,7 +193,7 @@
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/characterUelete" method="post">
+																	<form action="/characterXdmUelete" method="post">
 																		<div class="modal-body">
 																			<input type="hidden" name="characterSeq"
 																				th:value="${list.characterSeq}">
@@ -229,7 +229,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/characterInsertForm}" id="btnInsert">
+													th:href="@{/characterXdmInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -283,7 +283,7 @@ window.addEventListener('load', function () {
 
 		let form = document.querySelector("form[name=formList]");
 		let goUrlXdmList = "/characterXdmList";								
-		let goUrlXdmInstForm = "/characterInsertForm";							
+		let goUrlXdmInstForm = "/characterXdmInsertForm";							
 		let goUrlXdmView = "/characterXdmView";							
 			
 		let seq = document.querySelector("input[name=characterSeq]");									/* ### */

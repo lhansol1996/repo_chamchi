@@ -48,7 +48,7 @@
 									<div class="card-body">
 										<form name="formUpdate" id="formUpdate" 
 										class="row g-3"
-											action="/characterUpdt" method="post">
+											action="/characterXdmUpdt" method="post">
 											
 											<input type="hidden" name="characterSeq" th:value="${item.characterSeq}" id="characterSeq">
 											<!-- 수정 폼 -->
@@ -136,8 +136,8 @@
 		let form = document.querySelector("form[name=formUpdate]");
 		let seq = document.querySelector("input[name=seq]");
 		let goUrlXdmList = "/characterXdmList";
-		let goUrlXdmInstForm = "/characterInsert";
-		let goUrlXdmUpdtForm = "/characterUpdt";
+		let goUrlXdmInstForm = "/characterXdmInsert";
+		let goUrlXdmUpdtForm = "/characterXdmUpdt";
 		let goUrlXdmView = "/characterXdmView";
 
 		// 등록버튼

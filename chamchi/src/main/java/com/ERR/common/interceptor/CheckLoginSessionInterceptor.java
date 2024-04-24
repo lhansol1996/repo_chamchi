@@ -12,10 +12,10 @@ public class CheckLoginSessionInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		if (request.getSession().getAttribute("sessSeqXdm") != null) {
-			// by pass
+		if (request.getSession().getAttribute("sessMemberSeq") != null) {
+			// by pass 관리자 확인
 		} else {
-			response.sendRedirect(Constants.URL_LOGINFORM);
+			response.sendRedirect(Constants.URL_XDMLOGINFORM);
 	        return false;
 		}
 		return HandlerInterceptor.super.preHandle(request, response, handler);

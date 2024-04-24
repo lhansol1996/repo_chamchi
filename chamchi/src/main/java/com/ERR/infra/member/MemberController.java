@@ -56,51 +56,49 @@ public class MemberController extends BaseController {
 //		return "memberView";
 //	}
 
-	@RequestMapping(value = "/memberView")
-	public String memberView(MemberDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/memberXdmView")
+	public String memberXdmView(MemberDto dto, Model model) throws Exception {
 
 		model.addAttribute("item", service.selectOne(dto));
 
-		return XdmCommomMemberPath + "memberView";
+		return XdmCommomMemberPath + "memberXdmView";
 	}
 
-	@RequestMapping(value = "/memberUpdateForm")
-	public String memberUpdateForm(Model model, MemberDto dto) throws Exception {
+	@RequestMapping(value = "/memberXdmUpdateForm")
+	public String memberXdmUpdateForm(Model model, MemberDto dto) throws Exception {
 
 		model.addAttribute("item", service.selectOne(dto));
-		return XdmCommomMemberPath + "memberUpdateForm";
+		return XdmCommomMemberPath + "memberXdmUpdateForm";
 	}
 
-	@RequestMapping(value = "/memberInsertForm")
-	public String memberViewUpdate() throws Exception {
-		return XdmCommomMemberPath + "memberInsertForm";
+	@RequestMapping(value = "/memberXdmInsertForm")
+	public String memberXdmInsertForm() throws Exception {
+		return XdmCommomMemberPath + "memberXdmInsertForm";
 	}
 
-	@RequestMapping(value = "/memberInsert")
-	public String memberInsert(MemberDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/memberXdmInsert")
+	public String memberXdmInsert(MemberDto dto, Model model) throws Exception {
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.insert(dto);
 		return "redirect:/memberXdmList";
 	}
 
-	@RequestMapping(value = "/memberUpdt")
-	public String memberUpdt(MemberDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/memberXdmUpdt")
+	public String memberXdmUpdt(MemberDto dto, Model model) throws Exception {
 
-		System.out.println(dto.toString() + "==========업데이트 전 ==========");
 		service.update(dto);
 		return "redirect:/memberXdmList";
 	}
 
-	@RequestMapping(value = "/memberUelete")
-	public String memberUelete(MemberDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/memberXdmUelete")
+	public String memberXdmUelete(MemberDto dto, Model model) throws Exception {
 
 		service.uelete(dto);
-		System.out.println(dto.toString() + "--------------삭제후-------------------------");
 		return "redirect:/memberXdmList";
 	}
 
-	@RequestMapping(value = "/memberDelete")
-	public String memberDelete(MemberDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/memberXdmDelete")
+	public String memberXdmDelete(MemberDto dto, Model model) throws Exception {
 
 		service.delete(dto);
 		return "redirect:/memberXdmList";
@@ -122,10 +120,6 @@ public class MemberController extends BaseController {
 	
 	@RequestMapping(value = "/memberUsrReg")
 	public String memberUsrReg(MemberDto dto, Model model) throws Exception {
-		System.out.println("컨트롤러 넘어옴");
-		System.out.println("컨트롤러 넘어옴");
-		System.out.println("컨트롤러 넘어옴");
-		System.out.println("컨트롤러 넘어옴");
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.memberReg(dto);
 		return "redirect:/userIndex";
@@ -219,8 +213,6 @@ public class MemberController extends BaseController {
 	@RequestMapping(value = "/memberLogout")
 	public Map<String, Object> memberLogout(MemberDto dto, HttpSession httpSession, Model model) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		System.out.println();
-		System.out.println(httpSession.getAttribute("sessMemberSeq"));
 		httpSession.invalidate();
 
 		returnMap.put("rt", "success");

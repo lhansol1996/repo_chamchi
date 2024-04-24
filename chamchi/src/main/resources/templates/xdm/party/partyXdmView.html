@@ -91,7 +91,7 @@
 
 										<div class="col-2">
 											<a class="btn btn-info btn-sm mb-1" href="#"
-												th:href="@{/partyUpdateForm(partySeq=${item.partySeq}, partyName=${item.partyName},
+												th:href="@{/partyXdmUpdateForm(partySeq=${item.partySeq}, partyName=${item.partyName},
 												partyDept=${item.partyDept}, partyMatchTypeCd=${item.partyMatchTypeCd})}">
 												<i class="bi bi-pencil"></i>
 											</a>
@@ -114,7 +114,7 @@
 															<button type="button" class="btn-close"
 																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
-														<form action="/partyUelete" method="post">
+														<form action="/partyXdmUelete" method="post">
 															<div class="modal-body">
 																<input type="hidden" name="partySeq" th:value="${item.partySeq}">
 																<span>정말 삭제하시겠습니까 ?</span>
@@ -147,7 +147,7 @@
 															<button type="button" class="btn-close"
 																data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
-														<form action="/partyDelete" method="post">
+														<form action="/partyXdmDelete" method="post">
 															<div class="modal-body">
 																<input type="hidden" name="partySeq" th:value="${item.partySeq}">
 																<span>정말 삭제하시겠습니까 ?</span>

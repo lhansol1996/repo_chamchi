@@ -50,6 +50,13 @@
 											placeholder="이름을 넣어주십시오" />
 										<div class="invalid-feedback" id="partyNameFeedback"></div>
 									</div>
+<!-- 
+									<div class="col-md-4">
+										<label for="memberSeqF" class="form-label">파티원 Seq</span></label> <input type="text"
+											class="form-control" name="memberSeqF" id="memberSeqF"
+											placeholder="파티원 넣어주십시오" />
+										<div class="invalid-feedback" id="memberSeqFFeedback"></div>
+									</div> -->
 
 									<div class="col-md-4">
 										<label for="partyMatchTypeCd" class="form-label">파티타입 지정</span></label>
@@ -112,7 +119,7 @@
 		let form = document.querySelector("form[name=formInsert]");
 		let seq = document.querySelector("input[name=seq]");
 		let goUrlXdmList = "/partyXdmList";
-		let goUrlXdmInstForm = "/partyInsert";
+		let goUrlXdmInstForm = "/partyXdmInsert";
 		let goUrlXdmView = "/partyXdmView";
 
 		// 등록버튼

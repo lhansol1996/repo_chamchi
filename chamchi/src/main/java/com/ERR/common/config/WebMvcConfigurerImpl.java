@@ -13,16 +13,12 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 		public void addInterceptors(InterceptorRegistry registry) {
 			
 			registry.addInterceptor(new CheckLoginSessionInterceptor()) //LoginCheckInterceptor 등록
-					.addPathPatterns("/**") // 로그인없이는 전체경로 다막음
+					.addPathPatterns("/**Xdm**") // 로그인없이는 전체경로 다막음
 					
 					.excludePathPatterns(	//예외 경로 
-							"/xdm/**",
-							"/usr/**",
-							"/index/**",   // static 경로 (css 망가짐방지를 위한 예외설정)
-							"/xdm/member/adminLogin",
-							"/v1/infra/member/signupXdmForm",
-							"/v1/infra/member/signinXdmForm",
-							"/v1/infra/member/signinXdmProc"
+							"xdm/**",
+							"usr/**",
+							"index/**"   // static 경로 (css 망가짐방지를 위한 예외설정)
 							
 							
 					)

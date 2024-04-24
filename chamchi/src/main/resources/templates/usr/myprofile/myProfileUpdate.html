@@ -58,50 +58,24 @@
 									<label>Your ID</label>
 									<input name="memberID" id="memberID" th:value="${session.sessMemberId}" type="text" disabled />
 
-									<label>Your InGameNickName</label>
 									<div class="main-search-box">
-
 										<!-- Main Search Input -->
 										<div class="main-search-input larger-input">
-											<input type="text" class="ico-01" id="autocomplete-input" placeholder="닉네임 검색"
+											<input type="text" class="ico-01" name="nickName" id="nickName" placeholder="닉네임 검색"
 												value="" />
-											<button class="button">Search</button>
+											<button class="button" type="button" id="btnSearch">Search</button>
 										</div>
 									</div>
-
-									<label>Your Most 3 Character</label>
 									<div class="style-2">
 
 										<!-- Toggle 1 -->
-										<div class="toggle-wrap">
-											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
-														class="sl sl-icon-plus"></i></a></span>
-											<ul class="toggle-container" style="list-style: none;">
-												<li>평균 딜량 : </li>
-												<li>승률 : </li>
-												<li>An item : </li>
-											</ul>
-										</div>
-
-										<!-- Toggle 2 -->
-										<div class="toggle-wrap">
-											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
-														class="sl sl-icon-plus"></i></a></span>
-											<ul class="toggle-container" style="list-style: none;">
-												<li>평균 딜량 : </li>
-												<li>승률 : </li>
-												<li>An item : </li>
-											</ul>
-										</div>
-
-										<!-- Toggle 3 -->
-										<div class="toggle-wrap">
-											<span class="trigger "><a href="#">1번재 캐릭터 이름<i
-														class="sl sl-icon-plus"></i></a></span>
-											<ul class="toggle-container" style="list-style: none;">
-												<li>평균 딜량 : </li>
-												<li>승률 : </li>
-												<li>An item : </li>
+										<div class="toggle-wrap mt-5" th:if="${!#lists.isEmpty(getUserStatList)}"
+										th:each="getUserStatList:${getUserStatList}">
+											<div th:text="${getUserStatList.nickname}">인게임 닉네임</div>
+											<span>전체 게임수:</span><span>1</span>
+											<ul style="list-style: none;">
+												<li>평균 KDA :<span></span> </li>
+												<li>평균 승률 :<span></span> </li>
 											</ul>
 										</div>
 
@@ -165,9 +139,9 @@
 	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 	<script>
-
 		let form = document.querySelector("form[name=formUpdt]");
 		let goUrlUpdtForm = "/profileUpdt";
+		let goUrlMyProfileRecord = "/myProfileRecord"
 
 		// 등록버튼
 		document.getElementById("btnUpdate").onclick = function () {
@@ -191,8 +165,14 @@
 			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
 		}
 
-		
+		// 유저 record 검색버튼
+		document.getElementById("btnSearch").onclick = function () {
+			
+				form.action = goUrlMyProfileRecord
+				form.submit();
+			
 
+		}
 	</script>
 
 </body>

@@ -25,7 +25,6 @@ public class PartyController extends BaseController {
 	@Autowired
 	CodeService codeService;
 
-
 	@RequestMapping(value = "/partyXdmList")
 	public String partyXdmList(@ModelAttribute("vo") PartyVo vo, Model model) throws Exception {
 		UtilSetSearch.setSearch(vo);
@@ -39,29 +38,29 @@ public class PartyController extends BaseController {
 		return XdmPartyCommomPath + "partyXdmList";
 	}
 
-	@RequestMapping(value = "/partyView")
-	public String partyView(PartyDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/partyXdmView")
+	public String partyXdmView(PartyDto dto, Model model) throws Exception {
 
 		model.addAttribute("item", partyservice.selectOne(dto));
 
-		return XdmPartyCommomPath + "partyView";
+		return XdmPartyCommomPath + "partyXdmView";
 	}
 
-	@RequestMapping(value = "/partyUpdateForm")
-	public String partyUpdateForm(Model model, PartyDto dto) throws Exception {
+	@RequestMapping(value = "/partyXdmUpdateForm")
+	public String partyXdmUpdateForm(Model model, PartyDto dto) throws Exception {
 
 		model.addAttribute("item", partyservice.selectOne(dto));
 		return XdmPartyCommomPath + "partyXdmUpdateForm";
 	}
 
-	@RequestMapping(value = "/partyInsertForm")
-	public String partyViewUpdate(Model model) throws Exception {
+	@RequestMapping(value = "/partyXdmInsertForm")
+	public String partyXdmInsertForm(Model model) throws Exception {
 
-		return XdmPartyCommomPath + "partyInsertForm";
+		return XdmPartyCommomPath + "partyXdmInsertForm";
 	}
 
-	@RequestMapping(value = "/partyInsert")
-	public String partyInsert(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+	@RequestMapping(value = "/partyXdmInsert")
+	public String partyXdmInsert(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
 			throws Exception {
 		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
@@ -69,31 +68,22 @@ public class PartyController extends BaseController {
 		return "redirect:/partyXdmList";
 	}
 
-	@RequestMapping(value = "/insertReq")
-	public String insertReq(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
-			throws Exception {
-		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
-
-		partyservice.insert(partyDto, memberPartyDto);
-		return "redirect:/myProfilePartyRequest";
-	}
-
-	@RequestMapping(value = "/partyUpdt")
-	public String partyUpdt(PartyDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/partyXdmUpdt")
+	public String partyXdmUpdt(PartyDto dto, Model model) throws Exception {
 
 		partyservice.update(dto);
 		return "redirect:/partyXdmList";
 	}
 
-	@RequestMapping(value = "/partyUelete")
-	public String partyUelete(PartyDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/partyXdmUelete")
+	public String partyXdmUelete(PartyDto dto, Model model) throws Exception {
 
 		partyservice.uelete(dto);
 		return "redirect:/partyXdmList";
 	}
 
-	@RequestMapping(value = "/partyDelete")
-	public String partyDelete(PartyDto dto, Model model) throws Exception {
+	@RequestMapping(value = "/partyXdmDelete")
+	public String partyXdmDelete(PartyDto dto, Model model) throws Exception {
 
 		partyservice.delete(dto);
 		return "redirect:/partyXdmList";
@@ -118,6 +108,15 @@ public class PartyController extends BaseController {
 		model.addAttribute("list", partyservice.selectPartyMember(dto.getPartySeq()));
 
 		return UsrPartyCommonPath + "userPartyDetail";
+	}
+
+	@RequestMapping(value = "/insertReq")
+	public String insertReq(PartyDto partyDto, MemberPartyDto memberPartyDto, HttpSession httpSession, Model model)
+			throws Exception {
+		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
+
+		partyservice.insert(partyDto, memberPartyDto);
+		return "redirect:/myProfilePartyRequest";
 	}
 
 	@RequestMapping(value = "/partyUsrInsert")

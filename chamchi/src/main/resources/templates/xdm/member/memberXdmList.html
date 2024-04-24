@@ -159,7 +159,7 @@
 													<td scope="row"><input class="form-check-input" type="checkbox"
 															value="" id="flexCheckDefault" /></td>
 													<td class="col"><a href="#"
-															th:href="@{/memberView(memberSeq=${list.memberSeq},memberName=${list.memberName},memberDelNy=${list.memberDelNy}, 
+															th:href="@{/memberXdmView(memberSeq=${list.memberSeq},memberName=${list.memberName},memberDelNy=${list.memberDelNy}, 
 															memberTierCd=${list.memberTierCd}, memberKDA=${list.memberKDA}, memberVictoryRate=${list.memberVictoryRate},
 															memberDept=${list.memberDept})}"
 															th:text="${list.memberSeq}">#001</a></td>
@@ -201,7 +201,7 @@
 																			data-bs-dismiss="modal"
 																			aria-label="Close"></button>
 																	</div>
-																	<form action="/memberUelete" method="post">
+																	<form action="/memberXdmUelete" method="post">
 																		<div class="modal-body">
 																			<input type="hidden" name="memberSeq"
 																				th:value="${list.memberSeq}">
@@ -237,7 +237,7 @@
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
 												<a class="btn btn-info btn-icon btn-sm mb-1" href="#"
-													th:href="@{/memberInsertForm}" id="btnInsert">
+													th:href="@{/memberXdmInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
 
@@ -291,7 +291,7 @@ window.addEventListener('load', function () {
 
 		let form = document.querySelector("form[name=formList]");
 		let goUrlXdmList = "/memberXdmList";								
-		let goUrlXdmInstForm = "/memberInsertForm";							
+		let goUrlXdmInstForm = "/memberXdmInsertForm";							
 		let goUrlXdmView = "/memberXdmView";								
 /*
 		let goUrlXdmMultiUele = "/infra/codegroup/codeGroupXdmMultiUele";			
