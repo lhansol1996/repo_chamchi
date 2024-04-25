@@ -103,11 +103,6 @@ public class UsrController extends BaseController {
 		List<Map<String, Object>> getUserStatList = (List<Map<String, Object>>) getUserStat.get("userStats");
 		
 		model.addAttribute("getUserStatList", getUserStatList);
-		System.out.println("=============");
-		System.out.println("=============");
-		System.out.println("=============");
-		System.out.println("=============");
-		System.out.println(getUserStatList);
 
 		return  UsrCommomMyProfilePath + "myProfileUpdate";
 	}
@@ -115,7 +110,6 @@ public class UsrController extends BaseController {
 	@RequestMapping(value = "/profileUpdt")
 	public String profileUpdt(Model model, MemberDto dto, HttpSession httpSession) throws Exception {
 		dto.setMemberSeq((String) httpSession.getAttribute("sessMemberSeq"));
-		System.out.println(dto.getMemberSeq());
 		memberService.updateProfile(dto);
 
 		return "redirect:/myProfileUpdate";

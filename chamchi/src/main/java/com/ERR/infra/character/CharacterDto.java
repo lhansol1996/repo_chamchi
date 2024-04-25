@@ -5,13 +5,13 @@ import java.util.Date;
 public class CharacterDto {
 	private String characterSeq;
 	private String characterName;
-	private int characterHp;
-	private int characterMp;
-	private int characterDef;
-	private int characterAtk;
+	private Integer characterHp;
+	private Integer characterMp;
+	private Integer characterDef;
+	private Integer characterAtk;
 	private String characterVideoPath;
 	private String characterDept;
-	private int characterDelNy;
+	private Integer characterDelNy;
 	private Date characterRegDate;
 	private Date characterModDate;
 	
@@ -33,35 +33,35 @@ public class CharacterDto {
 		this.characterName = characterName;
 	}
 
-	public int getCharacterHp() {
+	public Integer getCharacterHp() {
 		return characterHp;
 	}
 
-	public void setCharacterHp(int characterHp) {
+	public void setCharacterHp(Integer characterHp) {
 		this.characterHp = characterHp;
 	}
 
-	public int getCharacterMp() {
+	public Integer getCharacterMp() {
 		return characterMp;
 	}
 
-	public void setCharacterMp(int characterMp) {
+	public void setCharacterMp(Integer characterMp) {
 		this.characterMp = characterMp;
 	}
 
-	public int getCharacterDef() {
+	public Integer getCharacterDef() {
 		return characterDef;
 	}
 
-	public void setCharacterDef(int characterDef) {
+	public void setCharacterDef(Integer characterDef) {
 		this.characterDef = characterDef;
 	}
 
-	public int getCharacterAtk() {
+	public Integer getCharacterAtk() {
 		return characterAtk;
 	}
 
-	public void setCharacterAtk(int characterAtk) {
+	public void setCharacterAtk(Integer characterAtk) {
 		this.characterAtk = characterAtk;
 	}
 
@@ -73,11 +73,19 @@ public class CharacterDto {
 		this.characterVideoPath = characterVideoPath;
 	}
 
-	public int getCharacterDelNy() {
+	public String getCharacterDept() {
+		return characterDept;
+	}
+
+	public void setCharacterDept(String characterDept) {
+		this.characterDept = characterDept;
+	}
+
+	public Integer getCharacterDelNy() {
 		return characterDelNy;
 	}
 
-	public void setCharacterDelNy(int characterDelNy) {
+	public void setCharacterDelNy(Integer characterDelNy) {
 		this.characterDelNy = characterDelNy;
 	}
 
@@ -97,14 +105,6 @@ public class CharacterDto {
 		this.characterModDate = characterModDate;
 	}
 
-	public String getCharacterDept() {
-		return characterDept;
-	}
-
-	public void setCharacterDept(String characterDept) {
-		this.characterDept = characterDept;
-	}
-
 	public String getXtopBarSearchInputValue() {
 		return XtopBarSearchInputValue;
 	}
@@ -112,6 +112,7 @@ public class CharacterDto {
 	public void setXtopBarSearchInputValue(String xtopBarSearchInputValue) {
 		XtopBarSearchInputValue = xtopBarSearchInputValue;
 	}
+
 	
 	
 

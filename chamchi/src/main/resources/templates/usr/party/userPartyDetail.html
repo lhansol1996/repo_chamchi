@@ -17,18 +17,20 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<form name="formInsert" id="formInsert" method="post">
-						<input type="hidden" name="partySeq" id="partySeq" th:value="${item.partySeq}" />
-						<button type="button" 
-							th:if="${item.xMemberSeqF != session.sessMemberSeq}" id="btnRequest" href="#" class="back-to-listings">신청
-						</button>
-						<div 
-							th:unless="${item.xMemberSeqF != session.sessMemberSeq}" href="#" class="back-to-listings">파티장입니다.
-						</div>
-						<div class="property-title">
-							<h2 th:text="${item.partyName}">파티 이름</h2>
-						</div>
-					</form>
+						<form name="formInsert" id="formInsert" method="post">
+							<input type="hidden" name="partySeq" id="partySeq" th:value="${item.partySeq}" />
+							<button type="button"
+								th:if="${session.sessMemberSeq != null and item.xMemberSeqF != session.sessMemberSeq}"
+								id="btnRequest" href="#" class="back-to-listings">신청
+							</button>
+							<div th:unless="${session.sessMemberSeq != null and item.xMemberSeqF != session.sessMemberSeq}"
+								class="back-to-listings">
+								파티장이거나 로그인을 하지 않았습니다.
+							</div>
+							<div class="property-title">
+								<h2 th:text="${item.partyName}">파티 이름</h2>
+							</div>
+						</form>
 
 
 
@@ -64,18 +66,25 @@
 							<li>파티장 이름 : <span th:if="${item.xMasterNy =='1'}" th:text="${item.xMemberName}">555</span>
 							</li>
 							<li>티어 :
-								<span th:if="${item.xMasterNy == '1' && item.xMemberTierCd != null}" th:text="${@codeService.selectOneCachedCode(item.xMemberTierCd)}">다이아</span>
-								<span class="table-property-price" th:unless="${item.xMasterNy == '1' && item.xMemberTierCd != null}">파티장이 티어를 등록하지않았습니다.</span>
-								</li>
-							<li>평균 kda 
-								<span th:if="${item.xMasterNy =='1' && item.xMemberKDA != null}" th:text="${item.xMemberKDA}">55</span>
-								<span th:unless="${item.xMasterNy =='1' && item.xMemberKDA != null}">파티장이 KDA등록을 안했습니다.</span>
+								<span th:if="${item.xMasterNy == '1' && item.xMemberTierCd != null}"
+									th:text="${@codeService.selectOneCachedCode(item.xMemberTierCd)}">다이아</span>
+								<span class="table-property-price"
+									th:unless="${item.xMasterNy == '1' && item.xMemberTierCd != null}">파티장이 티어를
+									등록하지않았습니다.</span>
+							</li>
+							<li>평균 kda
+								<span th:if="${item.xMasterNy =='1' && item.xMemberKDA != null}"
+									th:text="${item.xMemberKDA}">55</span>
+								<span th:unless="${item.xMasterNy =='1' && item.xMemberKDA != null}">파티장이 KDA등록을
+									안했습니다.</span>
 							</li>
 
-							<li>평균 승률 
-								<span th:if="${item.xMasterNy =='1' && item.xMemberVictoryRate != null}" th:text="${item.xMemberVictoryRate}">55</span>
-								<span th:unless="${item.xMasterNy =='1' && item.xMemberVictoryRate != null}">파티장이 승률 등록을 안했습니다.</span>
-								
+							<li>평균 승률
+								<span th:if="${item.xMasterNy =='1' && item.xMemberVictoryRate != null}"
+									th:text="${item.xMemberVictoryRate}">55</span>
+								<span th:unless="${item.xMasterNy =='1' && item.xMemberVictoryRate != null}">파티장이 승률 등록을
+									안했습니다.</span>
+
 							</li>
 						</ul>
 
@@ -93,18 +102,9 @@
 
 						<div class="container">
 							<div class="row fullwidth-layout">
-
+								
 								<div class="col-md-12">
-
-									<div class="row margin-bottom-15">
-
-										<div class="col-md-6">
-											<div class="sort-by">
-											</div>
-										</div>
-									</div>
-
-
+								
 									<div class="listings-container list-layout">
 
 										<div class="listing-item">
@@ -113,28 +113,36 @@
 												<div><img src="xdm/assets/images/listing-01.jpg" alt=""></div>
 											</a>
 											<!-- 파티원 리스트 출력 시작 -->
-											<div class="listing-content" th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
+											<div class="listing-content" th:if="${!#lists.isEmpty(list)}"
+												th:each="list:${list}">
 
 												<div class="listing-title">
 													<h4 th:text="${list.xMemberName}">파티원 1 이름</h4>
 												</div>
 
 												<ul class="listing-details">
-													<li>티어 :<span th:if="${list.xMemberTierCd != null}" th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
-															<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지 않았습니다.</span>
-													</li>
-													
-													<li>승률 :<span th:if="${list.xMemberVictoryRate != null}" th:text="${list.xMemberVictoryRate}">다이아</span>
-															<span th:unless="${list.xMemberVictoryRate != null}">사용자가 티어를 등록하지 않았습니다.</span>
+													<li>티어 :<span th:if="${list.xMemberTierCd != null}"
+															th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
+														<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지
+															않았습니다.</span>
 													</li>
 
-													<li>평균 kda :<span th:if="${list.xMemberKDA != null}" th:text="${list.xMemberKDA}">다이아</span>
-																<span th:unless="${list.xMemberKDA != null}">사용자가 티어를 등록하지 않았습니다.</span>
+													<li>승률 :<span th:if="${list.xMemberVictoryRate != null}"
+															th:text="${list.xMemberVictoryRate}">다이아</span>
+														<span th:unless="${list.xMemberVictoryRate != null}">사용자가 티어를
+															등록하지 않았습니다.</span>
+													</li>
+
+													<li>평균 kda :<span th:if="${list.xMemberKDA != null}"
+															th:text="${list.xMemberKDA}">다이아</span>
+														<span th:unless="${list.xMemberKDA != null}">사용자가 티어를 등록하지
+															않았습니다.</span>
 													</li>
 												</ul>
 
 												<div class="listing-footer">
-													파티 가입일  <i class="fa fa-calendar-o">&nbsp;&nbsp;<span th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
+													파티 가입일 <i class="fa fa-calendar-o">&nbsp;&nbsp;<span
+															th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
 												</div>
 
 											</div>
@@ -177,14 +185,14 @@
 
 	<script>
 		let form = document.querySelector("form[name=formInsert]");
-			let seq = document.querySelector("input[name=seq]");
-			let goUrlXdmInstForm = "/insertRequest";
+		let seq = document.querySelector("input[name=seq]");
+		let goUrlXdmInstForm = "/insertRequest";
 
-			// 등록버튼
-			document.getElementById("btnRequest").onclick = function () {
-					form.action = goUrlXdmInstForm
-					form.submit();
-			}
+		// 등록버튼
+		document.getElementById("btnRequest").onclick = function () {
+			form.action = goUrlXdmInstForm
+			form.submit();
+		}
 	</script>
 </body>
 

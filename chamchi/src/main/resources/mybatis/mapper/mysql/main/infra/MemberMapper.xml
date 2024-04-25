@@ -62,6 +62,7 @@
 			,memberDelNy
 			,memberGenderCd
 			,memberTierCd
+			,memberKDA
 			,memberVictoryRate
 			,memberRegDate
 			,memberModDate
@@ -122,7 +123,10 @@
 		UPDATE member
 		<set>
             <if test="memberEmail != null or memberEmail != ''">memberEmail = #{memberEmail},</if>
-            <if test="memberDept != null or memberDept != ''">memberDept = #{memberDept}</if>
+            <if test="memberTierCd != null or memberTierCd != ''">memberTierCd = #{memberTierCd},</if>
+            <if test="memberKDA != null or memberKDA != ''">memberKDA = #{memberKDA},</if>
+            <if test="memberVictoryRate != null or memberVictoryRate != ''">memberVictoryRate = #{memberVictoryRate},</if>
+            <if test="memberDept != null or memberDept != ''">memberDept = #{memberDept},</if>
         </set>
 		where 1=1
 			and memberSeq=#{memberSeq}

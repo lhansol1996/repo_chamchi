@@ -42,86 +42,123 @@
 
 
 				<!-- Widget -->
-				
+
 				<!--프로파일 aside-->
 				<div th:replace="~{include/myProfileAside :: myProfileAside}"></div>
 				<!--프로파일 aside 끝-->
 
 				<div class="col-md-8">
-						<form name="formUpdt" id="formUpdt">
-							<div class="row">
+					<form name="formUpdt" id="formUpdt">
+						<div class="row">
 
 
-								<div class="col-md-8 my-profile">
-									<h4 class="margin-top-0 margin-bottom-30">My Account</h4>
+							<div class="col-md-8 my-profile">
+								<h4 class="margin-top-0 margin-bottom-30">My Account</h4>
 
-									<label>Your ID</label>
-									<input name="memberID" id="memberID" th:value="${session.sessMemberId}" type="text" disabled />
+								<label>Your ID</label>
+								<input name="memberID" id="memberID" th:value="${session.sessMemberId}" type="text"
+									disabled />
 
-									<div class="main-search-box">
-										<!-- Main Search Input -->
-										<div class="main-search-input larger-input">
-											<input type="text" class="ico-01" name="nickName" id="nickName" placeholder="닉네임 검색"
-												value="" />
-											<button class="button" type="button" id="btnSearch">Search</button>
-										</div>
+								<div class="main-search-box">
+									<!-- Main Search Input -->
+									<div class="main-search-input larger-input">
+										<input type="text" class="ico-01" name="nickName" id="nickName"
+											placeholder="닉네임 검색" value="" />
+										<button class="button" type="button" id="btnSearch">Search</button>
 									</div>
-									<div class="style-2">
+								</div>
+								<div class="style-2">
 
-										<!-- Toggle 1 -->
-										<div class="toggle-wrap mt-5" th:if="${!#lists.isEmpty(getUserStatList)}"
+									<!-- Toggle 1 -->
+									<div class="toggle-wrap mt-5" th:if="${!#lists.isEmpty(getUserStatList)}"
 										th:each="getUserStatList:${getUserStatList}">
-											<div th:text="${getUserStatList.nickname}">인게임 닉네임</div>
-											<span>전체 게임수:</span><span>1</span>
-											<ul style="list-style: none;">
-												<li>평균 KDA :<span></span> </li>
-												<li>평균 승률 :<span></span> </li>
-											</ul>
-										</div>
-
-									</div>
-
-									<label>티어</label>
-									<span th:if="${item.memberTierCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}"></span>
-									<span unless:if="${item.memberGenderCd != null}" >티어 등록을안하셨습니다.</span>
-								
-									<label>Your Email</label>
-									<input type="text" id="memberEmail" name="memberEmail" th:value="${item.memberEmail}" />
-									<div class="invalid-feedback" id="memberEmailFeedback"></div>
-									
-
-									<label>성별</label>
-									<span th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
-								
-
-
-									<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
-									<textarea name="memberDept" id="memberDept" cols="30" rows="10" th:text="${item.memberDept}"></textarea>
-									<div class="invalid-feedback" id="memberDeptFeedback"></div>
-
-									<input type="hidden" name="memberSeq" id="memberSeq" th:value="${item.memberSeq}" />
-									<!-- 저장 버튼 -->
-									<button class="button margin-top-20 margin-bottom-20" type="button" id="btnUpdate">
-										변경
-									</button>
-								</div>
-
-								<div class="col-md-4">
-									<!-- Avatar -->
-									<div class="edit-profile-photo">
-										<img src="xdm/assets/images/user1.png" alt="">
-										<div class="change-photo-btn">
-											<div class="photoUpload">
-												<span><i class="fa fa-upload"></i> Upload Photo</span>
-												<input type="file" class="upload" />
-											</div>
+										<div th:text="${getUserStatList.nickname}">인게임 닉네임</div>
+										<div>전체 게임수 : <span th:text="${getUserStatList.totalGames}"></span></div>
+										<div>
+											<th:block th:if="${getUserStatList.averageKills != null and getUserStatList.averageAssistants != null 
+												and getUserStatList.totalDeaths != null and getUserStatList.totalGames != null}">
+												<div>해당 유저 KDA</div>
+												<input type="text" name="memberKDA" id="memberKDA"
+													th:value="${(getUserStatList.averageKills + getUserStatList.averageAssistants) / (getUserStatList.totalDeaths / getUserStatList.totalGames)}">
+											</th:block>
+											<th:block
+												th:if="${getUserStatList.totalGames != null and getUserStatList.totalWins != null}">
+												<div>해당 유저 승률 (단위백분율,%)</div>
+												<input type="text" name="memberVictoryRate" id="memberVictoryRate"
+													th:value="${(getUserStatList.top1 * 100.0)}">
+											</th:block>
 										</div>
 									</div>
-
 								</div>
 
+								<label>KDA</label>
+								<div th:if="${item.memberKDA != null}">
+									<span th:text="${item.memberKDA}"></span>
+								</div>
+								<div th:unless="${item.memberKDA != null}">
+									<span>유저검색을 통해 KDA를 넣어주세요</span>
+								</div>
+
+								<label>승률</label>
+								<div th:if="${item.memberVictoryRate != null}">
+									<span th:text="${item.memberVictoryRate}"></span>
+								</div>
+								<div th:unless="${item.memberVictoryRate != null}">
+									<span>유저검색을 통해 승률을 넣어주세요</span>
+								</div>
+
+								<label>티어</label>
+								<span th:if="${item.memberTierCd != null}"
+									th:text="${@codeService.selectOneCachedCode(item.memberTierCd)}"></span>
+								<div th:unless="${item.memberTierCd != null}">
+									<span>티어등록을 안하셨습니다.</span>
+										<select class="form-select" name="memberTierCd" id="memberTierCd">
+											<option value="" selected>티어를 선택하세요</option>
+											<option th:each="codeList : ${@codeService.selectListCachedCode(1)}"
+												th:value="${codeList.codeSeq}" th:text="${codeList.codeName}">
+											</option>
+										</select>
+										<div class="invalid-feedback" id="memberGenderCdFeedback"></div>
+								</div>
+
+								<label>Your Email</label>
+								<input type="text" id="memberEmail" name="memberEmail" th:value="${item.memberEmail}" />
+								<div class="invalid-feedback" id="memberEmailFeedback"></div>
+
+
+								<label>성별</label>
+								<span th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
+
+
+
+								<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
+								<textarea name="memberDept" id="memberDept" cols="30" rows="10"
+									th:text="${item.memberDept}"></textarea>
+								<div class="invalid-feedback" id="memberDeptFeedback"></div>
+
+								<input type="hidden" name="memberSeq" id="memberSeq" th:value="${item.memberSeq}" />
+								<!-- 저장 버튼 -->
+								<button class="button margin-top-20 margin-bottom-20" type="button" id="btnUpdate">
+									변경
+								</button>
+							</div>
+
+							<div class="col-md-4">
+								<!-- Avatar -->
+								<div class="edit-profile-photo">
+									<img src="xdm/assets/images/user1.png" alt="">
+									<div class="change-photo-btn">
+										<div class="photoUpload">
+											<span><i class="fa fa-upload"></i> Upload Photo</span>
+											<input type="file" class="upload" />
+										</div>
+									</div>
+								</div>
 
 							</div>
+
+
+						</div>
 					</form>
 				</div>
 
@@ -134,46 +171,46 @@
 		<div class="margin-top-55"></div>
 
 		<div th:replace="~{include/usrFooter :: usrFooter}"></div>
-	<!-- Wrapper / End -->
-	
-	<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
+		<!-- Wrapper / End -->
 
-	<script>
-		let form = document.querySelector("form[name=formUpdt]");
-		let goUrlUpdtForm = "/profileUpdt";
-		let goUrlMyProfileRecord = "/myProfileRecord"
+		<div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
-		// 등록버튼
-		document.getElementById("btnUpdate").onclick = function () {
-			if (validationInst() == false) {
-				return false;
-			} else {
-				form.action = goUrlUpdtForm
-				form.submit();
+		<script>
+			let form = document.querySelector("form[name=formUpdt]");
+			let goUrlUpdtForm = "/profileUpdt";
+			let goUrlMyProfileRecord = "/myProfileRecord"
+
+			// 등록버튼
+			document.getElementById("btnUpdate").onclick = function () {
+				if (validationInst() == false) {
+					return false;
+				} else {
+					form.action = goUrlUpdtForm
+					form.submit();
+				}
+
 			}
 
-		}
-
-		function validationInst() {
-			if (validationUpdt() == false) {
-				return false;
+			function validationInst() {
+				if (validationUpdt() == false) {
+					return false;
+				}
 			}
-		}
 
-		function validationUpdt() {
-			if (!checkOnlyKoreanEnglishNumber('memberDept',2,0,'한글 영어 숫자만 가능합니다')) return false;
-			if (!checkEmail('memberEmail',2,0,'알맞은 형태의 이메일을 입력해주세요')) return false;
-		}
+			function validationUpdt() {
+				if (!checkOnlyKoreanEnglishNumber('memberDept', 2, 0, '한글 영어 숫자만 가능합니다')) return false;
+				if (!checkEmail('memberEmail', 2, 0, '알맞은 형태의 이메일을 입력해주세요')) return false;
+			}
 
-		// 유저 record 검색버튼
-		document.getElementById("btnSearch").onclick = function () {
-			
+			// 유저 record 검색버튼
+			document.getElementById("btnSearch").onclick = function () {
+
 				form.action = goUrlMyProfileRecord
 				form.submit();
-			
 
-		}
-	</script>
+
+			}
+		</script>
 
 </body>
 

@@ -1,10 +1,12 @@
 package com.ERR.common.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.ERR.common.interceptor.CheckLoginSessionInterceptor;
 
+@Configuration
 public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 	
 	
@@ -19,7 +21,8 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 							"xdm/**",
 							"usr/**",
 							"index/**",   // static 경로 (css 망가짐방지를 위한 예외설정)
-							"/adminMemberLogin"
+							"/adminMemberLogin",
+							"/adminLoginRegister"
 							
 					)
 			;
