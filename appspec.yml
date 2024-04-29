@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source:  /
-    destination: /home/ec2-user/service/LHS-prdt-01
+    destination: /home/ec2-user/service/err-prdt-01
     overwrite: yes
 
 permissions:
