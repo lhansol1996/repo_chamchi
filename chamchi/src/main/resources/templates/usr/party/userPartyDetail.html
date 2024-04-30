@@ -102,19 +102,22 @@
 
 						<div class="container">
 							<div class="row fullwidth-layout">
-								
+
 								<div class="col-md-12">
-								
+
+
 									<div class="listings-container list-layout">
 
-										<div class="listing-item">
+										<!-- Listing Item -->
+										<div class="listing-item" th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
 
 											<a href="single-property-page-1.html" class="listing-img-container">
-												<div><img src="xdm/assets/images/listing-01.jpg" alt=""></div>
+
+												<img src="usr/assets/images/listing-02.jpg" alt="">
+
 											</a>
-											<!-- 파티원 리스트 출력 시작 -->
-											<div class="listing-content" th:if="${!#lists.isEmpty(list)}"
-												th:each="list:${list}">
+
+											<div class="listing-content" >
 
 												<div class="listing-title">
 													<h4 th:text="${list.xMemberName}">파티원 1 이름</h4>
@@ -123,31 +126,30 @@
 												<ul class="listing-details">
 													<li>티어 :<span th:if="${list.xMemberTierCd != null}"
 															th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
-														<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지
-															않았습니다.</span>
+														<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지 않았습니다.</span>
 													</li>
 
 													<li>승률 :<span th:if="${list.xMemberVictoryRate != null}"
-															th:text="${list.xMemberVictoryRate}">다이아</span>
-														<span th:unless="${list.xMemberVictoryRate != null}">사용자가 티어를
-															등록하지 않았습니다.</span>
+															th:text="${list.xMemberVictoryRate}">승률</span>
+														<span th:unless="${list.xMemberVictoryRate != null}">사용자가 등록하지 않았습니다.</span>
 													</li>
 
 													<li>평균 kda :<span th:if="${list.xMemberKDA != null}"
-															th:text="${list.xMemberKDA}">다이아</span>
-														<span th:unless="${list.xMemberKDA != null}">사용자가 티어를 등록하지
-															않았습니다.</span>
+															th:text="${list.xMemberKDA}">KDA</span>
+														<span th:unless="${list.xMemberKDA != null}">사용자가 등록하지 않았습니다.</span>
 													</li>
 												</ul>
 
 												<div class="listing-footer">
 													파티 가입일 <i class="fa fa-calendar-o">&nbsp;&nbsp;<span
-															th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
+														th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
 												</div>
 
 											</div>
 
 										</div>
+										<!-- Listing Item / End -->
+
 									</div>
 								</div>
 
