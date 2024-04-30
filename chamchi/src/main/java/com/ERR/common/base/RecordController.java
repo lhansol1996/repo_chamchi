@@ -33,35 +33,39 @@ public class RecordController extends BaseController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Object> getUserMap = objectMapper.readValue(stringBuilder.toString(), Map.class);
 		System.out.println(getUserMap);
-		Map<String, Object> getUserNumMap = (Map<String, Object>) getUserMap.get("user");
-		String userNum = String.valueOf(getUserNumMap.get("userNum"));
-		String userName = String.valueOf(getUserNumMap.get("nickname"));
-		model.addAttribute("userNameItem", userName);
+		if ((Map<String, Object>) getUserMap.get("user") != null) {
+			Map<String, Object> getUserNumMap = (Map<String, Object>) getUserMap.get("user");
+			String userNum = String.valueOf(getUserNumMap.get("userNum"));
+			String userName = String.valueOf(getUserNumMap.get("nickname"));
+			model.addAttribute("userNameItem", userName);
 
-		// 받은 userNum 으로 전적 호출 API
-		String getUserRecordUrl = "https://open-api.bser.io/v1/user/games/" + userNum;
-		UtilApi.callERApi(getUserRecordUrl);
-		StringBuilder stringBuilder2 = UtilApi.callERApi(getUserRecordUrl);
-		// objectMapper 생성
-		ObjectMapper objectMapper2 = new ObjectMapper();
-		Map<String, Object> getUserRecord = objectMapper2.readValue(stringBuilder2.toString(), Map.class);
-		List<Map<String, Object>> userGamesList = (List<Map<String, Object>>) getUserRecord.get("userGames");
+			// 받은 userNum 으로 전적 호출 API
+			String getUserRecordUrl = "https://open-api.bser.io/v1/user/games/" + userNum;
+			UtilApi.callERApi(getUserRecordUrl);
+			StringBuilder stringBuilder2 = UtilApi.callERApi(getUserRecordUrl);
+			// objectMapper 생성
+			ObjectMapper objectMapper2 = new ObjectMapper();
+			Map<String, Object> getUserRecord = objectMapper2.readValue(stringBuilder2.toString(), Map.class);
+			List<Map<String, Object>> userGamesList = (List<Map<String, Object>>) getUserRecord.get("userGames");
 
-		model.addAttribute("userGamesList", userGamesList);
+			model.addAttribute("userGamesList", userGamesList);
 
-		// 받은 userNum으로 해당 유저 상세 정보 호출 API
-		String getUserStatUrl = "https://open-api.bser.io/v1/user/stats/" + userNum + "/23";
-		UtilApi.callERApi(getUserStatUrl);
-		StringBuilder stringBuilder3 = UtilApi.callERApi(getUserStatUrl);
-		// objectMapper 생성
-		ObjectMapper objectMapper3 = new ObjectMapper();
-		Map<String, Object> getUserStat = objectMapper3.readValue(stringBuilder3.toString(), Map.class);
-		List<Map<String, Object>> getUserStatItem = (List<Map<String, Object>>) getUserStat.get("userStats");
-		System.out.println(getUserStatItem);
+			// 받은 userNum으로 해당 유저 상세 정보 호출 API
+			String getUserStatUrl = "https://open-api.bser.io/v1/user/stats/" + userNum + "/23";
+			UtilApi.callERApi(getUserStatUrl);
+			StringBuilder stringBuilder3 = UtilApi.callERApi(getUserStatUrl);
+			// objectMapper 생성
+			ObjectMapper objectMapper3 = new ObjectMapper();
+			Map<String, Object> getUserStat = objectMapper3.readValue(stringBuilder3.toString(), Map.class);
+			List<Map<String, Object>> getUserStatItem = (List<Map<String, Object>>) getUserStat.get("userStats");
+			System.out.println(getUserStatItem);
 
-		model.addAttribute("getUserStatItem", getUserStatItem);
+			model.addAttribute("getUserStatItem", getUserStatItem);
 
-		return UsrCommonPath + "record";
+			return UsrCommonPath + "record";
+		} else {
+			return UsrCommonPath + "pageNotFound";
+		}
 	}
 
 }

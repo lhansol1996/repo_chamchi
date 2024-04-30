@@ -92,11 +92,9 @@ public class CharacterController extends BaseController {
 				model.addAttribute("item", character);
 				System.out.println(model);
 				return UsrCharacterCommonPath + "character-detail";
-			} else {
-				return "";
-			}
+			} 
 		}
-		return "";
+		return "usr/pageNotFound";
 	}
 
 }

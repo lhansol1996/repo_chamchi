@@ -52,11 +52,7 @@ public class UsrController extends BaseController {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
         
-//        System.out.println("######## Map");
-//		for (String key : map.keySet()) {
-//			String value = String.valueOf(map.get(key));
-//			System.out.println("[key]:" + key + ", [value]:" + value);
-//		}
+
 		List<Map<String, Object>> topRanks = new ArrayList<>();
 		topRanks = (List<Map<String, Object>>) map.get("topRanks");
 		// "topRanks" 배열에서 0부터 9까지의 요소만 가져오기 - 실시간 10 
