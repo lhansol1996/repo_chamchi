@@ -42,7 +42,7 @@ public class UsrController extends BaseController {
 	public String userIndex(Model model, PartyDto dto) throws Exception {
 		model.addAttribute("partyRecentList", partyService.searchPartyForRecent5(dto));
 		
-		String apiURL = "https://open-api.bser.io/v1/rank/top/19/3";
+		String apiURL = "https://open-api.bser.io/v1/rank/top/23/3";
 		UtilApi.callERApi(apiURL);
 
 		// API 호출 및 stringBuilder 받아오기
@@ -57,7 +57,7 @@ public class UsrController extends BaseController {
 		topRanks = (List<Map<String, Object>>) map.get("topRanks");
 		// "topRanks" 배열에서 0부터 9까지의 요소만 가져오기 - 실시간 10 
 		List<Map<String, Object>> limitedTopRanks = new ArrayList<>(topRanks.subList(0, 10));
-	
+		System.out.println(limitedTopRanks);
 		model.addAttribute("topRanks", limitedTopRanks);
 		
 		return UsrCommonPath + "index";
@@ -160,12 +160,6 @@ public class UsrController extends BaseController {
 		}
 
 		return UsrCommomMyProfilePath + "myProfilePartyPermit";
-	}
-
-	@RequestMapping(value = "/memberChangePwd")
-	public String memberChangePwd() throws Exception {
-
-		return UsrCommomMemberPath + "memberChangePwd";
 	}
 
 }
