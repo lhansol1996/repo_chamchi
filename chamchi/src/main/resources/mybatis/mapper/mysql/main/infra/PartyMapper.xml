@@ -269,7 +269,7 @@
 		,mp.partyJoinNy as xPartyJoinNy
 		,mp.partyOutNy as xPartyOutNy
 		,mp.memberSeqF as xMemberSeqF
-		,(SELECT memberSeqF FROM memberParty WHERE masterNy = 1 AND partySeqF =
+		,(SELECT memberSeqF FROM memberparty WHERE masterNy = 1 AND partySeqF =
 		a.partySeq) as xMasterSeqF
 		FROM party a
 		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
