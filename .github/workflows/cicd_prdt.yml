@@ -68,3 +68,11 @@ jobs:
         echo "ZIP_FILE=${PROJECT_NAME}_${NOW_DATETIME}" >> $GITHUB_ENV
     - name: Make zip file      
       run: zip -r -qq -j ./${{ env.ZIP_FILE }}.zip ./deploy/*
+      
+    # (9) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
