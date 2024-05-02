@@ -163,7 +163,7 @@
 		,m.memberKDA as xMemberKDA
 		,m.memberVictoryRate as xMemberVictoryRate
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
 		AND mp.MasterNy = 1
@@ -176,10 +176,10 @@
 		SELECT
 		COUNT(*)
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
-		and mp.PartyJoinNy = 1
+		and mp.partyJoinNy = 1
 		and mp.memberSeqF = #{voXMemberSeqF}
 	</select>
 
@@ -187,7 +187,7 @@
 		SELECT
 		COUNT(*)
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
 		and mp.PartyJoinNy = 2
@@ -197,7 +197,7 @@
 	<select id="selectCountProfilePermit" resultType="Integer">
 		SELECT COUNT(*)
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
 		AND mp.partyJoinNy = 2
@@ -220,7 +220,7 @@
 		,mp.partyOutNy as xPartyOutNy
 
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
 		and mp.PartyJoinNy = 1
@@ -245,10 +245,10 @@
 		,mp.partyOutNy as xPartyOutNy
 
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
-		and mp.PartyJoinNy = 2
+		and mp.partyJoinNy = 2
 		and mp.memberSeqF = #{voXMemberSeqF}
 		ORDER BY a.partyRegDate DESC
 		<include refid="base.selectFooterMysql" />
@@ -272,7 +272,7 @@
 		,(SELECT memberSeqF FROM memberParty WHERE masterNy = 1 AND partySeqF =
 		a.partySeq) as xMasterSeqF
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
 		AND mp.partyJoinNy = 2
@@ -296,7 +296,7 @@
 		,mp.partyOutNy as xPartyOutNy
 
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		where 1=1
 		and partySeq =
@@ -321,7 +321,7 @@
 		,mp.partyJoinDate as xPartyJoinDate
 
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		where 1=1
 		and partySeq = #{partySeq}
