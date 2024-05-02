@@ -8,7 +8,7 @@
 
 	<sql id="commonSelectParty">
 		FROM party a
-		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF
+		LEFT JOIN memberparty mp ON a.partySeq = mp.partySeqF
 		LEFT JOIN member m ON m.memberSeq = mp.memberSeqF
 		WHERE 1=1
 		AND mp.masterNy = 1
