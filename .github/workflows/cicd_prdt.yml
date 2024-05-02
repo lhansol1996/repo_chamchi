@@ -76,3 +76,20 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
+    
+    # (10) 압축파일을 S3 버킷에 업로드              
+    - name: Upload to AWS S3
+      run: |
+        aws s3 cp \
+        --region ${{ env.AWS_REGION }} \
+        --acl private \
+        ./${{ env.ZIP_FILE }}.zip s3://${{ env.S3_BUCKET }}    
+
+    # (11) S3 버킷에 있는 파일을 대상으로 CodeDeploy application 실행
+    - name: Deploy to AWS EC2 from S3
+      run: |
+        aws deploy create-deployment \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+          --s3-location bucket=${{env.S3_BUCKET}},key=${{env.ZIP_FILE}}.zip,bundleType=zip
