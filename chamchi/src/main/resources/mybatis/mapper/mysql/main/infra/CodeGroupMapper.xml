@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ERR.infra.codegroup.CodeGroupDao">
+<mapper namespace="com.ERR.infra.codeGroup.codeGroupDao">
 
-	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.ERR.infra.codeGroup.codeGroupDto"></resultMap>
 	
 	<sql id="commonSelectCdg">
-		FROM codegroup a
+		FROM codeGroup a
 		WHERE 1=1
 			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeGroupDelNy = #{voDelNy}</if>
 			
@@ -30,13 +30,13 @@
 		,codeGroupModDate
 		,codeGroupDelNy
 		from
-		codegroup
+		codeGroup
 		where 1=1
 		and codeGroupSeq = #{codeGroupSeq}
 	</select>
 
 	<insert id="insert">
-		insert into codegroup(
+		insert into codeGroup(
 		codeGroupName
 		,codeGroupDelNy
 		)values(
@@ -53,7 +53,7 @@
 
 
 	<update id="update">
-		UPDATE codegroup
+		UPDATE codeGroup
 		SET
 		codeGroupName = #{codeGroupName}
 		,codeGroupModDate = now()
@@ -63,7 +63,7 @@
 	</update>
 
 	<update id="uelete">
-		UPDATE codegroup
+		UPDATE codeGroup
 		SET
 		codeGroupDelNy=1
 		where 1=1
@@ -71,7 +71,7 @@
 	</update>
 
 	<delete id="delete">
-		Delete from codegroup
+		Delete from codeGroup
 		where 1=1
 		and codeGroupSeq = #{codeGroupSeq}
 	</delete>
@@ -80,7 +80,7 @@
 		select 
 		codeGroupSeq,
 		codeGroupName
-		from codegroup
+		from codeGroup
 		where 1=1
 			AND codeGroupDelNy=0
 	</select>
