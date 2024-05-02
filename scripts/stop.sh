@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # stop.sh
 
-PROJECT_NAME="err-0.0.1"
+PROJECT_NAME="chamchi-0.0.1"
 PROJECT_FULL_PATH_01="/home/ec2-user/service/err-prdt-01"
 JAR_FILE="$PROJECT_FULL_PATH_01/$PROJECT.jar"
 LOG_PATH="$PROJECT_FULL_PATH_01/logs"
