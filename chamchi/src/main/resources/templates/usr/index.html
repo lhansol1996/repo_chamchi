@@ -44,7 +44,7 @@
 
 										<!-- Main Search Input -->
 										<div class="main-search-input larger-input">
-											<input type="text" class="ico-01" id="nickName" name="nickName"
+											<input type="text" class="ico-01" id="nickNameMain" name="nickName"
 												placeholder="닉네임 검색" value="" onkeypress="enterkeyMain(event)" />
 											<button type="button" class="button" id="searchMainBtn">Search</button>
 										</div>
@@ -207,8 +207,8 @@
 	<script>
 		let formMain = document.querySelector("form[name=mainSearch]");
 		let formRecord = document.querySelector("form[name=goRecordForm]");
-		let goUrlRecord = "/record";
-		let searchMainInput = document.getElementById("nickName").value;
+		let goUrlMainRecord = "/record";
+		let searchMainInput = document.getElementById("nickNameMain").value;
 
 		document.getElementById("searchMainBtn").onclick = function () {
 			alert("버튼클릭됨");
@@ -217,7 +217,7 @@
 
 		goFormMain = function () {
 			alert("goFormMain 시작");
-			formMain.action = goUrlRecord;
+			formMain.action = goUrlMainRecord;
 			formMain.submit();
 		}
 
@@ -227,8 +227,6 @@
 				goFormMain(searchMainInput);
 			}
 		}
-
-		
 
 
 	</script>
