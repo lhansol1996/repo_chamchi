@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ERR.infra.codeGroup.codeGroupDao">
+<mapper namespace="com.ERR.infra.codegroup.codeGroupDao">
 
-	<resultMap id="resultMapObj" type="com.ERR.infra.codeGroup.codeGroupDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.codeGroupDto"></resultMap>
 	
 	<sql id="commonSelectCdg">
 		FROM codeGroup a
