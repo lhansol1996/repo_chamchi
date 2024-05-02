@@ -6,7 +6,7 @@
 	<resultMap id="resultMapObj" type="com.ERR.infra.codegroup.CodeGroupDto"></resultMap>
 	
 	<sql id="commonSelectCdg">
-		FROM codeGroup a
+		FROM codegroup a
 		WHERE 1=1
 			<if test="voDelNy != null and !voDelNy.equals('')">AND a.codeGroupDelNy = #{voDelNy}</if>
 			
@@ -30,13 +30,13 @@
 		,codeGroupModDate
 		,codeGroupDelNy
 		from
-		codeGroup
+		codegroup
 		where 1=1
 		and codeGroupSeq = #{codeGroupSeq}
 	</select>
 
 	<insert id="insert">
-		insert into codeGroup(
+		insert into codegroup(
 		codeGroupName
 		,codeGroupDelNy
 		)values(
@@ -53,7 +53,7 @@
 
 
 	<update id="update">
-		UPDATE codeGroup
+		UPDATE codegroup
 		SET
 		codeGroupName = #{codeGroupName}
 		,codeGroupModDate = now()
@@ -63,7 +63,7 @@
 	</update>
 
 	<update id="uelete">
-		UPDATE codeGroup
+		UPDATE codegroup
 		SET
 		codeGroupDelNy=1
 		where 1=1
@@ -71,7 +71,7 @@
 	</update>
 
 	<delete id="delete">
-		Delete from codeGroup
+		Delete from codegroup
 		where 1=1
 		and codeGroupSeq = #{codeGroupSeq}
 	</delete>
@@ -80,7 +80,7 @@
 		select 
 		codeGroupSeq,
 		codeGroupName
-		from codeGroup
+		from codegroup
 		where 1=1
 			AND codeGroupDelNy=0
 	</select>
