@@ -113,6 +113,16 @@ public class CharacterDto {
 		XtopBarSearchInputValue = xtopBarSearchInputValue;
 	}
 
+	@Override
+	public String toString() {
+		return "CharacterDto [characterSeq=" + characterSeq + ", characterName=" + characterName + ", characterHp="
+				+ characterHp + ", characterMp=" + characterMp + ", characterDef=" + characterDef + ", characterAtk="
+				+ characterAtk + ", characterVideoPath=" + characterVideoPath + ", characterDept=" + characterDept
+				+ ", characterDelNy=" + characterDelNy + ", characterRegDate=" + characterRegDate
+				+ ", characterModDate=" + characterModDate + ", XtopBarSearchInputValue=" + XtopBarSearchInputValue
+				+ "]";
+	}
+
 	
 	
 

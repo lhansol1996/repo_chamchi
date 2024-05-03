@@ -30,6 +30,7 @@
 								<h5>로그인 시 my account에서 파티 생성, 참가한 파티목록, 신청한 파티목록 확인 가능</h5>
 								<h5>파티장은 파티에 신청한 사람 목록을 볼 수 있으며 파티장이 허가한 사람만 파티 가입</h5>
 								<h5>my account에서 본인의 인게임 닉네임 검색하여 KDA, 승률 검색하여 myProfile Update 가능</h5>
+								<h5>검색 조건에 맞지않게 검색 할 경우 오류페이지로 이동->인게임ID와 캐릭터 이름을 정확하게 기재</h5>	
 								<!-- Main Search -->
 								<form id="mainSearch" name="mainSearch" method="get" autocomplete="off"
 									class="main-search-form">
@@ -47,7 +48,7 @@
 										<!-- Main Search Input -->
 										<div class="main-search-input larger-input">
 											<input type="text" class="ico-01" id="nickNameMain" name="nickName"
-												placeholder="닉네임 검색" value="" onkeypress="enterkeyMain(event)" />
+												placeholder="닉네임 검색" value="L알토" onkeypress="enterkeyMain(event)" />
 											<button type="button" class="button" id="searchMainBtn">Search</button>
 										</div>
 									</div>
@@ -89,7 +90,7 @@
 								<a th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}" href="#"
 									class="listing-img-container">
 
-									<img src="xdm/assets/images/listing-01.jpg" alt="">
+									<img src="usr/assets/images/07.Mithril.png" alt="">
 
 								</a>
 

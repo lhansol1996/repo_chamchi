@@ -86,11 +86,9 @@ public class CharacterController extends BaseController {
 	public String characterDetail(Model model, CharacterDto dto) throws Exception {
 
 		CharacterDto character = characterService.selectOneByName(dto);
-
 		if (character != null) {
 			if (Constants.CHARACTER_NAMES.contains(character.getCharacterName())) {
 				model.addAttribute("item", character);
-				System.out.println(model);
 				return UsrCharacterCommonPath + "character-detail";
 			} 
 		}
