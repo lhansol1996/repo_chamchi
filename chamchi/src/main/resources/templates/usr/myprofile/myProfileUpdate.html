@@ -127,8 +127,8 @@
 
 
 								<label>성별</label>
-								<span th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
-
+								<span th:if="${item.memberGenderCd != null}" th:text="${@codeService.selectOneCachedCode(item.memberGenderCd)}"></span>
+								<span th:unless="${item.memberGenderCd != null}">성별이 등록되어있지 않습니다.</span>
 
 
 								<h4 class="margin-top-50 margin-bottom-25">About Me</h4>
