@@ -30,7 +30,7 @@
 								<h5>로그인 시 my account에서 파티 생성, 참가한 파티목록, 신청한 파티목록 확인 가능</h5>
 								<h5>파티장은 파티에 신청한 사람 목록을 볼 수 있으며 파티장이 허가한 사람만 파티 가입</h5>
 								<h5>my account에서 본인의 인게임 닉네임 검색하여 KDA, 승률 검색하여 myProfile Update 가능</h5>
-								<h5>검색 조건에 맞지않게 검색 할 경우 오류페이지로 이동->인게임ID와 캐릭터 이름을 정확하게 기재</h5>	
+								<h5>검색 조건에 맞지않게 검색 할 경우 오류페이지로 이동->인게임ID와 캐릭터 이름을 정확하게 기재</h5>
 								<!-- Main Search -->
 								<form id="mainSearch" name="mainSearch" method="get" autocomplete="off"
 									class="main-search-form">
@@ -89,9 +89,34 @@
 
 								<a th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}" href="#"
 									class="listing-img-container">
-
-									<img src="usr/assets/images/07.Mithril.png" alt="">
-
+									
+									<th:block th:if="${partyRecentList.xMemberTierCd == null}">
+										<img src="usr/assets/images/00.Unrank.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 74}">
+										<img src="usr/assets/images/02.Bronze.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 75}">
+										<img src="usr/assets/images/03.Silver.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 76}">
+										<img src="usr/assets/images/04.Gold.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 77}">
+										<img src="usr/assets/images/05.Platinum.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 78}">
+										<img src="usr/assets/images/06.Diamond.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 79}">
+										<img src="usr/assets/images/07.Mithril.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 80}">
+										<img src="usr/assets/images/08.Titan.png" alt="">
+									</th:block>
+									<th:block th:if="${partyRecentList.xMemberTierCd == 81}">
+										<img src="usr/assets/images/08.Immortal.png" alt="">
+									</th:block>
 								</a>
 
 								<div class="listing-content">
@@ -102,7 +127,7 @@
 												th:href="@{/userPartyDetail (partySeq=${partyRecentList.partySeq})}">[[${partyRecentList.partyName}]]</a>
 										</h4>
 										<i class="fa fa-caret-right"></i><span
-											th:if="${partyRecentList.xMemberTierCd != null}">파티장 티어 
+											th:if="${partyRecentList.xMemberTierCd != null}">파티장 티어
 											[[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</span></a>
 									</div>
 
@@ -114,7 +139,7 @@
 										</li>
 										<li>파티장 KDA <span
 												th:if="${partyRecentList.xMemberKDA != null}">[[${partyRecentList.xMemberKDA}]]</span>
-												<span th:unless="${partyRecentList.xMemberKDA != null}">등록안함</span>
+											<span th:unless="${partyRecentList.xMemberKDA != null}">등록안함</span>
 										</li>
 										<li>파티 타입
 											:<span>[[${@codeService.selectOneCachedCode(partyRecentList.partyMatchTypeCd)}]]</span>
@@ -163,7 +188,8 @@
 							<tr th:each="topRanks : ${topRanks}">
 								<td th:text="${topRanks.rank}">Description</td>
 								<td>
-									<a href="#" th:href="@{/record (nickName=${topRanks.nickname})}" th:text="${topRanks.nickname}">닉네임</a>
+									<a href="#" th:href="@{/record (nickName=${topRanks.nickname})}"
+										th:text="${topRanks.nickname}">닉네임</a>
 								</td>
 								<td th:text="${topRanks.mmr}">Description</td>
 								<td th:text="${topRanks.userNum}">Item</td>
@@ -179,9 +205,8 @@
 
 
 		<!-- Flip banner -->
-		<a href="#" class="flip-banner parallax"
-			data-background="images/flip-banner-bg.jpg" data-color="#274abb" data-color-opacity="0.9"
-			data-img-width="2500" data-img-height="1600">
+		<a href="#" class="flip-banner parallax" data-background="images/flip-banner-bg.jpg" data-color="#274abb"
+			data-color-opacity="0.9" data-img-width="2500" data-img-height="1600">
 			<div class="flip-banner-content">
 				<h2 class="flip-visible">전적검색은</h2>
 				<h2 class="flip-hidden">
