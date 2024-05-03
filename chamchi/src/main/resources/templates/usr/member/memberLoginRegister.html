@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<div th:replace="~{include/usrHead :: usrHead}"></div>
+<div th:replace="~{include/usrHead :: usrHead}"></div>
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"
+	integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script th:inline="javascript">
+	  Kakao.init([[${javascriptKey}]]); // 사용하려는 앱의 JavaScript 키 입력
+	</script>
+
 </head>
 
 <body>
@@ -21,7 +31,8 @@
 
 						<!-- Logo -->
 						<div id="logo">
-							<a href="index.html"><img src="images/logoERR-dark.svg" alt=""></a>
+							<a href="index.html"><img src="images/logoERR-dark.svg"
+								alt=""></a>
 						</div>
 
 						<div class="clearfix"></div>
@@ -95,79 +106,93 @@
 								<form method="post" class="login">
 
 									<div class="form-row form-row-wide">
-										<label for="memberID">ID:</label>
-										<input type="text" class="input-text" name="memberID" id="memberID" value="usertest1" />
+										<label for="memberID">ID:</label> <input type="text"
+											class="input-text" name="memberID" id="memberID"
+											value="usertest1" />
 										<div class="invalid-feedback" id="memberIDFeedback"></div>
 									</div>
 
 									<div class="form-row form-row-wide">
-										<label for="memberPwd">Password:</label>
-										<input class="input-text" type="password" name="memberPwd" id="memberPwd" value="a" />
+										<label for="memberPwd">Password:</label> <input
+											class="input-text" type="password" name="memberPwd"
+											id="memberPwd" value="a" />
 										<div class="invalid-feedback" id="memberPwdFeedback"></div>
 									</div>
+
+
 
 									<div class="form-row">
 										<button class="btn btn-primary" id="btnLogin" type="button"
 											style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.5rem;">
-											로그인
-										</button>
+											로그인</button>
+
+										<a herf="javascript:void(0)"
+											th:onclick="javascript:fnClick();" style="cursor: pointer;" class="ms-5">
+											<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222">
+										</a>
+										
 									</div>
+
+
+
 								</form>
 							</div>
 
 							<!-- Register -->
 							<div class="tab-content" id="tab2" style="display: none;">
 
-								<form method="post" class="register" name="formRegister" id="formRegister">
-									<input type="hidden" name="memberAdminNy" id="memberAdminNy" th:value="0">
+								<form method="post" class="register" name="formRegister"
+									id="formRegister">
+									<input type="hidden" name="memberAdminNy" id="memberAdminNy"
+										th:value="0">
 
 									<div class="form-row form-row-wide">
-										<label for="memberID2">ID:</label>
-										<input type="text" class="input-text" name="memberID" id="memberID2" />
+										<label for="memberID2">ID:</label> <input type="text"
+											class="input-text" name="memberID" id="memberID2" />
 									</div>
 
 
 									<div class="form-row form-row-wide">
-										<label for="memberPwd2">비밀번호:</label>
-										<input class="input-text" type="password" name="memberPwd" id="memberPwd2" />
+										<label for="memberPwd2">비밀번호:</label> <input
+											class="input-text" type="password" name="memberPwd"
+											id="memberPwd2" />
 									</div>
 
 									<div class="form-row form-row-wide">
-										<label for="memberName">이름:</label>
-										<input class="input-text" type="text" name="memberName" id="memberName" />
+										<label for="memberName">이름:</label> <input class="input-text"
+											type="text" name="memberName" id="memberName" />
 										<div class="invalid-feedback" id="memberNameFeedback"></div>
 									</div>
 
 									<div class="form-row form-row-wide">
-										<label for="memberGenderCd">성별:</label>
-										<select class="form-select" name="memberGenderCd" id="memberGenderCd">
+										<label for="memberGenderCd">성별:</label> <select
+											class="form-select" name="memberGenderCd" id="memberGenderCd">
 											<option value="" selected>성별을 선택하세요</option>
-											<option th:each="codeList : ${@codeService.selectListCachedCode(3)}"
-											th:value="${codeList.codeSeq}"
-											th:text="${codeList.codeName}">
-											</option>
+											<option
+												th:each="codeList : ${@codeService.selectListCachedCode(3)}"
+												th:value="${codeList.codeSeq}"
+												th:text="${codeList.codeName}"></option>
 										</select>
 										<div class="invalid-feedback" id="memberGenderCdFeedback"></div>
 									</div>
 
 
 									<div class="form-row form-row-wide">
-										<label for="memberBirthday">생년월일:</label>
-										<input type="text" class="input-text" name="memberBirthday" id="memberBirthday"
+										<label for="memberBirthday">생년월일:</label> <input type="text"
+											class="input-text" name="memberBirthday" id="memberBirthday"
 											placeholder="ex&#41; 19960825" />
 									</div>
 
 									<div class="form-row form-row-wide">
-										<label for="email2">Email:</label>
-										<input type="text" class="input-text" name="memberEmail" id="memberEmail"
+										<label for="email2">Email:</label> <input type="text"
+											class="input-text" name="memberEmail" id="memberEmail"
 											placeholder="email1@naver.com" />
 									</div>
 
 									<div class="form-row">
 										<button class="btn btn-primary" id="btnReg" type="button"
 											style="--bs-btn-padding-y: 2rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.5rem;">
-											등록
-										</button>
+											등록</button>
 									</div>
 
 								</form>
@@ -189,16 +214,15 @@
 
 
 		<script>
-
 			let formR = document.querySelector("form[name=formRegister]");
 			let formL = document.querySelector("form[name=formLogin]");
 			let seq = document.querySelector("input[name=seq]");
-			let goUrlUsrInstForm = "/memberUsrReg";							
+			let goUrlUsrInstForm = "/memberUsrReg";
 			// let goUrlXdmView = "/codeGroupXdmView";		
 
 			// 등록버튼
-			document.getElementById("btnReg").onclick = function () {
-				
+			document.getElementById("btnReg").onclick = function() {
+
 				if (validationReg() == false) {
 					alert('밸리데이션 작업완료')
 					return false;
@@ -210,26 +234,30 @@
 
 			}
 
-
 			// 로그인버튼
-			document.getElementById("btnLogin").onclick = function () {
-				if (validationLogin() == false) return false;
+			document.getElementById("btnLogin").onclick = function() {
+				if (validationLogin() == false)
+					return false;
 
-				
 				alert('111-------------------');
 				$.ajax({
-					async: true
-					, cache: false
-					, type: "post"
+					async : true,
+					cache : false,
+					type : "post"
 					/* ,dataType:"json" */
-					, url: "/memberLogin"
+					,
+					url : "/memberLogin"
 					/* ,data : $("#formLogin").serialize() */
-					, data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
-					, success: function (response) {
+					,
+					data : {
+						"memberID" : $("#memberID").val(),
+						"memberPwd" : $("#memberPwd").val()
+					},
+					success : function(response) {
 						alert(response.rt);
 						if (response.rt == "success") {
 							alert('로그인 성공');
-								location.href = "/userIndex";
+							location.href = "/userIndex";
 						} else {
 							alert(response.rt);
 							alert('로그인 안됨');
@@ -237,38 +265,46 @@
 							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
 							// $("#modalAlert").modal("show");
 						}
-					}
-					, error: function (jqXHR, textStatus, errorThrown) {
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert("ajaxUpdate " + jqXHR.textStatus + " : "
+								+ jqXHR.errorThrown);
 					}
 				});
-				
 
 			}
 
-
-			
-
 			function validationLogin() {
 				alert('예외처리시작L')
-				if (!checkNull('memberID', 2, '아이디를 입력해주세요')) return false;
+				if (!checkNull('memberID', 2, '아이디를 입력해주세요'))
+					return false;
 				alert('예외처리1')
-				if (!checkNull('memberPwd', 2, '비밀번호를 입력해주세요')) return false;
+				if (!checkNull('memberPwd', 2, '비밀번호를 입력해주세요'))
+					return false;
 				alert('예외처리2')
 
 			}
 
 			function validationReg() {
 				alert('예외처리시작R')
-				if (!checkNull('memberName', 2, '비밀번호를 입력해주세요')) return false;
+				if (!checkNull('memberName', 2, '비밀번호를 입력해주세요'))
+					return false;
 				alert('예외처리1')
 			}
-
-
-
-
+			
+			
+			
 		</script>
 
+		<script th:inline="javascript">
+
+	  	// REST API
+		function fnClick() {
+			location.href = [[${location}]]
+		};
+
+		
+		</script>
 
 
 

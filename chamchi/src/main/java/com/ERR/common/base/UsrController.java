@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ERR.common.kakaoLogin.KakaoLoginService;
 import com.ERR.common.util.UtilApi;
 import com.ERR.common.util.UtilSetSearch;
 import com.ERR.infra.code.CodeService;
@@ -30,6 +32,21 @@ public class UsrController extends BaseController {
 	private String UsrCommonPath = "usr/";
 	private String UsrCommomMemberPath = "usr/member/";
 	private String UsrCommomMyProfilePath = "usr/myprofile/";
+	
+	@Value("${javascript_key}")
+	private String javascriptKey;
+
+	@Value("${kakao_rest_key}")
+	private String kakaoRestKey;
+
+	@Value("${kakao_redirect_uri}")
+	private String kakaoRedirectUri;
+	
+	@Value("${kakao_location}")
+	private String location;
+
+	@Autowired
+	KakaoLoginService service;
 	
 	@Autowired
 	PartyService partyService;
@@ -131,8 +148,11 @@ public class UsrController extends BaseController {
 	}
 
 	@RequestMapping(value = "/memberLoginRegister")
-	public String memberLoginRegister() throws Exception {
-
+	public String memberLoginRegister(Model model) throws Exception {
+		model.addAttribute("location", location);
+		model.addAttribute("javascriptKey", javascriptKey);
+		model.addAttribute("kakaoRestKey", kakaoRestKey);
+		model.addAttribute("kakaoRedirectUri", kakaoRedirectUri);
 		return UsrCommomMemberPath + "memberLoginRegister";
 	}
 
