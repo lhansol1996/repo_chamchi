@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.common.kakaoLogin.KakaoLoginDao">
+<resultMap id="resultMapObj" type="com.ERR.common.kakaoLogin.KakaoLoginDto"></resultMap>
+	<select id="kakaoOne" resultMap="resultMapObj">
+		select
+		memberSeq
+		,memberName
+		,memberEmail
+		,memberID
+		from member
+		where 1 = 1
+		AND memberEmail = #{email}
+	</select>
+
+	<insert id="kakaoInsert">
+		insert into member(
+		memberName
+		,memberEmail
+		,memberID
+		) values(
+		'카카오 회원'
+		,#{email}
+		,#{email}
+		)
+	</insert>
+
+</mapper>

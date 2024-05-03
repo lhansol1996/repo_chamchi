@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class KakaoLoginController {
 	private String UsrCommonPath = "usr/";
 	private String UsrCommomMemberPath = "usr/member/";
-	
+
 	@Value("${javascript_key}")
 	private String javascriptKey;
 
@@ -19,7 +21,7 @@ public class KakaoLoginController {
 
 	@Value("${kakao_redirect_uri}")
 	private String kakaoRedirectUri;
-	
+
 	@Value("${kakao_location}")
 	private String location;
 
@@ -38,7 +40,7 @@ public class KakaoLoginController {
 //	}
 
 	@RequestMapping(value = "/redirectKakao")
-	public String loginKakaoRedirect(KakaoLoginDto dto, KakaoLoginDto isDto, Model model) throws Exception {
+	public String loginKakaoRedirect(KakaoLoginDto dto, KakaoLoginDto isDto, Model model, HttpSession httpSession) throws Exception {
 		System.out.println("dto.getCode()================" + dto.getCode());
 
 		// 토큰 받기
@@ -46,11 +48,22 @@ public class KakaoLoginController {
 
 		dto = service.getUserInfo(accessToken, dto);
 
-		// 회원존재확인
-//        isDto = service.selectOneLogin(dto);
+		if (service.kakaoOne(dto) != null) {
+			// by pass
+		} else {
+			service.kakaoInsert(dto);
+		}
+		KakaoLoginDto rtId = service.kakaoOne(dto);
+		httpSession.setAttribute("sessMemberName", rtId.getMemberName());
+		httpSession.setAttribute("sessMemberSeq", rtId.getMemberSeq());
+		httpSession.setAttribute("sessMemberId", rtId.getMemberID());
 
-//        	service.insert(dto);
-
+		System.out.println("httpSession.getAttribute(\"sessMemberSeq\"): " + httpSession.getAttribute("sessMemberSeq"));
+		System.out.println("httpSession.getAttribute(\"sessMemberId\"): " + httpSession.getAttribute("sessMemberId"));
+		System.out
+				.println("httpSession.getAttribute(\"sessMemberName\"): " + httpSession.getAttribute("sessMemberName"));
+		
+		model.addAttribute("info", dto);
 		model.addAttribute("info", dto);
 
 		return UsrCommonPath + "index";

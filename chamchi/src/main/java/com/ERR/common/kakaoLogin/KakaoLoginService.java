@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -15,8 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class KakaoLoginService {
 
-//	@Autowired
-//	KakaoLoginDao dao;
+	@Autowired
+	KakaoLoginDao dao;
 
 	// 토큰요청
 	public String getAccessTokenFromKakao(String client_id, String code) throws IOException {
@@ -114,12 +115,12 @@ public class KakaoLoginService {
 	}
 
 	// 로그인 id 확인
-//	public KakaoLoginDto selectOneLogin(KakaoLoginDto dto) {
-//		return dao.selectOneLogin(dto);
-//	};
-//	
-//	// 회원등록
-//	public int insert(KakaoLoginDto dto) {
-//		return dao.insert(dto);
-//	};	
+	public KakaoLoginDto kakaoOne(KakaoLoginDto dto) {
+		return dao.kakaoOne(dto);
+	};
+
+	// 회원등록
+	public int kakaoInsert(KakaoLoginDto dto) {
+		return dao.kakaoInsert(dto);
+	};
 }
