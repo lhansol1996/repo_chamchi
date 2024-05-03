@@ -41,7 +41,6 @@ public class KakaoLoginController {
 
 	@RequestMapping(value = "/redirectKakao")
 	public String loginKakaoRedirect(KakaoLoginDto dto, KakaoLoginDto isDto, Model model, HttpSession httpSession) throws Exception {
-		System.out.println("dto.getCode()================" + dto.getCode());
 
 		// 토큰 받기
 		String accessToken = service.getAccessTokenFromKakao(kakaoRestKey, dto.getCode());
@@ -66,7 +65,7 @@ public class KakaoLoginController {
 		model.addAttribute("info", dto);
 		model.addAttribute("info", dto);
 
-		return UsrCommonPath + "index";
+		return "redirect:/userIndex";
 	}
 
 }
