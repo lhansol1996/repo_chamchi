@@ -122,7 +122,8 @@
 								</h4>
 								<i class="fa fa-caret-right"></i><span
 									th:if="${partyRecentList.xMemberTierCd != null}">파티장 티어
-									[[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</span></a>
+									[[${@codeService.selectOneCachedCode(partyRecentList.xMemberTierCd)}]]</span>
+									<span th:unless="${partyRecentList.xMemberTierCd != null}">등록안함</span>
 							</div>
 
 							<ul class="listing-features">

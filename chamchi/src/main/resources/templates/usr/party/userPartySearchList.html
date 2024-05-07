@@ -130,12 +130,12 @@
 								</div>
 
 								<ul class="listing-details">
-									<li>티어 <span th:if="${list.xMasterNy== '1'}"
+									<li>티어 <span th:if="${list.xMasterNy== '1' && list.xMemberTierCd != null}"
 											th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
+										<span th:unless="${list.xMemberTierCd != null}">등록안함</span>
 									</li>
-									<li>파티장 승률 <span
-											th:if="${list.xMemberVictoryRate != null}">[[${list.xMemberVictoryRate}]]
-											%</span>
+									<li>파티장 승률 <span th:if="${list.xMemberVictoryRate != null}">
+										[[${list.xMemberVictoryRate}]] %</span>
 										<span th:unless="${list.xMemberVictoryRate != null}">등록안함</span>
 									</li>
 									<li>파티장 KDA <span
