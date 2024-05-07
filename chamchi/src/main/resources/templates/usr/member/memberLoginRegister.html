@@ -224,10 +224,8 @@
 			document.getElementById("btnReg").onclick = function() {
 
 				if (validationReg() == false) {
-					alert('밸리데이션 작업완료')
 					return false;
 				} else {
-					alert('안걸림')
 					formR.action = goUrlUsrInstForm
 					formR.submit();
 				}
@@ -239,7 +237,6 @@
 				if (validationLogin() == false)
 					return false;
 
-				alert('111-------------------');
 				$.ajax({
 					async : true,
 					cache : false,
@@ -275,21 +272,16 @@
 			}
 
 			function validationLogin() {
-				alert('예외처리시작L')
 				if (!checkNull('memberID', 2, '아이디를 입력해주세요'))
 					return false;
-				alert('예외처리1')
 				if (!checkNull('memberPwd', 2, '비밀번호를 입력해주세요'))
 					return false;
-				alert('예외처리2')
 
 			}
 
 			function validationReg() {
-				alert('예외처리시작R')
 				if (!checkNull('memberName', 2, '비밀번호를 입력해주세요'))
 					return false;
-				alert('예외처리1')
 			}
 			
 			

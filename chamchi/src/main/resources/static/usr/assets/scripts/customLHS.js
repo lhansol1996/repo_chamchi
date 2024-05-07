@@ -5,13 +5,10 @@ let searchInput = document.getElementById("XtopBarSearchInputValue").value;
 let searchInput2 = document.getElementById("XtopBarSearchInputValue2").value;
 
 document.getElementById("searchTopBtn").onclick = function () {
-    alert("top1버튼클릭됨");
-    alert("top1값 들어옴")
     goFormTop(searchInput);
 }
 
 goFormTop = function () {
-    alert("goformTop1 시작");
     formTop.action = goUrlCharacterDetail;
     formTop.submit();
 }
@@ -23,13 +20,10 @@ function enterkeyTop1(event) {
 }
 
 document.getElementById("searchTopBtn2").onclick = function () {
-    alert("top2버튼클릭됨");
-    alert("top2값 들어옴")
     goFormTop2(searchInput2);
 }
 
 goFormTop2 = function () {
-    alert("goformTop2 시작");
     formTop.action = goUrlRecord;
     formTop.submit();
 }
@@ -42,7 +36,6 @@ function enterkeyTop2(event) {
 
 // 로그아웃 버튼 - usr
 document.getElementById("btnLogout").onclick = function () {
-        alert('로그아웃');
         $.ajax({
             async: true
             , cache: false

@@ -109,15 +109,42 @@
 									<div class="listings-container list-layout">
 
 										<!-- Listing Item -->
-										<div class="listing-item" th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
+										<div class="listing-item" th:if="${!#lists.isEmpty(list)}"
+											th:each="list:${list}">
 
-											<a href="single-property-page-1.html" class="listing-img-container">
 
-												<img src="usr/assets/images/listing-02.jpg" alt="">
 
-											</a>
+											<th:block th:if="${list.xMemberTierCd == null}">
+												<img src="usr/assets/images/00.Unrank.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 74}">
+												<img src="usr/assets/images/02.Bronze.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 75}">
+												<img src="usr/assets/images/03.Silver.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 76}">
+												<img src="usr/assets/images/04.Gold.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 77}">
+												<img src="usr/assets/images/05.Platinum.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 78}">
+												<img src="usr/assets/images/06.Diamond.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 79}">
+												<img src="usr/assets/images/07.Mithril.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 80}">
+												<img src="usr/assets/images/08.Titan.png" alt="">
+											</th:block>
+											<th:block th:if="${list.xMemberTierCd == 81}">
+												<img src="usr/assets/images/09.Immortal.png" alt="">
+											</th:block>
 
-											<div class="listing-content" >
+
+
+											<div class="listing-content">
 
 												<div class="listing-title">
 													<h4 th:text="${list.xMemberName}">파티원 1 이름</h4>
@@ -126,23 +153,26 @@
 												<ul class="listing-details">
 													<li>티어 :<span th:if="${list.xMemberTierCd != null}"
 															th:text="${@codeService.selectOneCachedCode(list.xMemberTierCd)}">다이아</span>
-														<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지 않았습니다.</span>
+														<span th:unless="${list.xMemberTierCd != null}">사용자가 티어를 등록하지
+															않았습니다.</span>
 													</li>
 
 													<li>승률 :<span th:if="${list.xMemberVictoryRate != null}"
 															th:text="${list.xMemberVictoryRate}">승률</span>
-														<span th:unless="${list.xMemberVictoryRate != null}">사용자가 등록하지 않았습니다.</span>
+														<span th:unless="${list.xMemberVictoryRate != null}">사용자가 등록하지
+															않았습니다.</span>
 													</li>
 
 													<li>평균 kda :<span th:if="${list.xMemberKDA != null}"
 															th:text="${list.xMemberKDA}">KDA</span>
-														<span th:unless="${list.xMemberKDA != null}">사용자가 등록하지 않았습니다.</span>
+														<span th:unless="${list.xMemberKDA != null}">사용자가 등록하지
+															않았습니다.</span>
 													</li>
 												</ul>
 
 												<div class="listing-footer">
 													파티 가입일 <i class="fa fa-calendar-o">&nbsp;&nbsp;<span
-														th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
+															th:text="${#dates.format(list.xPartyJoinDate, 'yy.MM.dd')}"></i></span>
 												</div>
 
 											</div>

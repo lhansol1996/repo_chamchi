@@ -239,19 +239,16 @@
 		let searchMainInput = document.getElementById("nickNameMain").value;
 
 		document.getElementById("searchMainBtn").onclick = function () {
-			alert("버튼클릭됨");
 			goFormMain(searchMainInput);
 		}
 
 		goFormMain = function () {
-			alert("goFormMain 시작");
 			formMain.action = goUrlMainRecord;
 			formMain.submit();
 		}
 
 		function enterkeyMain(event) {
 			if (event.key === 'Enter') {
-				alert("엔터키 메인시작")
 				goFormMain(searchMainInput);
 			}
 		}

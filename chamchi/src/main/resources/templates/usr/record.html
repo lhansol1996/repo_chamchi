@@ -92,7 +92,7 @@
 						<!-- Breadcrumbs -->
 						<nav id="breadcrumbs">
 							<ul>
-								<li><a href="#">Home</a></li>
+								<li>Home</li>
 								<li>전적검색</li>
 							</ul>
 						</nav>
@@ -114,10 +114,9 @@
 					<div class="sidebar left">
 						<section class="usersection-css" th:if="${!#lists.isEmpty(getUserStatItem)}" th:each="getUserStatItem:${getUserStatItem}">
 							<header>
-								<h2 class="p-5 mt-3 text-center">랭크</h2>
+								<h2 class="mt-3 text-center">유저 정보</h2>
 							</header>
-							<div class="usertierimage-css"><img src="//cdn.dak.gg/assets/er/images/rank/round/6.png"
-									alt="다이아몬드">
+								<div class="usertierimage-css">
 								<div>
 									<b class="rp" th:text="${getUserStatItem.mmr} + 'RP'">5337</b>
 									<div class="rank" th:text="${getUserStatItem.rank} + '위'"></div>
