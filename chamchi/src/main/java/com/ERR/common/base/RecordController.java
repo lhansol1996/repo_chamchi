@@ -32,7 +32,6 @@ public class RecordController extends BaseController {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Object> getUserMap = objectMapper.readValue(stringBuilder.toString(), Map.class);
-		System.out.println(getUserMap);
 		if ((Map<String, Object>) getUserMap.get("user") != null) {
 			Map<String, Object> getUserNumMap = (Map<String, Object>) getUserMap.get("user");
 			String userNum = String.valueOf(getUserNumMap.get("userNum"));
@@ -47,7 +46,6 @@ public class RecordController extends BaseController {
 			ObjectMapper objectMapper2 = new ObjectMapper();
 			Map<String, Object> getUserRecord = objectMapper2.readValue(stringBuilder2.toString(), Map.class);
 			List<Map<String, Object>> userGamesList = (List<Map<String, Object>>) getUserRecord.get("userGames");
-
 			model.addAttribute("userGamesList", userGamesList);
 
 			// 받은 userNum으로 해당 유저 상세 정보 호출 API
@@ -58,7 +56,6 @@ public class RecordController extends BaseController {
 			ObjectMapper objectMapper3 = new ObjectMapper();
 			Map<String, Object> getUserStat = objectMapper3.readValue(stringBuilder3.toString(), Map.class);
 			List<Map<String, Object>> getUserStatItem = (List<Map<String, Object>>) getUserStat.get("userStats");
-			System.out.println(getUserStatItem);
 
 			model.addAttribute("getUserStatItem", getUserStatItem);
 

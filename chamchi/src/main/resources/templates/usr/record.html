@@ -69,7 +69,8 @@
 
 	</style>
 
-
+<link rel="preload" as="image" href="usr/assets/images/character/050.엘레나/Mini_default.png">
+<link rel="preload" as="image" href="usr/assets/images/character/055.에스텔/Mini_default.png">
 </head>
 
 <body>
@@ -181,7 +182,222 @@
 						<!-- Item #2 -->
 						<tr th:if="${!#lists.isEmpty(userGamesList)}" th:each="userGamesList:${userGamesList}">
 							<td class="title-container">
-								<img src="xdm/assets/images/listing-01.jpg" alt="">
+								<div th:if="${userGamesList.characterNum == 1}">
+									<img src="usr/assets/images/character/001.재키/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 2}">
+									<img src="usr/assets/images/character/002.아야/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 3}">
+									<img src="usr/assets/images/character/003.현우/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 4}">
+									<img src="usr/assets/images/character/004.매그너스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 5}">
+									<img src="usr/assets/images/character/005.피오라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 6}">
+									<img src="usr/assets/images/character/006.나딘/Half_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 7}">
+									<img src="usr/assets/images/character/007.자히르/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 8}">
+									<img src="usr/assets/images/character/008.하트/Half_fault.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 9}">
+									<img src="usr/assets/images/character/009.아이솔/Half_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 10}">
+									<img src="usr/assets/images/character/010.리다이린/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 11}">
+									<img src="usr/assets/images/character/011.유키/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 12}">
+									<img src="usr/assets/images/character/012.혜진/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 13}">
+									<img src="usr/assets/images/character/013.쇼우/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 14}">
+									<img src="usr/assets/images/character/014.시셀라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 15}">
+									<img src="usr/assets/images/character/015.키아라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 16}">
+									<img src="usr/assets/images/character/016.아드리아나/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 17}">
+									<img src="usr/assets/images/character/017.실비아/Half_df.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 18}">
+									<img src="usr/assets/images/character/018.쇼이치/half_df.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 19}">
+									<img src="usr/assets/images/character/019.엠마/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 20}">
+									<img src="usr/assets/images/character/020.레녹스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 21}">
+									<img src="usr/assets/images/character/021.로지/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 22}">
+									<img src="usr/assets/images/character/022.루크/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 23}">
+									<img src="usr/assets/images/character/023.캐시/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 24}">
+									<img src="usr/assets/images/character/024.아델라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 25}">
+									<img src="usr/assets/images/character/025.버니스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 26}">
+									<img src="usr/assets/images/character/026.바바라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 27}">
+									<img src="usr/assets/images/character/027.알렉스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 28}">
+									<img src="usr/assets/images/character/028.수아/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 29}">
+									<img src="usr/assets/images/character/029.레온/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 30}">
+									<img src="usr/assets/images/character/030.일레븐/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 31}">
+									<img src="usr/assets/images/character/031.리오/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 32}">
+									<img src="usr/assets/images/character/032.윌리엄/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 33}">
+									<img src="usr/assets/images/character/033.니키/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 34}">
+									<img src="usr/assets/images/character/034.나타폰/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 35}">
+									<img src="usr/assets/images/character/035.얀/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 36}">
+									<img src="usr/assets/images/character/036.이바/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 37}">
+									<img src="usr/assets/images/character/037.다니엘/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 38}">
+									<img src="usr/assets/images/character/038.제니/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 39}">
+									<img src="usr/assets/images/character/039.카밀로/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 40}">
+									<img src="usr/assets/images/character/040.클로에/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 41}">
+									<img src="usr/assets/images/character/041.요한/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 42}">
+									<img src="usr/assets/images/character/042.비앙카/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 43}">
+									<img src="usr/assets/images/character/043.셀린/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 44}">
+									<img src="usr/assets/images/character/044.에키온/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 45}">
+									<img src="usr/assets/images/character/045.마이/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 46}">
+									<img src="usr/assets/images/character/046.에이든/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 47}">
+									<img src="usr/assets/images/character/047.라우라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 48}">
+									<img src="usr/assets/images/character/048.띠아/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 49}">
+									<img src="usr/assets/images/character/049.펠릭스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 50}">
+									<img src="usr/assets/images/character/050.엘레나/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 51}">
+									<img src="usr/assets/images/character/051.프리야/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 52}">
+									<img src="usr/assets/images/character/052.아디나/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 53}">
+									<img src="usr/assets/images/character/053.마커스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 54}">
+									<img src="usr/assets/images/character/054.칼라/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 55}">
+									<img src="usr/assets/images/character/055.에스텔/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 56}">
+									<img src="usr/assets/images/character/056.피올로/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 57}">
+									<img src="usr/assets/images/character/057.마르티나/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 58}">
+									<img src="usr/assets/images/character/058.헤이즈/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 59}">
+									<img src="usr/assets/images/character/059.아이작/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 60}">
+									<img src="usr/assets/images/character/060.타지아/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 61}">
+									<img src="usr/assets/images/character/061.이렘/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 62}">
+									<img src="usr/assets/images/character/062.테오도르/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 63}">
+									<img src="usr/assets/images/character/063.이안/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 64}">
+									<img src="usr/assets/images/character/064.바냐/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 65}">
+									<img src="usr/assets/images/character/065.데비/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 66}">
+									<img src="usr/assets/images/character/066.아르다/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 67}">
+									<img src="usr/assets/images/character/067.아비게일/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 68}">
+									<img src="usr/assets/images/character/068.알론소/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 69}">
+									<img src="usr/assets/images/character/069.레니/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 70}">
+									<img src="usr/assets/images/character/070.츠바메/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 71}">
+									<img src="usr/assets/images/character/071.케네스/Mini_default.png" alt="">
+								</div>
+								<div th:if="${userGamesList.characterNum == 72}">
+									<img src="usr/assets/images/character/072.카티야/Mini_default.png" alt="">
+								</div>
 								<div class="title">
 									<span>캐릭터<span class="table-property-price" th:text="${@codeService.selectOneCachedCode(userGamesList.characterNum)}"></span></span>
 									<span>게임ID<span class="table-property-price" th:text="${userGamesList.gameId}">게임 id</span></span>
@@ -267,7 +483,6 @@
 
 			</div>
 		</div>
-
 
 		<!-- Footer
 ================================================== -->
