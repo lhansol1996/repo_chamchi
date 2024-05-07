@@ -130,8 +130,8 @@
 		, a.partyDelNy
 		, a.partyRegDate
 		, a.partyModDate
+		, m.memberTierCd as xMemberTierCd
 		, m.memberName as xMemberName
-		,m.memberTierCd as xMemberTierCd
 		,m.memberKDA as xMemberKDA
 		,m.memberVictoryRate as xMemberVictoryRate
 		,mp.masterNy as xMasterNy
@@ -168,7 +168,7 @@
 		WHERE 1=1
 		AND mp.MasterNy = 1
 		ORDER BY partyRegDate DESC
-		LIMIT 0, 5;
+		LIMIT 0, 3;
 	
 	</select>
 
