@@ -101,7 +101,8 @@ public class UsrController extends BaseController {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Object> getUserMap = objectMapper.readValue(stringBuilder.toString(), Map.class);
-		System.out.println(getUserMap);
+		if((Map<String, Object>) getUserMap.get("user") != null) {
+			
 		Map<String, Object> getUserNumMap = (Map<String, Object>) getUserMap.get("user");
 		String userNum = String.valueOf(getUserNumMap.get("userNum"));
 		String userName = String.valueOf(getUserNumMap.get("nickname"));
@@ -118,6 +119,9 @@ public class UsrController extends BaseController {
 		model.addAttribute("getUserStatList", getUserStatList);
 
 		return  UsrCommomMyProfilePath + "myProfileUpdate";
+		}else {
+			return UsrCommonPath + "pageNotFound";
+		}
 	}
 	
 	@RequestMapping(value = "/profileUpdt")

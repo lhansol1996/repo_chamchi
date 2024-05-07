@@ -47,9 +47,9 @@
 							<div class="col-2 ms-5 mt-1">
 								<select class="form-select" aria-label="Default select example" id="voDelNy"
 									name="voDelNy">
-									<option value="" th:selected="${vo.voDelNy == null}">삭제여부</option>
-									<option value="1" th:selected="${vo.voDelNy == 1}">Y</option>
-									<option value="0" th:selected="${vo.voDelNy == 0}">N</option>
+									<option value="" th:selected="${vo.voDelNy == null}">전체검색(삭제구분)</option>
+									<option value="1" th:selected="${vo.voDelNy == 1}">삭제 - Y</option>
+									<option value="0" th:selected="${vo.voDelNy == 0}">미삭제 - N</option>
 								</select>
 							</div>
 							<!--삭제여부 끝-->
@@ -82,7 +82,7 @@
 							<div class="col-2 ms-1 mt-1">
 								<select class="form-select" aria-label="Default select example" id="voOption"
 									name="voOption">
-									<option value="" th:selected="${vo.voOption == null}">검색구분</option>
+									<option value="" th:selected="${vo.voOption == null}">전체 검색(검색구분)</option>
 									<option value="1" th:selected="${vo.voOption == 1}">코드그룹 SEQ</option>
 									<option value="2" th:selected="${vo.voOption == 2}">코드그룹 이름</option>
 								</select>
@@ -119,7 +119,7 @@
 								<!-- 총합 및 나열 값-->
 								<div class="container row m-auto">
 									<div class="fw-bold border-bottom col-3 mt-3 ms-5"
-										style="text-align: center; font-size: large;">Total : <span th:text="${vo.totalRows}"></span>
+										style="text-align: center; font-size: large;">codeGroupList | Total : <span th:text="${vo.totalRows}"></span>
 									</div>
 
 									<div class="col-md-2 offset-md-6 mt-3">

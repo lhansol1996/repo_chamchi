@@ -20,16 +20,13 @@
 							<h4 class="fw-semibold mb-4">Login</h4>
 							<div class="mb-3">
 								<label class="form-label">ID</label>
-								<input type="text" class="form-control" name="memberID" id="memberID"/>
+								<input type="text" class="form-control" name="memberID" id="memberID" value="admintest1" />
 								<div class="invalid-feedback" id="memberIDFeedback"></div>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Password</label>
 								<div class="input-group">
-									<input type="password" class="form-control" name="memberPwd" id="memberPwd"/>
-									<a href="#" class="input-group-text">
-										<i class="bi bi-eye"></i>
-									</a>
+									<input type="password" class="form-control" name="memberPwd" id="memberPwd" value="a" />
 									<div class="invalid-feedback" id="memberPwdFeedback"></div>
 								</div>
 							</div>
@@ -55,9 +52,6 @@
 		// 로그인버튼
 		document.getElementById("btnLogin").onclick = function () {
 			if (validationLogin() == false) return false;
-
-
-			alert('111-------------------');
 			$.ajax({
 				async: true
 				, cache: false
@@ -87,11 +81,8 @@
 
 		}
 		function validationLogin() {
-				alert('예외처리시작L')
 				if (!checkNull('memberID', 2, '아이디를 입력해주세요')) return false;
-				alert('예외처리1')
 				if (!checkNull('memberPwd', 2, '비밀번호를 입력해주세요')) return false;
-				alert('예외처리2')
 
 			}
 	</script>
