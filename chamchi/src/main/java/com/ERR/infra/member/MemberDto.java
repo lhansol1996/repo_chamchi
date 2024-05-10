@@ -2,6 +2,8 @@ package com.ERR.infra.member;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDto {
 	private String memberSeq;
 	private String memberID;
@@ -18,6 +20,9 @@ public class MemberDto {
 	private Integer memberGenderCd;
 	private Date memberRegDate;
 	private Date memberModDate;
+	
+	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFiles;
 
 	private String[] checkboxSeqArray = null;
 
@@ -149,4 +154,21 @@ public class MemberDto {
 		this.checkboxSeqArray = checkboxSeqArray;
 	}
 
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
+
+	
 }

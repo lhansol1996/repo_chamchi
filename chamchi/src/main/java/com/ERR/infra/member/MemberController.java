@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
@@ -81,7 +82,19 @@ public class MemberController extends BaseController {
 	@RequestMapping(value = "/memberXdmInsert")
 	public String memberXdmInsert(MemberDto dto, Model model) throws Exception {
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
-		service.insert(dto);
+		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
+		System.out.println("--------------------------");
+		System.out.println("--------------------------");
+		System.out.println("--------------------------");
+		
+		MultipartFile[] uploadFiles = dto.getUploadFiles();
+		
+		 for (MultipartFile file : uploadFiles) {
+	         
+	         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
+		 }
+		
+//		service.insert(dto);
 		return "redirect:/memberXdmList";
 	}
 

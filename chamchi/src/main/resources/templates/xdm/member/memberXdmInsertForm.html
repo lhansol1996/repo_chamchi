@@ -41,7 +41,7 @@
 					<div class="col-xxl-12">
 						<div class="card mb-4">
 							<div class="card-body">
-								<form name="formInsert" id="formInsert" class="row g-3" method="post">
+								<form name="formInsert" id="formInsert" class="row g-3" method="post" enctype="multipart/form-data">
 
 									<div class="col-md-3">
 										<label for="memberName" class="form-label">이름</span></label> <input type="text"
@@ -107,6 +107,13 @@
 											</option>
 										</select>
 										<div class="invalid-feedback" id="memberTierCdFeedback"></div>
+									</div>
+
+									<div class="col-md-12">
+										<label for="uploadFiles" class="form-label">업로드 파일</span></label>
+										<input type="file" class="form-control" multiple="multiple" name="uploadFiles" id="uploadFiles"
+											placeholder="이메일을 넣어주십시오" />
+										<div class="invalid-feedback" id="memberEmailFeedback"></div>
 									</div>
 
 									<div class="d-flex justify-content-between col-12">

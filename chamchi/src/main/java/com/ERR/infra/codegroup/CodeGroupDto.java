@@ -2,6 +2,8 @@ package com.ERR.infra.codegroup;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CodeGroupDto {
 	private String codeGroupSeq;
 	private String codeGroupName;
@@ -12,6 +14,17 @@ public class CodeGroupDto {
 	private Integer xcount;
 
 	private String[] checkboxSeqArray = null;
+	
+	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFiles;
+
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
 
 	public String getCodeGroupSeq() {
 		return codeGroupSeq;
@@ -68,6 +81,8 @@ public class CodeGroupDto {
 	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
 		this.checkboxSeqArray = checkboxSeqArray;
 	}
+	
+	
 
 	@Override
 	public String toString() {
