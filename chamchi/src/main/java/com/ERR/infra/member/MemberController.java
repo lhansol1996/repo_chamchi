@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -100,6 +99,17 @@ public class MemberController extends BaseController {
 		return "redirect:/memberXdmList";
 	}
 
+	@RequestMapping(value = "/memberXdmMultiUelete")
+	public String memberXdmMultiUelete(MemberDto dto) throws Exception {
+		String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+		for (String checkboxSeq : checkboxSeqArray) {
+			dto.setMemberSeq(checkboxSeq);
+			service.uelete(dto);
+		}
+
+		return "redirect:/memberXdmList";
+	}
+
 	@RequestMapping(value = "/memberXdmDelete")
 	public String memberXdmDelete(MemberDto dto, Model model) throws Exception {
 
@@ -120,14 +130,14 @@ public class MemberController extends BaseController {
 		service.memberReg(dto);
 		return "redirect:/memberXdmList";
 	}
-	
+
 	@RequestMapping(value = "/memberUsrReg")
 	public String memberUsrReg(MemberDto dto, Model model) throws Exception {
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.memberReg(dto);
-		
+
 		Thread thread = new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				mailService.sendMailSample();
@@ -147,9 +157,7 @@ public class MemberController extends BaseController {
 		if (checkDto != null) {
 			String loginPwd = dto.getMemberPwd();
 			String checkPwd = checkDto.getMemberPwd();
-			System.out.println("++++++시작+++++++");
 			if (matchesBcrypt(loginPwd, checkPwd, 10)) {
-				System.out.println("성공");
 
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessMemberSeq", checkDto.getMemberSeq());
@@ -158,20 +166,12 @@ public class MemberController extends BaseController {
 
 				returnMap.put("rt", "success");
 			} else {
-				System.out.println("실패");
 				returnMap.put("rt", "fail");
 			}
 
 		} else {
-			System.out.println("아이디값 없음실패");
 			returnMap.put("rt", "fail");
 		}
-		System.out.println("---------------------");
-		System.out.println("httpSession.getAttribute(\"sessMemberSeq\"): " + httpSession.getAttribute("sessMemberSeq"));
-		System.out.println("httpSession.getAttribute(\"sessMemberId\"): " + httpSession.getAttribute("sessMemberId"));
-		System.out
-				.println("httpSession.getAttribute(\"sessMemberName\"): " + httpSession.getAttribute("sessMemberName"));
-		System.out.println("---------------------");
 
 		return returnMap;
 	}
@@ -184,14 +184,10 @@ public class MemberController extends BaseController {
 		MemberDto checkDto = service.selectLogin(dto);
 
 		if (checkDto != null) {
-			System.out.println("checkDto 존재 여부 체크");
 			if (checkDto.getMemberAdminNy() == 1) {
-				System.out.println("checkDto 관리자구분번호 체크");
 				String loginPwd = dto.getMemberPwd();
 				String checkPwd = checkDto.getMemberPwd();
-				System.out.println("++++++시작+++++++");
 				if (matchesBcrypt(loginPwd, checkPwd, 10)) {
-					System.out.println("성공");
 
 					httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 					httpSession.setAttribute("sessMemberSeq", checkDto.getMemberSeq());
@@ -200,23 +196,20 @@ public class MemberController extends BaseController {
 
 					returnMap.put("rt", "success");
 				} else {
-					System.out.println("비밀번호 불일치 실패");
 					returnMap.put("rt", "fail");
 				}
 			} else {
-				System.out.println("관리자 권한 없음");
 				returnMap.put("rt", "fail");
 			}
 		} else {
-			System.out.println("아이디값 없음실패");
 			returnMap.put("rt", "fail");
 		}
-		System.out.println("---------------------");
-		System.out.println("httpSession.getAttribute(\"sessMemberSeq\"): " + httpSession.getAttribute("sessMemberSeq"));
-		System.out.println("httpSession.getAttribute(\"sessMemberId\"): " + httpSession.getAttribute("sessMemberId"));
-		System.out
-				.println("httpSession.getAttribute(\"sessMemberName\"): " + httpSession.getAttribute("sessMemberName"));
-		System.out.println("---------------------");
+//		System.out.println("---------------------");
+//		System.out.println("httpSession.getAttribute(\"sessMemberSeq\"): " + httpSession.getAttribute("sessMemberSeq"));
+//		System.out.println("httpSession.getAttribute(\"sessMemberId\"): " + httpSession.getAttribute("sessMemberId"));
+//		System.out
+//				.println("httpSession.getAttribute(\"sessMemberName\"): " + httpSession.getAttribute("sessMemberName"));
+//		System.out.println("---------------------");
 
 		return returnMap;
 	}

@@ -1,5 +1,5 @@
 // 관리자 화면 체크박스 js 
-document.querySelector('#checkboxAll');
+document.querySelector('#checkAll');
 
     checkAll.addEventListener('click', function(){
 
@@ -30,10 +30,10 @@ document.querySelector('#checkboxAll');
         const checkedCnt = document.querySelectorAll('.chk:checked').length;
         
         if(totalCnt == checkedCnt){
-            document.querySelector('#checkboxAll').checked = true;
+            document.querySelector('#checkAll').checked = true;
         }
         else{
-            document.querySelector('#checkboxAll').checked = false;
+            document.querySelector('#checkAll').checked = false;
         }
         
         });

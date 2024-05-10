@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ERR.common.base.BaseController;
-import com.ERR.common.constants.Constants;
-import com.ERR.common.util.UtilDateTime;
 import com.ERR.common.util.UtilSetSearch;
 import com.ERR.infra.code.CodeService;
 import com.ERR.infra.memberParty.MemberPartyDto;
@@ -79,6 +77,17 @@ public class PartyController extends BaseController {
 	public String partyXdmUelete(PartyDto dto, Model model) throws Exception {
 
 		partyservice.uelete(dto);
+		return "redirect:/partyXdmList";
+	}
+
+	@RequestMapping(value = "/partyXdmMultiUelete")
+	public String partyXdmMultiUelete(PartyDto dto) throws Exception {
+		String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+		for (String checkboxSeq : checkboxSeqArray) {
+			dto.setPartySeq(checkboxSeq);
+			partyservice.uelete(dto);
+		}
+
 		return "redirect:/partyXdmList";
 	}
 

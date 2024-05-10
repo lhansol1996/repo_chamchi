@@ -5,11 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
-import com.ERR.common.util.UtilDateTime;
 import com.ERR.common.util.UtilSetSearch;
 
 @Controller
@@ -21,7 +19,6 @@ public class CharacterController extends BaseController {
 	@Autowired
 	CharacterService characterService;
 
-	
 	@RequestMapping(value = "/characterXdmList")
 	public String characterXdmList(@ModelAttribute("vo") CharacterVo vo, Model model) throws Exception {
 
@@ -90,9 +87,20 @@ public class CharacterController extends BaseController {
 			if (Constants.CHARACTER_NAMES.contains(character.getCharacterName())) {
 				model.addAttribute("item", character);
 				return UsrCharacterCommonPath + "character-detail";
-			} 
+			}
 		}
 		return "usr/pageNotFound";
+	}
+
+	@RequestMapping(value = "/characterXdmMultiUelete")
+	public String characterXdmMultiUelete(CharacterDto dto) throws Exception {
+		String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+		for (String checkboxSeq : checkboxSeqArray) {
+			dto.setCharacterSeq(checkboxSeq);
+			characterService.uelete(dto);
+		}
+
+		return "redirect:/characterXdmList";
 	}
 
 }

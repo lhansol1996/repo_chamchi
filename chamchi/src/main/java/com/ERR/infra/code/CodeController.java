@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ERR.common.base.BaseController;
-import com.ERR.common.constants.Constants;
-import com.ERR.common.util.UtilDateTime;
 import com.ERR.common.util.UtilSetSearch;
 import com.ERR.infra.codegroup.CodeGroupService;
 
@@ -95,6 +93,17 @@ public class CodeController extends BaseController {
 	public String codeXdmDelete(CodeDto dto, Model model) throws Exception {
 
 		codeService.delete(dto);
+		return "redirect:/codeXdmList";
+	}
+
+	@RequestMapping(value = "/codeXdmMultiUelete")
+	public String codeXdmMultiUelete(CodeDto dto) throws Exception {
+		String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+		for (String checkboxSeq : checkboxSeqArray) {
+			dto.setCodeSeq(checkboxSeq);
+			codeService.uelete(dto);
+		}
+
 		return "redirect:/codeXdmList";
 	}
 }

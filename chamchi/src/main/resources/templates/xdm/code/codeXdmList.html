@@ -134,7 +134,7 @@
 											<thead>
 												<tr>
 													<th scope="col-2"><input class="form-check-input" type="checkbox"
-															value="" id="checkboxAll" /></th>
+															value="" id="checkAll" /></th>
 													<th scope="col-2">Seq</th>
 													<th scope="col-2">Name</th>
 													<th scope="col-2">delNy</th>
@@ -146,9 +146,11 @@
 											</thead>
 											<tbody>
 												<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-													<td scope="row">
-														<input class="form-check-input chk" type="checkbox" value="" />
-													</td>
+													<form name="formMultiUelete" id="formMultiUelete" method="get" autocomplete="off">
+														<td scope="row">
+															<input class="form-check-input chk" type="checkbox" name="chk" th:value="${list.codeSeq}" />
+														</td>	
+													</form>	
 													<td class="col"><a href="#"
 															th:href="@{/codeXdmView(codeSeq=${list.codeSeq},codeName=${list.codeName},codeDelNy=${list.codeDelNy})}"
 															th:text="${list.codeSeq}">#001</a></td>
@@ -213,11 +215,35 @@
 										<!--페이지네이션-->
 										<div th:replace="~{include/pagination :: pagination}"></div>
 										
-										<!-- 테이블 아래 쪽 삭제 -->
+										<!-- 테이블 아래 쪽 uelete 삭제 -->
 										<div class="d-flex justify-content-between flex-row ms-5">
 											<div class="col-2">
-												<a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i
-														class="bi bi-trash"></i></a>
+												<button class="btn btn-danger btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#multiUeleteModal">
+													<i class="bi bi-trash"></i>
+												</button>
+											<!-- multi ulete Modal-->
+												<div class="modal fade" id="multiUeleteModal" tabindex="-1" aria-labelledby="ueleteModalLabel" aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="ueleteModalLabel">
+																	MultiUelete 삭제</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id=""></button>
+															</div>
+																<div class="modal-body">
+																	<span>정말 삭제하시겠습니까 ?</span>
+																</div>
+															<div class="modal-footer">
+																<button type="button"
+																	class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+																<button type="button" class="btn btn-primary" id="btnModalMultiUelete">
+																	uelete삭제
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
@@ -278,19 +304,13 @@ window.addEventListener('load', function () {
 		let form = document.querySelector("form[name=formList]");
 		let goUrlXdmList = "/codeXdmList";								
 		let goUrlXdmInstForm = "/codeXdmInsertForm";							
-		let goUrlXdmView = "/codeXdmView";								
+		let goUrlXdmView = "/codeXdmView";		
+		
+		let formMultiUelete = document.querySelector("form[name=formMultiUelete]");
+		let goUrlXdmMultiUelete = "/codeXdmMultiUelete";
+		let checkboxSeqArray = [];
 
-		let seq = document.querySelector("input[name=codeSeq]");									/* ### */
-
-		// document.getElementById("btnReset").onclick = function () {
-		// 	location.href = goUrlXdmList;
-		// }
-
-/*
-		document.getElementById("btnForm").onclick = function () {
-			goForm(0);
-		}
-*/
+		let seq = document.querySelector("input[name=codeSeq]");									
 
 		goForm = function (keyValue) {
 			seq.value = keyValue;
@@ -305,17 +325,38 @@ window.addEventListener('load', function () {
 		
 		function enterkey() {
 			if (window.event.keyCode == 13) {
-			    form.action = goUrlXdmList;
-			    form.submit();
-		    }
+				form.action = goUrlXdmList;
+				form.submit();
+			}
 		}
 
 		goList = function (thisPage) {
-		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    form.action = goUrlXdmList;
-		    form.submit();
+			document.querySelector("input[name=thisPage]").value = thisPage;
+			form.action = goUrlXdmList;
+			form.submit();
 		}
 
+		$("#btnModalMultiUelete").on("click", function(){
+			$("input[name=chk]:checked").each(function(){ 
+				// check된것을 찾고 체크된 값만 넘김
+				checkboxSeqArray.push($(this).val());  
+				alert(checkboxSeqArray.push($(this).val()));
+			});				
+			
+			// checkboxSeqArray 값을 form 데이터로 추가
+			let hiddenInput = document.createElement("input");
+			hiddenInput.setAttribute("type", "hidden");
+			hiddenInput.setAttribute("name", "checkboxSeqArray");
+			hiddenInput.setAttribute("value", checkboxSeqArray.join(","));
+			formMultiUelete.appendChild(hiddenInput);
+			
+			$("#modalConfirm").modal("hide");
+			
+			formMultiUelete.action = goUrlXdmMultiUelete;
+			formMultiUelete.submit();
+			
+		});
+		
 	
 		
 	</script>
