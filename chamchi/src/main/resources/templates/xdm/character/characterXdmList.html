@@ -135,7 +135,7 @@
 											<thead>
 												<tr>
 													<th scope="col-1"><input class="form-check-input" type="checkbox"
-															value="" id="flexCheckDefault" /></th>
+															value="" id="checkboxAll" /></th>
 													<th scope="col">chSeq</th>
 													<th scope="col-2">chName</th>
 													<th scope="col">chHp</th>
@@ -148,8 +148,9 @@
 											</thead>
 											<tbody>
 												<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-													<td scope="row"><input class="form-check-input" type="checkbox"
-															value="" id="flexCheckDefault" /></td>
+													<td scope="row">
+														<input class="form-check-input chk" type="checkbox" value="" />
+													</td>
 													<td class="col"><a href="#"
 															th:href="@{/characterXdmView(characterSeq=${list.characterSeq},characterName=${list.characterName},characterDelNy=${list.characterDelNy},
 															characterDept=${list.characterDept} ,characterHp=${list.characterHp}, characterMp=${list.characterMp}, 

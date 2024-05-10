@@ -133,7 +133,7 @@
 									<table class="table align-middle table-hover m-0">
 										<thead>
 											<tr>
-												<th scope="col-2"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></th>
+												<th scope="col-2"><input class="form-check-input" type="checkbox" value="" id="checkboxAll" /></th>
 												<th scope="col-2">partySeq</th>
 												<th scope="col-2">partyName</th>
 												<th scope="col-2">partyDelNy</th>
@@ -144,8 +144,9 @@
 										</thead>
 										<tbody>
 											<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-												<td scope="row"><input class="form-check-input" type="checkbox" value=""
-														id="flexCheckDefault" /></td>
+												<td scope="row">
+													<input class="form-check-input chk" type="checkbox" value="" />
+												</td>
 												<td class="col"><a href="#"
 														th:href="@{/partyXdmView(partySeq=${list.partySeq},partyName=${list.partyName},partyDelNy=${list.partyDelNy}
 														,partyDept=${list.partyDept}, partyMatchTypeCd=${partyMatchTypeCd})}"
@@ -297,7 +298,6 @@
 		}
 
 		document.getElementById("btnSearch").onclick = function () {
-			alert("222");
 			form.action = goUrlXdmList;
 			form.submit();
 		};

@@ -136,8 +136,8 @@
 										<table class="table align-middle table-hover m-0">
 											<thead>
 												<tr>
-													<th scope="col-2"><input class="form-check-input" type="checkbox"
-															value="" id="flexCheckDefault" /></th>
+													<th scope="col-2"><input class="form-check-input chk" type="checkbox"
+															value="" id="checkboxAll" /></th>
 													<th scope="col-2">GroupSeq</th>
 													<th scope="col-2">GroupName</th>
 													<th scope="col-2">delNy</th>
@@ -148,8 +148,9 @@
 											</thead>
 											<tbody>
 												<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-													<td scope="row"><input class="form-check-input" type="checkbox"
-															value="" id="flexCheckDefault" /></td>
+													<td scope="row">
+														<input class="form-check-input chk" type="checkbox" value="" />
+													</td>
 													<td class="col"><a href="#"
 															th:href="@{/codeGroupXdmView(codeGroupSeq=${list.codeGroupSeq},codeGroupName=${list.codeGroupName},codeGroupDelNy=${list.codeGroupDelNy})}"
 															th:text="${list.codeGroupSeq}">#001</a></td>
@@ -299,7 +300,6 @@ window.addEventListener('load', function () {
 		}
 
 		document.getElementById("btnSearch").onclick = function () {
-			alert("222");
 			form.action = goUrlXdmList;
 			form.submit();
 		};
@@ -310,7 +310,7 @@ window.addEventListener('load', function () {
 			    form.submit();
 		    }
 		}
-	 
+	
 		goList = function (thisPage) {
 		    document.querySelector("input[name=thisPage]").value = thisPage;
 		    form.action = goUrlXdmList;

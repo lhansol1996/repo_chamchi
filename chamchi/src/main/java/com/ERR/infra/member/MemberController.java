@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilSetSearch;
+import com.ERR.infra.mail.MailService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,6 +29,8 @@ public class MemberController extends BaseController {
 	MemberService service;
 //	memberService memberService;
 
+	@Autowired
+	MailService mailService;
 
 	@RequestMapping(value = "/memberXdmList")
 	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
@@ -122,6 +125,15 @@ public class MemberController extends BaseController {
 	public String memberUsrReg(MemberDto dto, Model model) throws Exception {
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
 		service.memberReg(dto);
+		
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				mailService.sendMailSample();
+			}
+		});
+		thread.start();
 		return "redirect:/userIndex";
 	}
 

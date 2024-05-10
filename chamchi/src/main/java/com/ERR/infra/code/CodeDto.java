@@ -10,14 +10,17 @@ public class CodeDto {
 	private Integer codeDelNy;
 	private Date codeRegDate;
 	private Date codeModDate;
-	
+
 	private String codeGroupSeqF;
 	private String xcodeGroupName;
-	
+
+	private String[] checkboxSeqArray = null;
+
 //	캐시사용을 위한 list 생성
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
-	
-	CodeDto () {}
+
+	CodeDto() {
+	}
 
 	public String getCodeSeq() {
 		return codeSeq;
@@ -35,7 +38,6 @@ public class CodeDto {
 		this.codeName = codeName;
 	}
 
-	
 	public Integer getCodeDelNy() {
 		return codeDelNy;
 	}
@@ -76,17 +78,19 @@ public class CodeDto {
 		this.xcodeGroupName = xcodeGroupName;
 	}
 
-	@Override
-	public String toString() {
-		return "CodeDto [codeSeq=" + codeSeq + ", codeName=" + codeName +" , codeDelNy="
-				+ codeDelNy + ", codeRegDate=" + codeRegDate + ", codeModDate=" + codeModDate + ", codeGroupSeqF="
-				+ codeGroupSeqF + ", xcodeGroupName=" + xcodeGroupName + "]";
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
 	}
 
-	
-	
-	
-	
-	
-	
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
+
+	@Override
+	public String toString() {
+		return "CodeDto [codeSeq=" + codeSeq + ", codeName=" + codeName + " , codeDelNy=" + codeDelNy + ", codeRegDate="
+				+ codeRegDate + ", codeModDate=" + codeModDate + ", codeGroupSeqF=" + codeGroupSeqF
+				+ ", xcodeGroupName=" + xcodeGroupName + "]";
+	}
+
 }

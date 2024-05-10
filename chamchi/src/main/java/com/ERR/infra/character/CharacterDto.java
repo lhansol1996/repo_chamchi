@@ -15,6 +15,8 @@ public class CharacterDto {
 	private Date characterRegDate;
 	private Date characterModDate;
 	
+	private String[] checkboxSeqArray = null;
+	
 	private String XtopBarSearchInputValue;
 
 	public String getCharacterSeq() {
@@ -111,6 +113,15 @@ public class CharacterDto {
 
 	public void setXtopBarSearchInputValue(String xtopBarSearchInputValue) {
 		XtopBarSearchInputValue = xtopBarSearchInputValue;
+	}
+	
+
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
 	}
 
 	@Override

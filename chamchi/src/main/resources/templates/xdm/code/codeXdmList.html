@@ -134,7 +134,7 @@
 											<thead>
 												<tr>
 													<th scope="col-2"><input class="form-check-input" type="checkbox"
-															value="" id="flexCheckDefault" /></th>
+															value="" id="checkboxAll" /></th>
 													<th scope="col-2">Seq</th>
 													<th scope="col-2">Name</th>
 													<th scope="col-2">delNy</th>
@@ -146,8 +146,9 @@
 											</thead>
 											<tbody>
 												<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-													<td scope="row"><input class="form-check-input" type="checkbox"
-															value="" id="flexCheckDefault" /></td>
+													<td scope="row">
+														<input class="form-check-input chk" type="checkbox" value="" />
+													</td>
 													<td class="col"><a href="#"
 															th:href="@{/codeXdmView(codeSeq=${list.codeSeq},codeName=${list.codeName},codeDelNy=${list.codeDelNy})}"
 															th:text="${list.codeSeq}">#001</a></td>
@@ -298,7 +299,6 @@ window.addEventListener('load', function () {
 		}
 
 		document.getElementById("btnSearch").onclick = function () {
-			alert("222");
 			form.action = goUrlXdmList;
 			form.submit();
 		};
