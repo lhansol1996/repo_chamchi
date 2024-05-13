@@ -87,14 +87,14 @@ public class MemberController extends BaseController {
 		System.out.println("--------------------------");
 		System.out.println("--------------------------");
 		
-		MultipartFile[] uploadFiles = dto.getUploadFiles();
+//		MultipartFile[] uploadFiles = dto.getUploadFiles();
+//		
+//		 for (MultipartFile file : uploadFiles) {
+//	         
+//	         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
+//		 }
 		
-		 for (MultipartFile file : uploadFiles) {
-	         
-	         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
-		 }
-		
-//		service.insert(dto);
+		service.insert(dto);
 		return "redirect:/memberXdmList";
 	}
 
