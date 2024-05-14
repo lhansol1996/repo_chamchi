@@ -5,10 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ERR.common.base.BaseController;
 import com.ERR.common.constants.Constants;
 import com.ERR.common.util.UtilSetSearch;
+import com.ERR.infra.characteruploaded.CharacterUploadedDao;
+import com.ERR.infra.characteruploaded.CharacterUploadedDto;
+import com.amazonaws.services.s3.AmazonS3Client;
 
 @Controller
 public class CharacterController extends BaseController {
@@ -52,9 +56,13 @@ public class CharacterController extends BaseController {
 	}
 
 	@RequestMapping(value = "/characterXdmInsert")
-	public String characterXdmInsert(CharacterDto dto, Model model) throws Exception {
+	public String characterXdmInsert(CharacterDto characterDto, CharacterUploadedDto characterUploadedDto) throws Exception {
 
-		characterService.insert(dto);
+		System.out.println("컨트롤러넘어옴");
+		System.out.println("컨트롤러넘어옴");
+		System.out.println("컨트롤러넘어옴");
+		System.out.println("컨트롤러넘어옴");
+		characterService.insert(characterDto, characterUploadedDto);
 		return "redirect:/characterXdmList";
 	}
 

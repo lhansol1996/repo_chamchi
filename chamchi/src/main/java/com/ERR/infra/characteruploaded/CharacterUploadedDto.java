@@ -4,9 +4,7 @@ import java.util.Date;
 
 public class CharacterUploadedDto {
 	private String characterUploadedSeq;
-	private Integer characterUploadedType;
 	private Integer characterUploadedDefaultNy;
-	private String characterUploadedPathName;
 	private String characterUploadedPath;
 	private String characterUploadedOriginalName;
 	private String characterUploadedUuidName;
@@ -24,28 +22,12 @@ public class CharacterUploadedDto {
 		this.characterUploadedSeq = characterUploadedSeq;
 	}
 
-	public Integer getCharacterUploadedType() {
-		return characterUploadedType;
-	}
-
-	public void setCharacterUploadedType(Integer characterUploadedType) {
-		this.characterUploadedType = characterUploadedType;
-	}
-
 	public Integer getCharacterUploadedDefaultNy() {
 		return characterUploadedDefaultNy;
 	}
 
 	public void setCharacterUploadedDefaultNy(Integer characterUploadedDefaultNy) {
 		this.characterUploadedDefaultNy = characterUploadedDefaultNy;
-	}
-
-	public String getCharacterUploadedPathName() {
-		return characterUploadedPathName;
-	}
-
-	public void setCharacterUploadedPathName(String characterUploadedPathName) {
-		this.characterUploadedPathName = characterUploadedPathName;
 	}
 
 	public String getCharacterUploadedPath() {
@@ -114,14 +96,13 @@ public class CharacterUploadedDto {
 
 	@Override
 	public String toString() {
-		return "CharacterUploadedDto [characterUploadedSeq=" + characterUploadedSeq + ", characterUploadedType="
-				+ characterUploadedType + ", characterUploadedDefaultNy=" + characterUploadedDefaultNy
-				+ ", characterUploadedPathName=" + characterUploadedPathName + ", characterUploadedPath="
-				+ characterUploadedPath + ", characterUploadedOriginalName=" + characterUploadedOriginalName
-				+ ", characterUploadedUuidName=" + characterUploadedUuidName + ", characterUploadedExt="
-				+ characterUploadedExt + ", characterUploadedSize=" + characterUploadedSize
-				+ ", characterUploadedDelNy=" + characterUploadedDelNy + ", characterUploadedPseq="
-				+ characterUploadedPseq + ", characterUploadedRegDate=" + characterUploadedRegDate + "]";
+		return "CharacterUploadedDto [characterUploadedSeq=" + characterUploadedSeq + ", characterUploadedDefaultNy="
+				+ characterUploadedDefaultNy + ", characterUploadedPath=" + characterUploadedPath
+				+ ", characterUploadedOriginalName=" + characterUploadedOriginalName + ", characterUploadedUuidName="
+				+ characterUploadedUuidName + ", characterUploadedExt=" + characterUploadedExt
+				+ ", characterUploadedSize=" + characterUploadedSize + ", characterUploadedDelNy="
+				+ characterUploadedDelNy + ", characterUploadedPseq=" + characterUploadedPseq
+				+ ", characterUploadedRegDate=" + characterUploadedRegDate + "]";
 	}
 
 }

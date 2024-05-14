@@ -42,7 +42,7 @@
 							<div class="card mb-4">
 								<div class="card-body">
 									<form name="formInsert" id="formInsert" class="row g-3"
-										method="post">
+										method="post" enctype="multipart/form-data">
 
 										<div class="col-md-3">
 											<label for="characterName" class="form-label">캐릭터 이름:</label>
@@ -79,6 +79,12 @@
 											<label for="characterDept" class="form-label"><span>상세설명 :</span></label>
 											<textarea class="form-control" name="characterDept" id="characterDept" style="height: 300px"></textarea>
 											<div class="invalid-feedback" id="characterDeptFeedback"></div>
+										</div>
+
+										<div class="col-md-12">
+											<label for="uploadFiles" class="form-label">업로드 파일</span></label>
+											<input type="file" class="form-control" name="uploadFiles" id="uploadFiles" />
+											<div class="invalid-feedback" id="uploadFileFeedback"></div>
 										</div>
 
 										<div class="d-flex justify-content-between col-12">
@@ -133,6 +139,7 @@
 			if (validationInst() == false) {
 				return false;
 			} else {
+				alert('성공');
 				form.action = goUrlXdmInstForm
 				form.submit();
 			}
@@ -146,8 +153,9 @@
 		}
 
 		function validationUpdt() {
+			alert('====2');
 			if (!checkOnlyKoreanEnglishNumber('characterName',2,0,'한글 영어 숫자만 가능합니다')) return false;
-			if (!checkOnlyKoreanEnglishNumber('characterDpt',2,0,'한글 영어 숫자만 가능합니다')) return false;
+			if (!checkOnlyKoreanEnglishNumber('characterDept',2,0,'한글 영어 숫자만 가능합니다')) return false;
 			if (!checkOnlyNumber('characterHp',2,0,0,1,9999,'숫자만 가능합니다')) return false;
 			if (!checkOnlyNumber('characterMp',2,0,0,1,9999,'숫자만 가능합니다')) return false;
 			if (!checkOnlyNumber('characterDef',2,0,0,1,9999,'숫자만 가능합니다')) return false;

@@ -11,9 +11,7 @@
 	<select id="selectOne" resultMap="resultMapObj">
 		select
 		characterUploadedSeq,
-   		characterUploadedType,
   		characterUploadedDefaultNy,
-   		characterUploadedPathName,
    		characterUploadedPath,
    		characterUploadedOriginalName,
     	characterUploadedUuidName,
@@ -31,10 +29,7 @@
 
 	<insert id="insert">
 		insert into ercharacteruploaded(
-		characterUploadedSeq,
-		characterUploadedType,
 		characterUploadedDefaultNy,
-		characterUploadedPathName,
 		characterUploadedPath,
 		characterUploadedOriginalName,
 		characterUploadedUuidName,
@@ -44,10 +39,7 @@
 		characterUploadedPseq,
 		characterUploadedRegDate
 		)values(
-		#{characterUploadedSeq}
-		,#{characterUploadedType}
-		,#{characterUploadedDefaultNy}
-		,#{characterUploadedPathName}
+		0
 		,#{characterUploadedPath}
 		,#{characterUploadedOriginalName}
 		,#{characterUploadedUuidName}
@@ -55,7 +47,7 @@
 		,#{characterUploadedSize}
 		,0
 		,#{characterUploadedPseq}
-		,#{characterUploadedRegDate}
+		,now()
 		);
 
 <!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->

@@ -37,19 +37,23 @@ public class CharacterService {
 	}
 
 	// 등록버튼
-	public int insert(CharacterDto characterDto, CharacterUploadedDto characterUploadedDto,
-			MultipartFile[] multipartFiles, String tableName, int type, String pSeq,
-			CharacterDao characterDao, CharacterUploadedDao characterUploadedDao, AmazonS3Client amazonS3Client)
+	public int insert(CharacterDto characterDto, CharacterUploadedDto characterUploadedDto)
 			throws Exception, SdkClientException, IOException {
 
+		System.out.println("서비스 실행 --------------");
+		System.out.println("서비스 실행 --------------");
+		System.out.println("서비스 실행 --------------");
+		System.out.println("서비스 실행 --------------");
+		System.out.println("서비스 실행 --------------");
+		System.out.println("서비스 실행 --------------");
+		System.out.println("서비스 실행 --------------");
 		characterDao.insert(characterDto);
-
-		for (int i = 0; i < multipartFiles.length; i++) {
-
-			if (!multipartFiles[i].isEmpty()) {
+			for(MultipartFile multipartFile : characterDto.getUploadFiles()) {
+			
+			if(!multipartFile.isEmpty())  {
 
 				String className = characterDto.getClass().getSimpleName().toString().toLowerCase();
-				String fileName = multipartFiles[i].getOriginalFilename();
+				String fileName = multipartFile.getOriginalFilename();
 				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				String uuid = UUID.randomUUID().toString();
 				String uuidFileName = uuid + "." + ext;
@@ -57,14 +61,13 @@ public class CharacterService {
 				String nowString = UtilDateTime.nowString();
 				String pathDate = nowString.substring(0, 4) + "/" + nowString.substring(5, 7) + "/"
 						+ nowString.substring(8, 10);
-				String path = pathModule + "/" + type + "/" + pathDate + "/";
+				String path = pathModule +  "/" + pathDate + "/";
 //						String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
 
 				ObjectMetadata metadata = new ObjectMetadata();
-				metadata.setContentLength(multipartFiles[i].getSize());
-				metadata.setContentType(multipartFiles[i].getContentType());
+				metadata.setContentLength(multipartFile.getSize());
 
-				amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+				amazonS3Client.putObject(bucket, path + uuidFileName, multipartFile.getInputStream(), metadata);
 
 				String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
 
@@ -72,9 +75,7 @@ public class CharacterService {
 				characterUploadedDto.setCharacterUploadedOriginalName(fileName);
 				characterUploadedDto.setCharacterUploadedUuidName(uuidFileName);
 				characterUploadedDto.setCharacterUploadedExt(ext);
-				characterUploadedDto.setCharacterUploadedSize(Integer.valueOf((int) multipartFiles[i].getSize()));
-
-				characterUploadedDto.setCharacterUploadedType(type);
+				characterUploadedDto.setCharacterUploadedSize(Integer.valueOf((int) multipartFile.getSize()));
 				characterUploadedDto.setCharacterUploadedPseq(characterDto.getCharacterSeq());
 
 				characterUploadedDao.insert(characterUploadedDto);

@@ -21,9 +21,6 @@ public class MemberDto {
 	private Date memberRegDate;
 	private Date memberModDate;
 	
-	private MultipartFile uploadFile;
-	private MultipartFile[] uploadFiles;
-
 	private String[] checkboxSeqArray = null;
 
 	public String getMemberSeq() {
@@ -153,22 +150,5 @@ public class MemberDto {
 	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
 		this.checkboxSeqArray = checkboxSeqArray;
 	}
-
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-
-	public MultipartFile[] getUploadFiles() {
-		return uploadFiles;
-	}
-
-	public void setUploadFiles(MultipartFile[] uploadFiles) {
-		this.uploadFiles = uploadFiles;
-	}
-
 	
 }

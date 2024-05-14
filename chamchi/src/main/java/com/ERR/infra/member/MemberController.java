@@ -82,18 +82,6 @@ public class MemberController extends BaseController {
 	@RequestMapping(value = "/memberXdmInsert")
 	public String memberXdmInsert(MemberDto dto, Model model) throws Exception {
 		dto.setMemberPwd(encodeBcrypt(dto.getMemberPwd(), 10));
-		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		System.out.println("--------------------------");
-		System.out.println("--------------------------");
-		System.out.println("--------------------------");
-		
-//		MultipartFile[] uploadFiles = dto.getUploadFiles();
-//		
-//		 for (MultipartFile file : uploadFiles) {
-//	         
-//	         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
-//		 }
-		
 		service.insert(dto);
 		return "redirect:/memberXdmList";
 	}
