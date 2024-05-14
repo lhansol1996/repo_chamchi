@@ -5,9 +5,9 @@ import java.util.List;
 public interface CharacterDao {
 	// DTO 중 하나를 리턴
 	public CharacterDto selectOne(CharacterDto dto);
-	
+
 	// DTO 중 이름값으로 하나를 리턴
-		public CharacterDto selectOneByName(CharacterDto dto);
+	public CharacterDto selectOneByName(CharacterDto dto);
 
 	// 등록 버튼
 	public int insert(CharacterDto dto);

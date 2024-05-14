@@ -2,6 +2,8 @@ package com.ERR.infra.character;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CharacterDto {
 	private String characterSeq;
 	private String characterName;
@@ -14,10 +16,13 @@ public class CharacterDto {
 	private Integer characterDelNy;
 	private Date characterRegDate;
 	private Date characterModDate;
-	
+
 	private String[] checkboxSeqArray = null;
-	
+
 	private String XtopBarSearchInputValue;
+
+	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFiles;
 
 	public String getCharacterSeq() {
 		return characterSeq;
@@ -114,7 +119,6 @@ public class CharacterDto {
 	public void setXtopBarSearchInputValue(String xtopBarSearchInputValue) {
 		XtopBarSearchInputValue = xtopBarSearchInputValue;
 	}
-	
 
 	public String[] getCheckboxSeqArray() {
 		return checkboxSeqArray;
@@ -122,6 +126,22 @@ public class CharacterDto {
 
 	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
 		this.checkboxSeqArray = checkboxSeqArray;
+	}
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
 	}
 
 	@Override
@@ -133,8 +153,5 @@ public class CharacterDto {
 				+ ", characterModDate=" + characterModDate + ", XtopBarSearchInputValue=" + XtopBarSearchInputValue
 				+ "]";
 	}
-
-	
-	
 
 }

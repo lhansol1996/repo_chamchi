@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ERR.infra.characteruploaded.CharacterUploadedDao">
+
+	<resultMap id="resultMapObj" type="com.ERR.infra.characteruploaded.CharacterUploadedDto"></resultMap>
+	
+	
+
+
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+		characterUploadedSeq,
+   		characterUploadedType,
+  		characterUploadedDefaultNy,
+   		characterUploadedPathName,
+   		characterUploadedPath,
+   		characterUploadedOriginalName,
+    	characterUploadedUuidName,
+    	characterUploadedExt,
+    	characterUploadedSize,
+    	characterUploadedDelNy,
+    	characterUploadedPseq,
+    	characterUploadedRegDate
+		from
+		ercharacteruploaded
+		where 1=1
+		and characterUploadedSeq = #{characterUploadedSeq}
+	</select>
+		
+
+	<insert id="insert">
+		insert into ercharacteruploaded(
+		characterUploadedSeq,
+		characterUploadedType,
+		characterUploadedDefaultNy,
+		characterUploadedPathName,
+		characterUploadedPath,
+		characterUploadedOriginalName,
+		characterUploadedUuidName,
+		characterUploadedExt,
+		characterUploadedSize,
+		characterUploadedDelNy,
+		characterUploadedPseq,
+		characterUploadedRegDate
+		)values(
+		#{characterUploadedSeq}
+		,#{characterUploadedType}
+		,#{characterUploadedDefaultNy}
+		,#{characterUploadedPathName}
+		,#{characterUploadedPath}
+		,#{characterUploadedOriginalName}
+		,#{characterUploadedUuidName}
+		,#{characterUploadedExt}
+		,#{characterUploadedSize}
+		,0
+		,#{characterUploadedPseq}
+		,#{characterUploadedRegDate}
+		);
+
+<!--  값이 들어가는 순간 해당 시퀀스 값을 반환하여 , 이후에 다시 데이터를 추가한 페이지를 보기위함 -->
+		<selectKey resultType="String" keyProperty="characterUploadedSeq"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+
+	<update id="uelete">
+		UPDATE ercharacteruploaded
+		SET
+		characterUploadedDelNy=1
+		where 1=1
+		and characterUploadedSeq=#{characterUploadedSeq}
+	</update>
+
+	<delete id="delete">
+		Delete from ercharacteruploaded
+		where 1=1
+		and characterUploadedSeq = #{characterUploadedSeq}
+	</delete>
+	
+	
+
+</mapper>
