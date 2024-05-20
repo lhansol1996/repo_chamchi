@@ -58,10 +58,6 @@ public class CharacterController extends BaseController {
 	@RequestMapping(value = "/characterXdmInsert")
 	public String characterXdmInsert(CharacterDto characterDto, CharacterUploadedDto characterUploadedDto) throws Exception {
 
-		System.out.println("컨트롤러넘어옴");
-		System.out.println("컨트롤러넘어옴");
-		System.out.println("컨트롤러넘어옴");
-		System.out.println("컨트롤러넘어옴");
 		characterService.insert(characterDto, characterUploadedDto);
 		return "redirect:/characterXdmList";
 	}
@@ -91,6 +87,7 @@ public class CharacterController extends BaseController {
 	public String characterDetail(Model model, CharacterDto dto) throws Exception {
 
 		CharacterDto character = characterService.selectOneByName(dto);
+		System.out.println(character.toString());
 		if (character != null) {
 			if (Constants.CHARACTER_NAMES.contains(character.getCharacterName())) {
 				model.addAttribute("item", character);

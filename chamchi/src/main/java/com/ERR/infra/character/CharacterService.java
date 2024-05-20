@@ -40,13 +40,6 @@ public class CharacterService {
 	public int insert(CharacterDto characterDto, CharacterUploadedDto characterUploadedDto)
 			throws Exception, SdkClientException, IOException {
 
-		System.out.println("서비스 실행 --------------");
-		System.out.println("서비스 실행 --------------");
-		System.out.println("서비스 실행 --------------");
-		System.out.println("서비스 실행 --------------");
-		System.out.println("서비스 실행 --------------");
-		System.out.println("서비스 실행 --------------");
-		System.out.println("서비스 실행 --------------");
 		characterDao.insert(characterDto);
 			for(MultipartFile multipartFile : characterDto.getUploadFiles()) {
 			

@@ -1,5 +1,6 @@
 package com.ERR.infra.character;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +17,10 @@ public class CharacterDto {
 	private Integer characterDelNy;
 	private Date characterRegDate;
 	private Date characterModDate;
-
+	
+	private String characterUploadedPseq;
+	private String characterUploadedPath;
+	
 	private String[] checkboxSeqArray = null;
 
 	private String XtopBarSearchInputValue;
@@ -144,14 +148,34 @@ public class CharacterDto {
 		this.uploadFiles = uploadFiles;
 	}
 
+	public String getCharacterUploadedPseq() {
+		return characterUploadedPseq;
+	}
+
+	public void setCharacterUploadedPseq(String characterUploadedPseq) {
+		this.characterUploadedPseq = characterUploadedPseq;
+	}
+
+	public String getCharacterUploadedPath() {
+		return characterUploadedPath;
+	}
+
+	public void setCharacterUploadedPath(String characterUploadedPath) {
+		this.characterUploadedPath = characterUploadedPath;
+	}
+
 	@Override
 	public String toString() {
 		return "CharacterDto [characterSeq=" + characterSeq + ", characterName=" + characterName + ", characterHp="
 				+ characterHp + ", characterMp=" + characterMp + ", characterDef=" + characterDef + ", characterAtk="
 				+ characterAtk + ", characterVideoPath=" + characterVideoPath + ", characterDept=" + characterDept
 				+ ", characterDelNy=" + characterDelNy + ", characterRegDate=" + characterRegDate
-				+ ", characterModDate=" + characterModDate + ", XtopBarSearchInputValue=" + XtopBarSearchInputValue
-				+ "]";
+				+ ", characterModDate=" + characterModDate + ", characterUploadedPseq=" + characterUploadedPseq
+				+ ", characterUploadedPath=" + characterUploadedPath + ", checkboxSeqArray="
+				+ Arrays.toString(checkboxSeqArray) + ", XtopBarSearchInputValue=" + XtopBarSearchInputValue
+				+ ", uploadFile=" + uploadFile + ", uploadFiles=" + Arrays.toString(uploadFiles) + "]";
 	}
+
+	
 
 }

@@ -43,19 +43,21 @@
 	
 	<select id="selectOneByName" resultMap="resultMapObj">
 		select
-		characterSeq
-		,characterName
-		,characterHp
-		,characterMp
-		,characterDef
-		,characterAtk
-		,characterVideoPath
-		,characterDept
-		,characterRegDate
-		,characterModDate
-		,characterDelNy
-		from
-		ercharacter
+		a.characterSeq
+		,a.characterName
+		,a.characterHp
+		,a.characterMp
+		,a.characterDef
+		,a.characterAtk
+		,a.characterVideoPath
+		,a.characterDept
+		,a.characterRegDate
+		,a.characterModDate
+		,a.characterDelNy
+		,b.characterUploadedPath
+		,b.characterUploadedPseq
+		from ercharacter a
+		LEFT JOIN ercharacteruploaded b ON a.characterSeq = b.characterUploadedPseq
 		where 1=1
 		and characterName = #{XtopBarSearchInputValue}
 	</select>

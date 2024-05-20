@@ -23,7 +23,13 @@
 						</div>
 
 					<!-- 이미지 -->
-							<div th:if="${item.characterSeq=='1'}">
+					<div>
+						<img th:src="${item.characterUploadedPath}">
+
+					</div>
+						
+
+							<!-- <div th:if="${item.characterSeq=='1'}">
 								<img src="usr/assets/images/character/001.재키/Full_default.png" alt="">
 							</div>
 							<div th:if="${item.characterSeq=='2'}">
@@ -61,7 +67,7 @@
 							</div>
 							<div th:if="${item.characterSeq=='13'}">
 								<img src="usr/assets/images/character/013.쇼우/Full_df.png" alt="">
-							</div>
+							</div> -->
 
 
 					</div>
