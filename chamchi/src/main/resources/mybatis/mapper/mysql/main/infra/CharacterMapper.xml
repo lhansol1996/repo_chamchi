@@ -59,7 +59,7 @@
 		from ercharacter a
 		LEFT JOIN ercharacteruploaded b ON a.characterSeq = b.characterUploadedPseq
 		where 1=1
-		and characterName = #{XtopBarSearchInputValue}
+		and a.characterName = #{XtopBarSearchInputValue}
 	</select>
 	
 
@@ -102,6 +102,8 @@
 		characterName = #{characterName}
 		,characterHp = #{characterHp}
 		,characterMp = #{characterMp}
+		,characterDef = #{characterDef}
+		,characterAtk = #{characterAtk}
 		,characterDept = #{characterDept}
 		,characterVideoPath = #{characterVideoPath}
 		,characterModDate = now()
@@ -126,17 +128,23 @@
 	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		select 
-		characterSeq
-		,characterName
-		,characterHp
-		,characterMp
-		,characterVideoPath
-		,characterDept
-		,characterModDate
-		,characterRegDate
-		from ercharacter
+		a.characterSeq
+		,a.characterName
+		,a.characterHp
+		,a.characterMp
+		,a.characterDef
+		,a.characterAtk
+		,a.characterDelNy
+		,a.characterVideoPath
+		,a.characterDept
+		,a.characterModDate
+		,a.characterRegDate
+		,b.characterUploadedPseq
+		,b.characterUploadedPath
+		from ercharacter a
+		LEFT JOIN ercharacteruploaded b ON a.characterSeq = b.characterUploadedPseq
 		where 1=1
-			AND characterDelNy=0
+			AND a.characterDelNy=0
 	</select>
 	
 	<select id="selectListWithPaging"  resultMap="resultMapObj">

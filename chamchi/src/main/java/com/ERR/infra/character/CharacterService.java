@@ -1,6 +1,8 @@
 package com.ERR.infra.character;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,9 +41,12 @@ public class CharacterService {
 	// 등록버튼
 	public int insert(CharacterDto characterDto, CharacterUploadedDto characterUploadedDto)
 			throws Exception, SdkClientException, IOException {
-
+		
 		characterDao.insert(characterDto);
-			for(MultipartFile multipartFile : characterDto.getUploadFiles()) {
+		//null 처리
+		MultipartFile[] uploadFilesArray = characterDto.getUploadFiles();
+	    List<MultipartFile> uploadFiles = (uploadFilesArray != null) ? Arrays.asList(uploadFilesArray) : Collections.emptyList();
+			for(MultipartFile multipartFile : uploadFiles) {
 			
 			if(!multipartFile.isEmpty())  {
 
