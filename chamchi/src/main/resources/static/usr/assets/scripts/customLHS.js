@@ -45,12 +45,9 @@ document.getElementById("btnLogout").onclick = function () {
             /* ,data : $("#formLogin").serialize() */
             // , data: { "memberID": $("#memberID").val(), "memberPwd": $("#memberPwd").val() }
             , success: function (response) {
-                alert(response.rt);
                 if (response.rt == "success") {
-                    alert('로그아웃 성공');
                         location.href = "/userIndex";
                 } else {
-                    alert('로그아웃 안됨');
                     // document.getElementById("modalAlertTitle").innerText = "확 인";
                     // document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
                     // $("#modalAlert").modal("show");

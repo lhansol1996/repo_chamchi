@@ -63,11 +63,9 @@
 				, success: function (response) {
 					alert(response.rt);
 					if (response.rt == "success") {
-						alert('로그인 성공');
 						location.href = "/codeGroupXdmList";
 					} else {
 						alert(response.rt);
-						alert('로그인 안됨');
 						// document.getElementById("modalAlertTitle").innerText = "확 인";
 						// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
 						// $("#modalAlert").modal("show");
