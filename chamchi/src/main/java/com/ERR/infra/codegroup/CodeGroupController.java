@@ -24,6 +24,12 @@ public class CodeGroupController extends BaseController{
 	@RequestMapping(value="/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo")CodeGroupVo vo, Model model) throws Exception {
 		UtilSetSearch.setSearch(vo);
+		return XdmCdgCommomPath + "codeGroupXdmList";
+	}
+	
+	@RequestMapping(value="/codeGroupXdmLita")
+	public String codeGroupXdmLita(@ModelAttribute("vo")CodeGroupVo vo, Model model) throws Exception {
+		UtilSetSearch.setSearch(vo);
 
 		
 		vo.setParamsPaging(service.selectCount(vo));
@@ -32,8 +38,9 @@ public class CodeGroupController extends BaseController{
 			model.addAttribute("list", service.selectListWithPaging(vo));
 		}
 		
-		return XdmCdgCommomPath + "codeGroupXdmList";
+		return XdmCdgCommomPath + "codeGroupXdmLita";
 	}
+	
 	
 	
 //	@RequestMapping(value="/codeGroupView")
