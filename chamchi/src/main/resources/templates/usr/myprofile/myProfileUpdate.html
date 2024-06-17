@@ -155,10 +155,31 @@
 									</div>
 								</div>
 							</div> -->
-
+							
 
 						</div>
 					</form>
+					<script>
+						function new_caputre(){
+							var objPopup = window.open('','myWindow','resizable=yes, top=0, left=100, width=500, height=750, scrollbars=no');
+							document.newCapture.target="myWindow";
+							document.newCapture.action="http://apiservice.co.kr/api/post_popup"; 
+							if ( objPopup == null) 
+								alert('차단된 팝업창을 허용해 주세요');
+							else{
+								document.newCapture.submit();
+								objPopup.focus();
+							}
+						}
+						</script>
+						<label>택배조회 API</label>
+							<form name="newCapture" method="post" >
+							<input type="hidden" name="keynumber" value="kikjsokjisi887302kdue">
+							<input type="hidden" name="taekbaesa" value="lotte">
+							<input type="text" name="songjang"  value="250587709363">
+							<button type="button" onclick="new_caputre()" />배송조회
+							</button>
+							</form>
 				</div>
 
 			</div>
