@@ -49,7 +49,7 @@ public class RecordController extends BaseController {
 			model.addAttribute("userGamesList", userGamesList);
 
 			// 받은 userNum으로 해당 유저 상세 정보 호출 API
-			String getUserStatUrl = "https://open-api.bser.io/v1/user/stats/" + userNum + "/23";
+			String getUserStatUrl = "https://open-api.bser.io/v1/user/stats/" + userNum + "/25";
 			UtilApi.callERApi(getUserStatUrl);
 			StringBuilder stringBuilder3 = UtilApi.callERApi(getUserStatUrl);
 			// objectMapper 생성
