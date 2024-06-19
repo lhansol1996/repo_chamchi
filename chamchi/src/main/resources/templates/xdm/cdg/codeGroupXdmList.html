@@ -139,11 +139,14 @@
 											</div>
 											<!-- 테이블 아래 쪽 등록 버튼 -->
 											<div class="col-2">
+											
+											<!-- 엑셀버튼 -->
+												<a class="btn btn-success bi-file-earmark-excel-fill btn-sm mb-5" id="btnExcel"></a>
+						
 												<a class="btn btn-info btn-icon btn-sm mb-5" href="#"
 													th:href="@{/codeGroupXdmInsertForm}" id="btnInsert">
 													<i class="bi bi-plus-circle"></i></a>
 											</div>
-
 
 										</div>
 
@@ -180,6 +183,7 @@
 	<script th:inline="javascript">
 	
 	let goUrlXdmAjaxLita = "/codeGroupXdmLita";
+	let goUrlXdmExcel = "/excelDownload";
 	
 	window.addEventListener('load', function() {
 		let a= [[${vo.thisPage}]];
@@ -274,6 +278,12 @@ window.addEventListener('load', function () {
 			formMultiUelete.submit();
 			
 		});
+	
+	 // 엑셀 다운로드
+    document.getElementById("btnExcel").onclick = function () {
+        form.action = goUrlXdmExcel;
+        form.submit();
+    }
 	
 		
 	</script>
