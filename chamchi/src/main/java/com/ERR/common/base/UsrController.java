@@ -59,7 +59,7 @@ public class UsrController extends BaseController {
 	public String userIndex(Model model, PartyDto dto) throws Exception {
 		model.addAttribute("partyRecentList", partyService.searchPartyForRecent5(dto));
 		
-		String apiURL = "https://open-api.bser.io/v1/rank/top/23/3";
+		String apiURL = "https://open-api.bser.io/v1/rank/top/25/3";
 		UtilApi.callERApi(apiURL);
 
 		// API 호출 및 stringBuilder 받아오기
