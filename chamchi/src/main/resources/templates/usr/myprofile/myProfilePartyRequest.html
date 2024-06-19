@@ -73,47 +73,18 @@
 					<tr>
 						<th><i class="fa fa-group"></i> 참가 신청한 파티</th>
 						<th></th>
-						<th></th>
 					</tr>
 
 					<!-- Item #1 -->
 					<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
 						<td class="title-container">
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == null}">
-										<img src="usr/assets/images/00.Unrank.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 74}">
-										<img src="usr/assets/images/02.Bronze.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 75}">
-										<img src="usr/assets/images/03.Silver.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 76}">
-										<img src="usr/assets/images/04.Gold.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 77}">
-										<img src="usr/assets/images/05.Platinum.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 78}">
-										<img src="usr/assets/images/06.Diamond.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 79}">
-										<img src="usr/assets/images/07.Mithril.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 80}">
-										<img src="usr/assets/images/08.Titan.png" alt="">
-									</th:block>
-									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 81}">
-										<img src="usr/assets/images/09.Immortal.png" alt="">
-									</th:block>
-							
-							
-						</td>
-						<td>
-							<div class="title-container">
+									<div class="title-container">
 								<h4>파티이름 : <a href="#" th:text="${list.partyName}"></a></h4>
 							</div>	
+							
+							
 						</td>
+					
 						<td class="action">
 							<a th:href="@{/userPartyDetail (partySeq=${list.partySeq})}" href="#" class="delete"><i class="im im-icon-Arrow-RightinCircle"></i> detail</a>
 						</td>
