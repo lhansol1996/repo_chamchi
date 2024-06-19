@@ -243,6 +243,7 @@
 		,mp.masterNy as xMasterNy
 		,mp.partyJoinNy as xPartyJoinNy
 		,mp.partyOutNy as xPartyOutNy
+		,mp.memberSeqF as voXMemberSeqF
 
 		FROM party a
 		LEFT JOIN memberParty mp ON a.partySeq = mp.partySeqF

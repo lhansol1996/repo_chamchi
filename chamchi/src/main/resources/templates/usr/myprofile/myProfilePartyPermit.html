@@ -66,6 +66,7 @@
 			<!-- 페이징 처리 필요한 검색값 -->
 			<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 			<input type="hidden" id="rowNumToShowD" name="rowNumToShowD" th:value="${vo.rowNumToShow}"/>
+			<input type="hidden" id="voXMemberSeqF" name="voXMemberSeqF" th:value="${vo.voXMemberSeqF}"/>
 
 			<div class="col-md-8" id="partyList">
 				<table class="manage-table bookmarks-table responsive-table">
@@ -129,11 +130,11 @@
 <div th:replace="~{include/commonjs :: commonUsrJs}"></div>
 
 <script>
-    let goUrlProfilePartyRequestList = "/myProfilePartyRequest";
+    let goUrlProfilePartyPermitList = "/myProfilePartyPermit";
 	let form = document.querySelector("form[name=formList]");
 	goList = function (thisPage) {
 		document.querySelector("input[name=thisPage]").value = thisPage;
-		form.action = goUrlProfilePartyRequestList;
+		form.action = goUrlProfilePartyPermitList;
 		form.submit();
 		}
 </script>
