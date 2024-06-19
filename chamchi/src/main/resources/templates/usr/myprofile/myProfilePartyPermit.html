@@ -80,31 +80,31 @@
 					<!-- Item #1 -->
 					<tr th:if="${!#lists.isEmpty(list) && list.xMasterSeqF == session.sessMemberSeq}" th:each="list:${list}">
 						<td class="title-container">
-							<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == null}">
+							<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == null}">
 										<img src="usr/assets/images/00.Unrank.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 74}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 74}">
 										<img src="usr/assets/images/02.Bronze.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 75}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 75}">
 										<img src="usr/assets/images/03.Silver.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 76}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 76}">
 										<img src="usr/assets/images/04.Gold.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 77}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 77}">
 										<img src="usr/assets/images/05.Platinum.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 78}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 78}">
 										<img src="usr/assets/images/06.Diamond.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 79}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 79}">
 										<img src="usr/assets/images/07.Mithril.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 80}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 80}">
 										<img src="usr/assets/images/08.Titan.png" alt="">
 									</th:block>
-									<th:block th:if="${list.xMasterNy == '1' && list.xMemberTierCd == 81}">
+									<th:block th:if="${list.xPartyJoinNy == '2' && list.xMemberTierCd == 81}">
 										<img src="usr/assets/images/09.Immortal.png" alt="">
 									</th:block>
 						</td>

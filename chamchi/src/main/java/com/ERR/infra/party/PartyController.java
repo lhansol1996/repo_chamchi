@@ -143,7 +143,7 @@ public class PartyController extends BaseController {
 		memberPartyDto.setMemberSeqF((String.valueOf(httpSession.getAttribute("sessMemberSeq"))));
 
 		partyservice.insertRequest(partyDto, memberPartyDto);
-		return "redirect:/myProfileMyPartys";
+		return "redirect:/userPartySearchList";
 	}
 
 	@RequestMapping(value = "/updatePermit")
